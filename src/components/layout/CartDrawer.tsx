@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { Sheet } from "@/components/ui/Sheet";
 import { Button } from "@/components/ui/Button";
 import { useCartStore } from "@/store/cart";
@@ -11,6 +12,10 @@ import Link from "next/link";
 export function CartDrawer() {
   const { items, isOpen, toggleCart, removeItem, updateQuantity, total, count } =
     useCartStore();
+
+  useEffect(() => {
+    useCartStore.persist.rehydrate();
+  }, []);
 
   return (
     <Sheet

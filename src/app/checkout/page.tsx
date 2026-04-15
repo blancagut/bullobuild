@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useCartStore } from "@/store/cart";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
@@ -15,6 +15,7 @@ export default function CheckoutPage() {
   const { items, total, count, clearCart } = useCartStore();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   const [form, setForm] = useState({
     full_name: "",
@@ -27,10 +28,17 @@ export default function CheckoutPage() {
     country: "US",
   });
 
-  if (items.length === 0) {
-    router.replace("/cart");
-    return null;
-  }
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (mounted && items.length === 0) {
+      router.replace("/cart");
+    }
+  }, [mounted, items.length, router]);
+
+  if (!mounted || items.length === 0) return null;
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
@@ -51,7 +59,7 @@ export default function CheckoutPage() {
 
       const { url } = await res.json();
       if (url) {
-        window.location.href = url;
+        router.push(url);
       }
     } catch {
       toast.error("Something went wrong. Please try again.");
