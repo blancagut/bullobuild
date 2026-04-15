@@ -1,0 +1,104 @@
+import Link from "next/link";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { cn } from "@/lib/utils";
+
+interface PaginationProps {
+  currentPage: number;
+  totalPages: number;
+  basePath: string;
+  searchParams?: Record<string, string>;
+  className?: string;
+}
+
+function buildUrl(
+  base: string,
+  page: number,
+  params: Record<string, string>
+) {
+  const p = new URLSearchParams({ ...params, page: String(page) });
+  return `${base}?${p.toString()}`;
+}
+
+export function Pagination({
+  currentPage,
+  totalPages,
+  basePath,
+  searchParams = {},
+  className,
+}: PaginationProps) {
+  if (totalPages <= 1) return null;
+
+  // Build page numbers with ellipsis
+  const pages: (number | "...")[] = [];
+  for (let i = 1; i <= totalPages; i++) {
+    if (
+      i === 1 ||
+      i === totalPages ||
+      (i >= currentPage - 1 && i <= currentPage + 1)
+    ) {
+      pages.push(i);
+    } else if (pages[pages.length - 1] !== "...") {
+      pages.push("...");
+    }
+  }
+
+  const btnBase =
+    "w-9 h-9 flex items-center justify-center text-sm font-bold transition-colors";
+
+  return (
+    <nav
+      aria-label="Pagination"
+      className={cn("flex items-center justify-center gap-1", className)}
+    >
+      {currentPage > 1 ? (
+        <Link
+          href={buildUrl(basePath, currentPage - 1, searchParams)}
+          className={cn(btnBase, "text-gray-400 hover:text-white border border-white/10 hover:border-white/30")}
+          aria-label="Previous page"
+        >
+          <ChevronLeft size={15} />
+        </Link>
+      ) : (
+        <span className={cn(btnBase, "text-gray-700 border border-white/5 cursor-not-allowed")}>
+          <ChevronLeft size={15} />
+        </span>
+      )}
+
+      {pages.map((page, i) =>
+        page === "..." ? (
+          <span key={`ellipsis-${i}`} className={cn(btnBase, "text-gray-600 cursor-default")}>
+            …
+          </span>
+        ) : (
+          <Link
+            key={page}
+            href={buildUrl(basePath, page, searchParams)}
+            className={cn(
+              btnBase,
+              page === currentPage
+                ? "bg-[#f2b705] text-[#0b1f3a]"
+                : "border border-white/10 text-gray-400 hover:border-white/30 hover:text-white"
+            )}
+            aria-current={page === currentPage ? "page" : undefined}
+          >
+            {page}
+          </Link>
+        )
+      )}
+
+      {currentPage < totalPages ? (
+        <Link
+          href={buildUrl(basePath, currentPage + 1, searchParams)}
+          className={cn(btnBase, "text-gray-400 hover:text-white border border-white/10 hover:border-white/30")}
+          aria-label="Next page"
+        >
+          <ChevronRight size={15} />
+        </Link>
+      ) : (
+        <span className={cn(btnBase, "text-gray-700 border border-white/5 cursor-not-allowed")}>
+          <ChevronRight size={15} />
+        </span>
+      )}
+    </nav>
+  );
+}
