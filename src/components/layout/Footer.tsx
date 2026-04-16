@@ -59,8 +59,17 @@ export function Footer() {
         <div className="py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10">
           {/* Brand column */}
           <div className="lg:col-span-2">
-            <Link href="/" className="flex items-center mb-5 inline-flex">
-              <Image src="/logo.png" alt="BULLOBUILD" width={200} height={50} className="h-14 w-auto" />
+            <Link
+              href="/"
+              className="mb-5 inline-flex items-center rounded-sm bg-white px-2 py-1 shadow-[0_10px_30px_rgba(0,0,0,0.35)]"
+            >
+              <Image
+                src="/logo.png"
+                alt="BULLOBUILD"
+                width={756}
+                height={330}
+                className="h-14 w-auto"
+              />
             </Link>
             <p className="text-gray-500 text-sm leading-relaxed mb-6 max-w-xs">
               Authorized distributor of premium professional tool brands. Serving

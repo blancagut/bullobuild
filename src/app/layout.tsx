@@ -25,6 +25,11 @@ export const metadata: Metadata = {
   title: "BULLOBUILD | Professional Tools. Trusted Brands.",
   description:
     "Authorized distributor of DeWalt, Milwaukee, Craftsman, Stanley, Black+Decker, Snap-on, Mac Tools, Kobalt, Skil, and Proto. Shop new and pre-owned professional tools.",
+  icons: {
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
+  },
   keywords: [
     "professional tools",
     "DeWalt",
@@ -37,6 +42,7 @@ export const metadata: Metadata = {
     title: "BULLOBUILD",
     description: "Authorized distributor of top professional tool brands.",
     type: "website",
+    images: ["/logo.png"],
   },
 };
 

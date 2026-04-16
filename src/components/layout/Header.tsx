@@ -27,8 +27,18 @@ export function Header() {
       <Container>
         <div className="flex items-center justify-between h-20 lg:h-24">
           {/* Logo */}
-          <Link href="/" className="flex items-center shrink-0">
-            <Image src="/logo.png" alt="BULLOBUILD" width={240} height={60} className="h-14 lg:h-16 w-auto" priority />
+          <Link
+            href="/"
+            className="flex items-center shrink-0 rounded-sm bg-white px-2 py-1 shadow-[0_10px_30px_rgba(0,0,0,0.35)]"
+          >
+            <Image
+              src="/logo.png"
+              alt="BULLOBUILD"
+              width={756}
+              height={330}
+              className="h-14 lg:h-16 w-auto"
+              priority
+            />
           </Link>
 
           {/* Desktop Nav */}

@@ -41,14 +41,25 @@ export default function OGImage() {
             marginBottom: "32px",
           }}
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="https://bullobuild.com/logo.png"
-            alt="BULLOBUILD"
-            width={320}
-            height={80}
-            style={{ height: "80px", width: "auto", objectFit: "contain" }}
-          />
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "#FFFFFF",
+              padding: "10px 18px",
+              borderRadius: "6px",
+            }}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="https://bullobuild.com/logo.png"
+              alt="BULLOBUILD"
+              width={756}
+              height={330}
+              style={{ height: "88px", width: "auto", objectFit: "contain" }}
+            />
+          </div>
         </div>
 
         {/* Tagline */}

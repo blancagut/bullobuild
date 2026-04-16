@@ -22,8 +22,17 @@ export default function LoginPage() {
       <Container className="max-w-md">
         {/* Logo */}
         <div className="text-center mb-10">
-          <Link href="/" className="inline-flex">
-            <Image src="/logo.png" alt="BULLOBUILD" width={180} height={45} className="h-10 w-auto" />
+          <Link
+            href="/"
+            className="inline-flex rounded-sm bg-white px-2 py-1 shadow-[0_10px_30px_rgba(0,0,0,0.35)]"
+          >
+            <Image
+              src="/logo.png"
+              alt="BULLOBUILD"
+              width={756}
+              height={330}
+              className="h-12 w-auto"
+            />
           </Link>
         </div>
 
