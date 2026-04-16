@@ -1,5 +1,5 @@
 -- ============================================================
--- PROTOOL MARKET · Supabase Database Schema
+-- BULLOBUILD · Supabase Database Schema
 -- Run this in the Supabase SQL editor (in order)
 -- ============================================================
 

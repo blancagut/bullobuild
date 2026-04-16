@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     .eq("id", id)
     .single();
   return {
-    title: data ? `${data.title} — ${formatPrice(data.price)} | ProTool Market Marketplace` : "Listing Not Found",
+    title: data ? `${data.title} — ${formatPrice(data.price)} | BULLOBUILD Marketplace` : "Listing Not Found",
   };
 }
 

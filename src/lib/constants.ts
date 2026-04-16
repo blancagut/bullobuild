@@ -1,8 +1,8 @@
-export const SITE_NAME = "ProTool Market";
+export const SITE_NAME = "BULLOBUILD";
 export const SITE_DESCRIPTION =
   "Authorized distributor of professional tool brands. Shop DeWalt, Milwaukee, Snap-on, Mac Tools, and more.";
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://protoolmarket.com";
+  process.env.NEXT_PUBLIC_SITE_URL || "https://bullobuild.com";
 export const SUPER_ADMIN_EMAIL = "renvagu1@icloud.com";
 
 export const BRANDS = [

@@ -10,7 +10,7 @@ import toast from "react-hot-toast";
 // In production these would be persisted in a settings table
 
 export default function SuperAdminSettingsPage() {
-  const [siteName, setSiteName] = useState("ProTool Market");
+  const [siteName, setSiteName] = useState("BULLOBUILD");
   const [commission, setCommission] = useState("10");
   const [maintenance, setMaintenance] = useState(false);
   const [saving, setSaving] = useState(false);

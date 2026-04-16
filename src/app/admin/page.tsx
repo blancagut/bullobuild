@@ -5,7 +5,7 @@ import { Package, Store, Users, ShoppingBag, Clock } from "lucide-react";
 import Link from "next/link";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = { title: "Admin Dashboard | ProTool Market" };
+export const metadata: Metadata = { title: "Admin Dashboard | BULLOBUILD" };
 
 export default async function AdminDashboard() {
   const supabase = await createClient();

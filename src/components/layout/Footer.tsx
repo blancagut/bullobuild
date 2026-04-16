@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 
@@ -22,7 +23,7 @@ const links: Record<string, { label: string; href: string }[]> = {
     { label: "Warranty", href: "/warranty" },
   ],
   Sellers: [
-    { label: "Sell on ProTool", href: "/marketplace/sell" },
+    { label: "Sell on BULLOBUILD", href: "/marketplace/sell" },
     { label: "Seller Dashboard", href: "/dashboard" },
     { label: "Seller Guidelines", href: "/seller-guidelines" },
     { label: "Verified Sellers", href: "/verified-sellers" },
@@ -58,19 +59,8 @@ export function Footer() {
         <div className="py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10">
           {/* Brand column */}
           <div className="lg:col-span-2">
-            <Link href="/" className="flex items-baseline gap-0 mb-5 inline-flex">
-              <span
-                className="font-black text-2xl tracking-tight text-white uppercase leading-none"
-                style={{ fontFamily: "var(--font-barlow), system-ui" }}
-              >
-                PROTOOL
-              </span>
-              <span
-                className="font-light text-sm tracking-[0.3em] text-[#f2b705] uppercase ml-2"
-                style={{ fontFamily: "var(--font-barlow), system-ui" }}
-              >
-                MARKET
-              </span>
+            <Link href="/" className="flex items-center mb-5 inline-flex">
+              <Image src="/logo.png" alt="BULLOBUILD" width={200} height={50} className="h-14 w-auto" />
             </Link>
             <p className="text-gray-500 text-sm leading-relaxed mb-6 max-w-xs">
               Authorized distributor of premium professional tool brands. Serving
@@ -80,7 +70,7 @@ export function Footer() {
               {[
                 { icon: MapPin, text: "Houston, Texas, United States" },
                 { icon: Phone, text: "+1 (800) 776-8665" },
-                { icon: Mail, text: "support@protoolmarket.com" },
+                { icon: Mail, text: "support@bullobuild.com" },
               ].map(({ icon: Icon, text }) => (
                 <div key={text} className="flex items-center gap-3 text-sm text-gray-500">
                   <Icon size={14} className="text-[#f2b705] shrink-0" />
@@ -118,7 +108,7 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="py-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-gray-600">
-            © {new Date().getFullYear()} ProTool Market LLC. All rights reserved.
+            © {new Date().getFullYear()} BULLOBUILD LLC. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
             {["Privacy Policy", "Terms of Service", "Cookie Policy"].map(

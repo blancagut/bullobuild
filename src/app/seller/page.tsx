@@ -5,7 +5,7 @@ import { DollarSign, List, TrendingUp, Star } from "lucide-react";
 import { SellerSalesChart } from "@/components/seller/SellerSalesChart";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = { title: "Seller Dashboard | ProTool Market" };
+export const metadata: Metadata = { title: "Seller Dashboard | BULLOBUILD" };
 
 export default async function SellerDashboard() {
   const supabase = await createClient();

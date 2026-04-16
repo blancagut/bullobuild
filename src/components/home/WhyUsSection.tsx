@@ -34,7 +34,7 @@ export function WhyUsSection() {
       <Container>
         <div className="text-center mb-16">
           <p className="text-[#f2b705] text-[11px] font-bold uppercase tracking-[0.35em] mb-3">
-            Why ProTool Market
+            Why BULLOBUILD
           </p>
           <h2
             className="font-black text-4xl lg:text-5xl uppercase text-white"

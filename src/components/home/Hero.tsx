@@ -112,13 +112,7 @@ export function Hero() {
         </div>
       </Container>
 
-      {/* Corner label */}
-      <div className="absolute bottom-8 right-8 hidden lg:flex items-center gap-2 text-gray-700">
-        <div className="w-8 h-px bg-gray-700" />
-        <span className="text-[10px] uppercase tracking-widest font-medium">
-          ProTool Market
-        </span>
-      </div>
+      {/* Corner label - removed, icon only as favicon */}
     </section>
   );
 }

@@ -42,7 +42,7 @@ export function BecomeSeller({ userId }: { userId: string }) {
           Become a Seller
         </h1>
         <p className="text-gray-400 text-sm mt-2 max-w-sm">
-          Upgrade your account to sell tools on ProTool Market and access the full seller dashboard.
+          Upgrade your account to sell tools on BULLOBUILD and access the full seller dashboard.
         </p>
       </div>
       <Button onClick={handleApply} disabled={loading}>

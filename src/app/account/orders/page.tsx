@@ -7,7 +7,7 @@ import { ShoppingBag } from "lucide-react";
 import Link from "next/link";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = { title: "My Orders | ProTool Market" };
+export const metadata: Metadata = { title: "My Orders | BULLOBUILD" };
 
 const statusVariant: Record<string, "success" | "warning" | "danger" | "dark"> = {
   paid: "success",

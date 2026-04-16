@@ -5,7 +5,7 @@ import { Package, Store, Users, ShoppingBag, DollarSign } from "lucide-react";
 import { SuperAdminRoleChart } from "@/components/super-admin/SuperAdminRoleChart";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = { title: "Super Admin | ProTool Market" };
+export const metadata: Metadata = { title: "Super Admin | BULLOBUILD" };
 
 export default async function SuperAdminPage() {
   const supabase = await createClient();

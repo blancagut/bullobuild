@@ -21,8 +21,8 @@ const barlowCondensed = Barlow_Condensed({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://protoolmarket.com"),
-  title: "ProTool Market | Professional Tools. Trusted Brands.",
+  metadataBase: new URL("https://bullobuild.com"),
+  title: "BULLOBUILD | Professional Tools. Trusted Brands.",
   description:
     "Authorized distributor of DeWalt, Milwaukee, Craftsman, Stanley, Black+Decker, Snap-on, Mac Tools, Kobalt, Skil, and Proto. Shop new and pre-owned professional tools.",
   keywords: [
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     "authorized distributor",
   ],
   openGraph: {
-    title: "ProTool Market",
+    title: "BULLOBUILD",
     description: "Authorized distributor of top professional tool brands.",
     type: "website",
   },

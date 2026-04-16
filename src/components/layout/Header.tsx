@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ShoppingCart, Menu, X } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { useCartStore } from "@/store/cart";
@@ -24,21 +25,10 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 bg-[#070f1c]/95 backdrop-blur-md border-b border-white/5">
       <Container>
-        <div className="flex items-center justify-between h-16 lg:h-20">
+        <div className="flex items-center justify-between h-20 lg:h-24">
           {/* Logo */}
-          <Link href="/" className="flex items-baseline gap-0 shrink-0">
-            <span
-              className="font-black text-2xl lg:text-3xl tracking-tight text-white uppercase leading-none"
-              style={{ fontFamily: "var(--font-barlow), system-ui, sans-serif" }}
-            >
-              PROTOOL
-            </span>
-            <span
-              className="font-light text-sm lg:text-sm tracking-[0.3em] text-[#f2b705] uppercase ml-2"
-              style={{ fontFamily: "var(--font-barlow), system-ui, sans-serif" }}
-            >
-              MARKET
-            </span>
+          <Link href="/" className="flex items-center shrink-0">
+            <Image src="/logo.png" alt="BULLOBUILD" width={240} height={60} className="h-14 lg:h-16 w-auto" priority />
           </Link>
 
           {/* Desktop Nav */}

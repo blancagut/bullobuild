@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { Container } from "@/components/ui/Container";
 import { Eye, EyeOff } from "lucide-react";
@@ -21,19 +22,8 @@ export default function LoginPage() {
       <Container className="max-w-md">
         {/* Logo */}
         <div className="text-center mb-10">
-          <Link href="/" className="inline-flex items-baseline gap-0">
-            <span
-              className="font-black text-3xl tracking-tight text-white uppercase"
-              style={{ fontFamily: "var(--font-barlow), system-ui" }}
-            >
-              PROTOOL
-            </span>
-            <span
-              className="font-light text-sm tracking-[0.3em] text-[#f2b705] uppercase ml-2"
-              style={{ fontFamily: "var(--font-barlow), system-ui" }}
-            >
-              MARKET
-            </span>
+          <Link href="/" className="inline-flex">
+            <Image src="/logo.png" alt="BULLOBUILD" width={180} height={45} className="h-10 w-auto" />
           </Link>
         </div>
 

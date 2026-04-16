@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "ProTool Market — Authorized Professional Tools";
+export const alt = "BULLOBUILD — Authorized Professional Tools";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -41,32 +41,14 @@ export default function OGImage() {
             marginBottom: "32px",
           }}
         >
-          <div
-            style={{
-              width: "64px",
-              height: "64px",
-              backgroundColor: "#F2B705",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: "32px",
-              fontWeight: 900,
-              color: "#0B1F3A",
-            }}
-          >
-            P
-          </div>
-          <div
-            style={{
-              fontSize: "52px",
-              fontWeight: 900,
-              color: "#FFFFFF",
-              textTransform: "uppercase",
-              letterSpacing: "0.05em",
-            }}
-          >
-            ProTool Market
-          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="https://bullobuild.com/logo.png"
+            alt="BULLOBUILD"
+            width={320}
+            height={80}
+            style={{ height: "80px", width: "auto", objectFit: "contain" }}
+          />
         </div>
 
         {/* Tagline */}

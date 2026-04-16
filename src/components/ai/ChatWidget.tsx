@@ -41,12 +41,12 @@ export function ChatWidget() {
       <button
         onClick={() => setOpen(true)}
         className="fixed bottom-6 right-6 z-40 h-14 w-14 rounded-full bg-[#F2B705] hover:bg-[#D9A204] text-[#0B1F3A] flex items-center justify-center shadow-2xl transition-colors"
-        aria-label="Open ProTool AI chat"
+        aria-label="Open BULLOBUILD AI chat"
       >
         <MessageSquare size={22} />
       </button>
 
-      <Sheet open={open} onOpenChange={setOpen} title="ProTool AI" description="Ask anything about professional tools" width="w-[380px]">
+      <Sheet open={open} onOpenChange={setOpen} title="BULLOBUILD AI" description="Ask anything about professional tools" width="w-[380px]">
         <div className="flex flex-col h-full">
           {/* Messages */}
           <div className="flex-1 overflow-y-auto p-4 space-y-4">

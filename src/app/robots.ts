@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/admin/", "/super-admin/", "/api/", "/account/", "/seller/"],
       },
     ],
-    sitemap: "https://protoolmarket.com/sitemap.xml",
+    sitemap: "https://bullobuild.com/sitemap.xml",
   };
 }

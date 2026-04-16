@@ -13,7 +13,7 @@ interface Props {
 export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
   const { q } = await searchParams;
   return {
-    title: q ? `"${q}" — Search | ProTool Market` : "Search | ProTool Market",
+    title: q ? `"${q}" — Search | BULLOBUILD` : "Search | BULLOBUILD",
   };
 }
 

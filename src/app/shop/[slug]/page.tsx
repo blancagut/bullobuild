@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!data) return { title: "Product Not Found" };
 
   return {
-    title: `${data.name} | ProTool Market`,
+    title: `${data.name} | BULLOBUILD`,
     description: data.description ?? `Buy ${data.name} — authorized distributor.`,
   };
 }

@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     .eq("slug", slug)
     .single();
   return {
-    title: data ? `${data.name} Tools | ProTool Market` : "Brand Not Found",
+    title: data ? `${data.name} Tools | BULLOBUILD` : "Brand Not Found",
   };
 }
 

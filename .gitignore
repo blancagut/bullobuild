@@ -30,6 +30,16 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
+# generated scraper output
+/data/product-images/
+/scripts/*/data/*-catalog.json
+/scripts/*/data/*-progress.json
+/scripts/*/data/image-download-progress.json
+/scripts/*/data/*-failed.json
+/scripts/*/data/*-product-urls.txt
+/scripts/*/data/product-images/
+/scripts/*/product-images/
+
 # env files (can opt-in for committing if needed)
 .env*
 

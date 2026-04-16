@@ -8,7 +8,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { DeleteListingButton } from "@/components/account/DeleteListingButton";
 
-export const metadata: Metadata = { title: "My Listings | ProTool Market" };
+export const metadata: Metadata = { title: "My Listings | BULLOBUILD" };
 
 export default async function AccountListingsPage() {
   const supabase = await createClient();

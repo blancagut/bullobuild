@@ -7,7 +7,7 @@ import { Package, List, Heart, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = { title: "My Account | ProTool Market" };
+export const metadata: Metadata = { title: "My Account | BULLOBUILD" };
 
 export default async function AccountPage() {
   const supabase = await createClient();

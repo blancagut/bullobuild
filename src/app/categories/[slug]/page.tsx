@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     .eq("slug", slug)
     .single();
   return {
-    title: data ? `${data.name} | ProTool Market` : "Category Not Found",
+    title: data ? `${data.name} | BULLOBUILD` : "Category Not Found",
   };
 }
 

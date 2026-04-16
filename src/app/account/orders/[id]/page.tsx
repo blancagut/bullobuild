@@ -8,7 +8,7 @@ import { ChevronLeft, MapPin, Package, CheckCircle, Truck, Clock, XCircle } from
 import type { Metadata } from "next";
 import type { CartItem, OrderStatus } from "@/types";
 
-export const metadata: Metadata = { title: "Order Detail | ProTool Market" };
+export const metadata: Metadata = { title: "Order Detail | BULLOBUILD" };
 
 const STATUS_STEPS: OrderStatus[] = ["pending", "paid", "shipped", "delivered"];
 

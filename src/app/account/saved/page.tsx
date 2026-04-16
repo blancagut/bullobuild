@@ -12,7 +12,7 @@ export default function SavedPage() {
 
   useEffect(() => {
     try {
-      const raw = localStorage.getItem("protool-saved");
+      const raw = localStorage.getItem("bullobuild-saved");
       if (raw) setSaved(JSON.parse(raw));
     } catch {
       setSaved([]);
@@ -23,7 +23,7 @@ export default function SavedPage() {
   function removeSaved(id: string) {
     const next = saved.filter((p) => p.id !== id);
     setSaved(next);
-    localStorage.setItem("protool-saved", JSON.stringify(next));
+    localStorage.setItem("bullobuild-saved", JSON.stringify(next));
   }
 
   return (

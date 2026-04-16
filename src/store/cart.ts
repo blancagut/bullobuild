@@ -54,6 +54,6 @@ export const useCartStore = create<CartState>()(
         get().items.reduce((sum, i) => sum + i.price * i.quantity, 0),
       count: () => get().items.reduce((sum, i) => sum + i.quantity, 0),
     }),
-    { name: "protool-cart", partialize: (s) => ({ items: s.items }), skipHydration: true }
+    { name: "bullobuild-cart", partialize: (s) => ({ items: s.items }), skipHydration: true }
   )
 );

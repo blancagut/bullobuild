@@ -43,9 +43,7 @@ export default function ShopPage() {
       {/* Page header */}
       <div className="bg-[#0b1f3a] border-b border-white/5 py-10">
         <Container>
-          <p className="text-[#f2b705] text-[11px] font-bold uppercase tracking-[0.35em] mb-2">
-            ProTool Market
-          </p>
+          <p className="text-[#f2b705] text-[11px] font-bold uppercase tracking-[0.35em] mb-2">Shop</p>
           <h1
             className="font-black text-4xl lg:text-5xl uppercase text-white"
             style={{ fontFamily: "var(--font-barlow), system-ui" }}
