@@ -40,7 +40,7 @@ export function ChatWidget() {
       {/* Floating button */}
       <button
         onClick={() => setOpen(true)}
-        className="fixed bottom-6 right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-navy text-white shadow-[0_16px_40px_rgba(26,35,51,0.22)] transition-colors hover:bg-navy-light"
+        className="fixed bottom-6 right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-yellow text-ink shadow-lg transition-colors hover:bg-yellow-dark"
         aria-label="Open BULLOBUILD AI chat"
       >
         <MessageSquare size={22} />
@@ -53,7 +53,7 @@ export function ChatWidget() {
             {messages.length === 0 && (
               <div className="flex flex-col items-center justify-center h-full gap-3 text-center py-12">
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-panel">
-                  <Bot size={22} className="text-navy" />
+                  <Bot size={22} className="text-yellow-dark" />
                 </div>
                 <p className="text-sm font-bold text-ink">Ask me anything about tools!</p>
                 <p className="max-w-[200px] text-xs text-ink-soft">Brands, specs, compatibility, maintenance — I&apos;ve got you covered.</p>
@@ -80,14 +80,14 @@ export function ChatWidget() {
                 <div key={m.id} className={cn("flex gap-3", m.role === "user" ? "justify-end" : "justify-start")}>
                   {m.role === "assistant" && (
                     <div className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-panel">
-                      <Bot size={13} className="text-navy" />
+                      <Bot size={13} className="text-yellow-dark" />
                     </div>
                   )}
                   <div
                     className={cn(
                       "max-w-[85%] text-sm px-3 py-2.5 leading-relaxed",
                       m.role === "user"
-                        ? "bg-navy text-white font-medium"
+                        ? "bg-yellow text-ink font-medium"
                         : "border border-stroke bg-card text-ink"
                     )}
                   >
@@ -105,7 +105,7 @@ export function ChatWidget() {
             {isLoading && (
               <div className="flex gap-3 justify-start">
                 <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-panel">
-                  <Bot size={13} className="text-navy" />
+                  <Bot size={13} className="text-yellow-dark" />
                 </div>
                 <div className="flex items-center gap-1 border border-stroke bg-card px-3 py-2.5">
                   <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-ink-muted" style={{ animationDelay: "0ms" }} />
@@ -124,13 +124,13 @@ export function ChatWidget() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Ask about tools..."
-                className="flex-1 border border-stroke bg-card px-3 py-2.5 text-sm text-ink outline-none transition-colors placeholder:text-ink-muted focus:border-navy"
+                className="flex-1 border border-stroke bg-white px-3 py-2.5 text-sm text-ink outline-none transition-colors placeholder:text-ink-muted focus:border-yellow"
                 disabled={isLoading}
               />
               <button
                 type="submit"
                 disabled={isLoading || !input.trim()}
-                className="bg-yellow px-3 text-navy transition-colors hover:bg-yellow-dark disabled:opacity-40"
+                className="bg-yellow px-3 text-ink transition-colors hover:bg-yellow-dark disabled:opacity-40"
               >
                 <Send size={15} />
               </button>

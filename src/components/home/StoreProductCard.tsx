@@ -58,7 +58,7 @@ export function StoreProductCard({
   }
 
   return (
-    <article className="group flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-stroke bg-card shadow-[0_18px_40px_rgba(26,35,51,0.06)] transition-all hover:-translate-y-1 hover:border-navy/20 hover:shadow-[0_24px_48px_rgba(26,35,51,0.12)]">
+    <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-stroke bg-white shadow-sm transition-all hover:-translate-y-1 hover:border-yellow/40 hover:shadow-md">
       <Link href={`/shop/${slug}`} className="flex flex-1 flex-col">
         <div className="relative aspect-square overflow-hidden bg-wash">
           {image ? (
@@ -72,7 +72,7 @@ export function StoreProductCard({
             />
           ) : (
             <div className="flex h-full items-center justify-center bg-panel">
-              <span className="font-display text-4xl font-black uppercase tracking-tight text-navy/10">
+              <span className="font-display text-4xl font-black uppercase tracking-tight text-ink-muted/20">
                 {brand.split(/\s|\+/)[0]}
               </span>
             </div>
@@ -103,14 +103,14 @@ export function StoreProductCard({
             </span>
           </div>
 
-          <h3 className="mb-3 line-clamp-2 text-sm font-semibold leading-snug text-ink transition-colors group-hover:text-navy">
+          <h3 className="mb-3 line-clamp-2 text-sm font-semibold leading-snug text-ink transition-colors group-hover:text-yellow-dark">
             {name}
           </h3>
 
           <div className="mt-auto pt-2">
             {isCatalogOnly ? (
               <div className="flex flex-col gap-1">
-                <span className="text-sm font-black uppercase tracking-[0.14em] text-navy">
+                <span className="text-sm font-black uppercase tracking-[0.14em] text-yellow-dark">
                   Catalog item
                 </span>
                 <span className="text-xs uppercase tracking-[0.16em] text-ink-muted">
@@ -128,7 +128,7 @@ export function StoreProductCard({
         {isCatalogOnly ? (
           <Link
             href={`/shop/${slug}`}
-            className="flex h-11 w-full items-center justify-center gap-2 rounded-full border border-navy/15 bg-paper text-sm font-black uppercase tracking-[0.18em] text-navy transition-colors hover:border-navy hover:bg-panel"
+            className="flex h-11 w-full items-center justify-center gap-2 rounded-full border border-stroke bg-white text-sm font-black uppercase tracking-[0.18em] text-ink transition-colors hover:border-yellow hover:bg-yellow/10"
           >
             View Product
           </Link>
@@ -137,7 +137,7 @@ export function StoreProductCard({
             type="button"
             onClick={handleAddToCart}
             disabled={stock <= 0}
-            className="flex h-11 w-full items-center justify-center gap-2 rounded-full bg-navy text-sm font-black uppercase tracking-[0.18em] text-white transition-colors hover:bg-navy-light disabled:cursor-not-allowed disabled:opacity-50"
+            className="flex h-11 w-full items-center justify-center gap-2 rounded-full bg-yellow text-sm font-black uppercase tracking-[0.18em] text-ink transition-colors hover:bg-yellow-dark disabled:cursor-not-allowed disabled:opacity-50"
           >
             <ShoppingCart size={16} />
             Add to Cart

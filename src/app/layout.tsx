@@ -66,12 +66,12 @@ export default function RootLayout({
           position="bottom-left"
           toastOptions={{
             style: {
-              background: "#FFF9F1",
-              color: "#1A2333",
-              border: "1px solid #DBCDB8",
+              background: "#ffffff",
+              color: "#1a1a1a",
+              border: "1px solid #e0e0e0",
               fontSize: "13px",
             },
-            success: { iconTheme: { primary: "#0B1F3A", secondary: "#FFF9F1" } },
+            success: { iconTheme: { primary: "#f2b705", secondary: "#ffffff" } },
           }}
         />
       </body>

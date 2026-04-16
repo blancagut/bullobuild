@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 type BadgeVariant = "yellow" | "dark" | "outline" | "success" | "warning" | "danger";
 
 const variants: Record<BadgeVariant, string> = {
-  yellow: "bg-yellow text-navy font-black",
+  yellow: "bg-yellow text-ink font-black",
   dark: "border border-stroke bg-panel text-ink-soft",
   outline: "border border-stroke bg-paper text-ink-soft",
   success: "border border-emerald-200 bg-emerald-50 text-emerald-700",

@@ -95,7 +95,7 @@ export function CartDrawer() {
                       </button>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-sm font-bold text-navy">
+                      <span className="text-sm font-bold text-ink">
                         {formatPrice(item.price * item.quantity)}
                       </span>
                       <button
@@ -132,7 +132,7 @@ export function CartDrawer() {
               href="/cart"
               onClick={toggleCart}
               variant="outline"
-              className="w-full border-stroke text-ink hover:border-navy hover:bg-panel"
+              className="w-full border-stroke text-ink hover:border-yellow hover:bg-panel"
             >
               View Full Cart
             </Button>

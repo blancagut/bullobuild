@@ -57,7 +57,7 @@ export function ListingCard({
     <Link
       href={`/marketplace/${id}`}
       className={cn(
-        "group flex flex-col overflow-hidden rounded-[1.75rem] border border-stroke bg-card shadow-[0_18px_40px_rgba(26,35,51,0.06)] transition-all duration-200 hover:-translate-y-1 hover:border-navy/20 hover:shadow-[0_24px_48px_rgba(26,35,51,0.12)]",
+        "group flex flex-col overflow-hidden rounded-2xl border border-stroke bg-white shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-yellow/40 hover:shadow-md",
         className
       )}
     >
@@ -86,11 +86,11 @@ export function ListingCard({
         <span className="text-xs font-semibold uppercase tracking-wider text-ink-soft">
           {brand}
         </span>
-        <h3 className="line-clamp-2 text-sm font-semibold leading-snug text-ink transition-colors group-hover:text-navy">
+        <h3 className="line-clamp-2 text-sm font-semibold leading-snug text-ink transition-colors group-hover:text-yellow-dark">
           {title}
         </h3>
 
-        <p className="mt-auto pt-2 font-display text-xl font-black text-navy">
+        <p className="mt-auto pt-2 font-display text-xl font-black text-ink">
           {formatPrice(price)}
         </p>
 

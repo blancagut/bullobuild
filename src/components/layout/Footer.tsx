@@ -32,18 +32,18 @@ const links: Record<string, { label: string; href: string }[]> = {
 
 export function Footer() {
   return (
-    <footer className="mt-auto border-t border-stroke bg-paper">
+    <footer className="mt-auto border-t border-stroke bg-white">
       {/* CTA Banner */}
       <div className="border-b border-stroke bg-panel">
         <Container>
           <div className="py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="font-display text-xl font-black uppercase tracking-wide text-navy">
+            <p className="font-display text-xl font-black uppercase tracking-wide text-ink">
               Need a quote for your crew?{" "}
               <span className="font-light">We do bulk orders.</span>
             </p>
             <Link
               href="/contact"
-              className="shrink-0 rounded-full bg-navy px-6 py-3 text-xs font-black uppercase tracking-widest text-white transition-colors hover:bg-navy-light"
+              className="shrink-0 rounded-full bg-yellow px-6 py-3 text-xs font-black uppercase tracking-widest text-ink transition-colors hover:bg-yellow-dark"
             >
               Contact Sales
             </Link>
@@ -94,7 +94,7 @@ export function Footer() {
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      className="text-sm text-ink-muted transition-colors hover:text-navy"
+                      className="text-sm text-ink-muted transition-colors hover:text-ink"
                     >
                       {item.label}
                     </Link>
@@ -116,7 +116,7 @@ export function Footer() {
                 <Link
                   key={item}
                   href="#"
-                  className="text-xs text-ink-muted transition-colors hover:text-navy"
+                  className="text-xs text-ink-muted transition-colors hover:text-ink"
                 >
                   {item}
                 </Link>

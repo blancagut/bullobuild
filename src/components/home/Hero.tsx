@@ -29,16 +29,16 @@ export function Hero({
   ];
 
   return (
-    <section className="relative overflow-hidden border-b border-stroke bg-canvas">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(242,183,5,0.24),transparent_24%),radial-gradient(circle_at_88%_16%,rgba(11,31,58,0.08),transparent_28%)]" aria-hidden="true" />
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(26,35,51,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(26,35,51,0.035)_1px,transparent_1px)] bg-size-[42px_42px]" aria-hidden="true" />
+    <section className="relative overflow-hidden border-b border-stroke bg-white">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(242,183,5,0.12),transparent_24%),radial-gradient(circle_at_88%_16%,rgba(0,0,0,0.03),transparent_28%)]" aria-hidden="true" />
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.03)_1px,transparent_1px)] bg-size-[42px_42px]" aria-hidden="true" />
 
       <Container className="relative z-10 py-14 md:py-16 lg:py-20">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1.35fr)_minmax(320px,0.8fr)] lg:items-start">
           <div>
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-yellow/30 bg-yellow/15 px-4 py-2">
-              <ShieldCheck size={14} className="text-navy" />
-              <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-navy">
+              <ShieldCheck size={14} className="text-yellow-dark" />
+              <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-ink">
                 Authorized inventory only
               </span>
             </div>
@@ -48,16 +48,16 @@ export function Hero({
               <br />
               like a real
               <br />
-              <span className="text-navy">merchandise machine.</span>
+              <span className="text-yellow-dark">merchandise machine.</span>
             </h1>
 
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-ink-soft sm:text-lg">
               Browse {productCount.toLocaleString()} catalog items across {categoryCount.toLocaleString()} categories and {brandCount.toLocaleString()} active brand storefronts. The homepage now leads with departments, category shelves, and real catalog breadth instead of a single narrow product strip.
             </p>
 
-            <form action="/search" className="mt-8 flex flex-col gap-3 rounded-[1.75rem] border border-stroke bg-paper p-3 shadow-[0_24px_60px_rgba(26,35,51,0.08)] sm:flex-row sm:items-center">
+            <form action="/search" className="mt-8 flex flex-col gap-3 rounded-2xl border border-stroke bg-white p-3 shadow-sm sm:flex-row sm:items-center">
               <div className="flex min-w-0 flex-1 items-center gap-3 rounded-[1.25rem] border border-stroke bg-card px-4 py-4">
-                <Search size={18} className="shrink-0 text-navy" />
+                <Search size={18} className="shrink-0 text-ink-muted" />
                 <input
                   type="search"
                   name="q"
@@ -68,7 +68,7 @@ export function Hero({
               </div>
               <button
                 type="submit"
-                className="inline-flex h-14 items-center justify-center gap-2 rounded-full bg-navy px-6 text-sm font-black uppercase tracking-[0.18em] text-white transition-colors hover:bg-navy-light"
+                className="inline-flex h-14 items-center justify-center gap-2 rounded-full bg-yellow px-6 text-sm font-black uppercase tracking-[0.18em] text-ink transition-colors hover:bg-yellow-dark"
               >
                 Search Catalog
                 <ArrowRight size={16} />
@@ -80,7 +80,7 @@ export function Hero({
                 <Link
                   key={category.slug}
                   href={`/categories/${category.slug}`}
-                  className="inline-flex items-center gap-2 rounded-full border border-stroke bg-card px-3 py-2 text-[11px] font-bold uppercase tracking-[0.16em] text-ink-soft transition-colors hover:border-navy/20 hover:text-navy"
+                  className="inline-flex items-center gap-2 rounded-full border border-stroke bg-white px-3 py-2 text-[11px] font-bold uppercase tracking-[0.16em] text-ink-soft transition-colors hover:border-yellow/40 hover:text-ink"
                 >
                   <Tag size={12} className="text-yellow-dark" />
                   {category.name}
@@ -89,19 +89,19 @@ export function Hero({
             </div>
 
             <div className="mt-8 flex flex-wrap gap-4">
-              <Button href="/shop" size="lg" className="group rounded-full bg-navy text-white hover:bg-navy-light">
+              <Button href="/shop" size="lg" className="group rounded-full bg-yellow text-ink hover:bg-yellow-dark">
                 Browse All Products
                 <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
               </Button>
-              <Button href="/brands" variant="outline" size="lg" className="rounded-full border-stroke bg-paper text-ink hover:border-navy hover:bg-panel">
+              <Button href="/brands" variant="outline" size="lg" className="rounded-full border-stroke bg-white text-ink hover:border-yellow hover:bg-panel">
                 Shop by Brand
               </Button>
             </div>
 
             <div className="mt-10 grid grid-cols-2 gap-4 border-t border-stroke pt-8 md:grid-cols-4">
               {stats.map((stat) => (
-                <div key={stat.label} className="rounded-[1.4rem] border border-stroke bg-card p-4 shadow-[0_12px_24px_rgba(26,35,51,0.04)]">
-                  <span className="font-display block text-3xl font-black leading-none text-navy">
+                <div key={stat.label} className="rounded-2xl border border-stroke bg-white p-4 shadow-sm">
+                  <span className="font-display block text-3xl font-black leading-none text-ink">
                     {stat.value}
                   </span>
                   <span className="mt-2 block text-[10px] uppercase tracking-[0.22em] text-ink-muted">
@@ -113,9 +113,9 @@ export function Hero({
           </div>
 
           <div className="grid gap-4">
-            <div className="rounded-[2rem] border border-stroke bg-card p-6 shadow-[0_18px_40px_rgba(26,35,51,0.06)]">
+            <div className="rounded-2xl border border-stroke bg-white p-6 shadow-sm">
               <div className="mb-4 flex items-center gap-3">
-                <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-navy text-white">
+                <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-yellow text-ink">
                   <Wrench size={20} />
                 </div>
                 <div>
@@ -133,29 +133,29 @@ export function Hero({
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
-              <div className="rounded-[1.75rem] border border-stroke bg-card p-5 shadow-[0_12px_24px_rgba(26,35,51,0.04)]">
+              <div className="rounded-2xl border border-stroke bg-white p-5 shadow-sm">
                 <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-ink-muted">
                   Catalog depth
                 </p>
-                <p className="mt-2 font-display text-4xl font-black uppercase text-navy">
+                <p className="mt-2 font-display text-4xl font-black uppercase text-ink">
                   {productCount.toLocaleString()}
                 </p>
                 <p className="mt-2 text-sm text-ink-soft">
                   Searchable stock across cordless, hand tools, storage, measuring, and more.
                 </p>
               </div>
-              <div className="rounded-[1.75rem] border border-stroke bg-card p-5 shadow-[0_12px_24px_rgba(26,35,51,0.04)]">
+              <div className="rounded-2xl border border-stroke bg-white p-5 shadow-sm">
                 <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-ink-muted">
                   Shop routes
                 </p>
                 <div className="mt-3 flex flex-col gap-2 text-sm text-ink">
-                  <Link href="/shop" className="transition-colors hover:text-navy">
+                  <Link href="/shop" className="transition-colors hover:text-yellow-dark">
                     Browse the live catalog
                   </Link>
-                  <Link href="/#catalog-departments" className="transition-colors hover:text-navy">
+                  <Link href="/#catalog-departments" className="transition-colors hover:text-yellow-dark">
                     Explore departments on this page
                   </Link>
-                  <Link href="/marketplace" className="transition-colors hover:text-navy">
+                  <Link href="/marketplace" className="transition-colors hover:text-yellow-dark">
                     Used tools marketplace
                   </Link>
                 </div>

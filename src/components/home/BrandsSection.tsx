@@ -22,7 +22,7 @@ function getLogoSlug(slug: string) {
 
 export function BrandsSection({ brands }: BrandsSectionProps) {
   return (
-    <section className="border-y border-stroke bg-paper py-20">
+    <section className="border-y border-stroke bg-white py-20">
       <Container>
         <SectionHeader
           label="Authorized brands"
@@ -38,7 +38,7 @@ export function BrandsSection({ brands }: BrandsSectionProps) {
             <Link
               href={`/brands/${brand.slug}`}
               key={brand.slug}
-              className="group flex flex-col items-center justify-center gap-4 rounded-[1.75rem] border border-stroke bg-card p-8 shadow-[0_12px_24px_rgba(26,35,51,0.04)] transition-all hover:-translate-y-1 hover:border-navy/20 hover:shadow-[0_18px_32px_rgba(26,35,51,0.1)]"
+              className="group flex flex-col items-center justify-center gap-4 rounded-2xl border border-stroke bg-white p-8 shadow-sm transition-all hover:-translate-y-1 hover:border-yellow/40 hover:shadow-md"
             >
               <div className="w-32 h-16 relative">
                 <Image
@@ -50,7 +50,7 @@ export function BrandsSection({ brands }: BrandsSectionProps) {
                 />
               </div>
 
-              <span className="font-display text-xs font-bold uppercase tracking-tight text-ink-soft transition-colors group-hover:text-navy">
+              <span className="font-display text-xs font-bold uppercase tracking-tight text-ink-soft transition-colors group-hover:text-ink">
                 {brand.name}
               </span>
 

@@ -6,7 +6,7 @@ type ButtonSize = "sm" | "md" | "lg";
 
 const variants: Record<ButtonVariant, string> = {
   primary:
-    "bg-yellow hover:bg-yellow-dark text-navy font-black uppercase tracking-widest",
+    "bg-yellow hover:bg-yellow-dark text-ink font-black uppercase tracking-widest",
   outline:
     "border border-white/30 hover:border-white text-white font-bold uppercase tracking-wider",
   ghost:

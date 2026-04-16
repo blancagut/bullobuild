@@ -52,7 +52,7 @@ export function ProductsSection({ departments, shelves }: ProductsSectionProps) 
           tone="light"
           className="mb-8"
           action={
-            <Button href="/shop" variant="outline" size="sm" className="rounded-full border-stroke bg-paper text-ink hover:border-navy hover:bg-panel">
+            <Button href="/shop" variant="outline" size="sm" className="rounded-full border-stroke bg-white text-ink hover:border-yellow hover:bg-panel">
               Browse Full Catalog
             </Button>
           }
@@ -64,7 +64,7 @@ export function ProductsSection({ departments, shelves }: ProductsSectionProps) 
               <Link
                 key={department.slug}
                 href={`/categories/${department.slug}`}
-                className="group relative overflow-hidden rounded-[2rem] border border-stroke bg-card p-6 shadow-[0_18px_40px_rgba(26,35,51,0.06)] transition-all hover:-translate-y-1 hover:border-navy/20 hover:shadow-[0_24px_48px_rgba(26,35,51,0.12)]"
+                className="group relative overflow-hidden rounded-2xl border border-stroke bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-yellow/40 hover:shadow-md"
               >
                 <div className="relative z-10 max-w-[64%]">
                   <p className="text-[11px] font-black uppercase tracking-[0.18em] text-yellow-dark">
@@ -78,14 +78,14 @@ export function ProductsSection({ departments, shelves }: ProductsSectionProps) 
                   </p>
                   <div className="mt-6 flex items-center justify-between gap-3">
                     <div>
-                      <p className="font-display text-2xl font-black text-navy">
+                      <p className="font-display text-2xl font-black text-ink">
                         {department.count.toLocaleString()}
                       </p>
                       <p className="text-[10px] uppercase tracking-[0.18em] text-ink-muted">
                         catalog items
                       </p>
                     </div>
-                    <span className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.16em] text-navy transition-all group-hover:gap-3">
+                    <span className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.16em] text-yellow-dark transition-all group-hover:gap-3">
                       Browse
                       <ArrowRight size={14} />
                     </span>
@@ -112,20 +112,20 @@ export function ProductsSection({ departments, shelves }: ProductsSectionProps) 
         {shelves.length > 0 ? (
           <div className="space-y-8">
             {shelves.map((shelf) => (
-              <div key={shelf.slug} className="rounded-[2rem] border border-stroke bg-paper p-5 shadow-[0_18px_40px_rgba(26,35,51,0.05)] lg:p-6">
+              <div key={shelf.slug} className="rounded-2xl border border-stroke bg-white p-5 shadow-sm lg:p-6">
                 <div className="grid gap-6 xl:grid-cols-[280px_minmax(0,1fr)] xl:items-start">
                   <div className="rounded-[1.75rem] bg-panel p-6">
                     <p className="text-[11px] font-black uppercase tracking-[0.18em] text-yellow-dark">
                       Department shelf
                     </p>
-                    <h3 className="mt-3 font-display text-4xl font-black uppercase leading-none text-navy">
+                    <h3 className="mt-3 font-display text-4xl font-black uppercase leading-none text-ink">
                       {shelf.name}
                     </h3>
                     <p className="mt-4 text-sm leading-relaxed text-ink-soft">
                       {departmentCopy[shelf.slug] ?? "Shop a deeper slice of the catalog directly from this category shelf."}
                     </p>
-                    <div className="mt-6 border-t border-white/40 pt-5">
-                      <p className="font-display text-3xl font-black text-navy">
+                    <div className="mt-6 border-t border-stroke pt-5">
+                      <p className="font-display text-3xl font-black text-ink">
                         {shelf.count.toLocaleString()}
                       </p>
                       <p className="mt-1 text-[10px] uppercase tracking-[0.18em] text-ink-muted">
@@ -134,7 +134,7 @@ export function ProductsSection({ departments, shelves }: ProductsSectionProps) 
                     </div>
                     <Link
                       href={`/categories/${shelf.slug}`}
-                      className="mt-6 inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.16em] text-navy transition-all hover:gap-3"
+                      className="mt-6 inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.16em] text-yellow-dark transition-all hover:gap-3"
                     >
                       Shop {shelf.name}
                       <ArrowRight size={14} />
@@ -172,14 +172,14 @@ export function ProductsSection({ departments, shelves }: ProductsSectionProps) 
             <Link
               key={department.slug}
               href={`/categories/${department.slug}`}
-              className="rounded-full border border-stroke bg-card px-3 py-2 text-[11px] font-bold uppercase tracking-[0.16em] text-ink-soft transition-colors hover:border-navy/20 hover:text-navy"
+              className="rounded-full border border-stroke bg-white px-3 py-2 text-[11px] font-bold uppercase tracking-[0.16em] text-ink-soft transition-colors hover:border-yellow/40 hover:text-ink"
             >
               {department.name}
             </Link>
           ))}
           <Link
             href="/shop"
-            className="inline-flex items-center gap-2 rounded-full border border-navy/15 bg-panel px-3 py-2 text-[11px] font-black uppercase tracking-[0.16em] text-navy transition-colors hover:border-navy hover:bg-panel-strong"
+            className="inline-flex items-center gap-2 rounded-full border border-yellow/30 bg-yellow/10 px-3 py-2 text-[11px] font-black uppercase tracking-[0.16em] text-yellow-dark transition-colors hover:border-yellow hover:bg-yellow/20"
           >
             View all departments
             <ArrowRight size={13} />

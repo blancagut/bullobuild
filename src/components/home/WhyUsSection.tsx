@@ -44,10 +44,10 @@ export function WhyUsSection() {
             return (
               <div
                 key={item.title}
-                className="group flex flex-col gap-4 rounded-[1.75rem] border border-stroke bg-card p-6 shadow-[0_12px_24px_rgba(26,35,51,0.04)] transition-all hover:-translate-y-1 hover:border-navy/20 hover:bg-paper"
+                className="group flex flex-col gap-4 rounded-2xl border border-stroke bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-yellow/40 hover:bg-white"
               >
                 <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-panel transition-colors group-hover:bg-yellow/15">
-                  <Icon size={20} className="text-navy" />
+                  <Icon size={20} className="text-yellow-dark" />
                 </div>
                 <h3 className="font-display text-sm font-black uppercase tracking-[0.12em] text-ink">
                   {item.title}

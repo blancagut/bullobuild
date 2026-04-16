@@ -24,7 +24,7 @@ interface MarketplaceSectionProps {
 
 export function MarketplaceSection({ listings }: MarketplaceSectionProps) {
   return (
-    <section className="border-t border-stroke bg-paper py-16 lg:py-20">
+    <section className="border-t border-stroke bg-white py-16 lg:py-20">
       <Container>
         <div className="mb-10 grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
           <div>
@@ -41,10 +41,10 @@ export function MarketplaceSection({ listings }: MarketplaceSectionProps) {
             />
           </div>
           <div className="flex flex-wrap gap-3">
-            <Button href="/marketplace" variant="outline" size="sm" className="rounded-full border-stroke bg-paper text-ink hover:border-navy hover:bg-panel">
+            <Button href="/marketplace" variant="outline" size="sm" className="rounded-full border-stroke bg-white text-ink hover:border-yellow hover:bg-panel">
               Browse Listings
             </Button>
-            <Button href="/marketplace/sell" variant="secondary" size="sm" className="gap-2 rounded-full bg-navy text-white hover:bg-navy-light">
+            <Button href="/marketplace/sell" variant="secondary" size="sm" className="gap-2 rounded-full bg-yellow text-ink hover:bg-yellow-dark">
               <PlusCircle size={14} />
               List a Tool
             </Button>
@@ -77,7 +77,7 @@ export function MarketplaceSection({ listings }: MarketplaceSectionProps) {
           <p>
             New tools remain the primary storefront. Marketplace stays here as a supporting route for extra value.
           </p>
-          <Link href="/marketplace" className="inline-flex items-center gap-2 font-black uppercase tracking-[0.16em] text-navy transition-colors hover:text-navy-light">
+          <Link href="/marketplace" className="inline-flex items-center gap-2 font-black uppercase tracking-[0.16em] text-yellow-dark transition-colors hover:text-ink">
             Explore marketplace
             <ArrowRight size={14} />
           </Link>

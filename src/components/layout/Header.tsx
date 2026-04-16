@@ -23,7 +23,7 @@ export function Header() {
   const toggleCart = useCartStore((s) => s.toggleCart);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-stroke bg-paper shadow-[0_10px_30px_rgba(26,35,51,0.06)]">
+    <header className="sticky top-0 z-50 border-b border-stroke bg-white shadow-sm">
       <Container>
         <div className="flex items-center justify-between h-24 lg:h-28">
           {/* Logo */}
@@ -44,7 +44,7 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-xs font-bold text-ink-soft hover:text-navy transition-colors uppercase tracking-widest"
+                className="text-xs font-bold text-ink-soft hover:text-ink transition-colors uppercase tracking-widest"
               >
                 {item.label}
               </Link>
@@ -56,7 +56,7 @@ export function Header() {
             {/* Cart */}
             <button
               onClick={toggleCart}
-              className="relative p-2 text-ink-soft hover:text-navy transition-colors"
+              className="relative p-2 text-ink-soft hover:text-ink transition-colors"
               aria-label="Open cart"
             >
               <ShoppingCart size={20} />
@@ -70,14 +70,14 @@ export function Header() {
             {/* Sign In */}
             <Link
               href="/auth/login"
-              className="hidden lg:inline-flex items-center rounded-full bg-navy px-5 py-2.5 text-xs font-black uppercase tracking-widest text-white transition-colors hover:bg-navy-light"
+              className="hidden lg:inline-flex items-center rounded-full bg-yellow px-5 py-2.5 text-xs font-black uppercase tracking-widest text-ink transition-colors hover:bg-yellow-dark"
             >
               Sign In
             </Link>
 
             {/* Mobile toggle */}
             <button
-              className="lg:hidden p-2 text-ink-soft hover:text-navy"
+              className="lg:hidden p-2 text-ink-soft hover:text-ink"
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label="Toggle menu"
             >
@@ -89,14 +89,14 @@ export function Header() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="lg:hidden border-t border-stroke bg-paper shadow-[0_20px_40px_rgba(26,35,51,0.08)]">
+        <div className="lg:hidden border-t border-stroke bg-white shadow-md">
           <Container>
             <nav className="py-4 flex flex-col">
               {nav.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="border-b border-stroke px-2 py-3 text-sm font-bold uppercase tracking-widest text-ink-soft transition-colors hover:bg-panel hover:text-navy"
+                  className="border-b border-stroke px-2 py-3 text-sm font-bold uppercase tracking-widest text-ink-soft transition-colors hover:bg-panel hover:text-ink"
                   onClick={() => setMobileOpen(false)}
                 >
                   {item.label}
@@ -104,7 +104,7 @@ export function Header() {
               ))}
               <Link
                 href="/auth/login"
-                className="mt-4 rounded-full bg-navy px-4 py-3.5 text-center text-xs font-black uppercase tracking-widest text-white"
+                className="mt-4 rounded-full bg-yellow px-4 py-3.5 text-center text-xs font-black uppercase tracking-widest text-ink"
                 onClick={() => setMobileOpen(false)}
               >
                 Sign In

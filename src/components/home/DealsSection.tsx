@@ -25,14 +25,14 @@ export function DealsSection({ products }: DealsSectionProps) {
   }
 
   return (
-    <section id="deals" className="relative overflow-hidden border-y border-stroke bg-paper py-20 lg:py-24">
+    <section id="deals" className="relative overflow-hidden border-y border-stroke bg-white py-20 lg:py-24">
       <div className="absolute inset-y-0 right-0 w-1/3 bg-yellow/10" aria-hidden="true" />
       <div className="absolute right-0 top-0 h-full w-1 bg-yellow-dark" aria-hidden="true" />
 
       <Container className="relative z-10">
         <div className="mb-8 flex items-start justify-between gap-6">
           <div className="flex items-center gap-4">
-            <div className="rounded-2xl bg-navy p-3 text-white">
+            <div className="rounded-2xl bg-yellow p-3 text-ink">
               <Zap size={20} />
             </div>
             <SectionHeader
@@ -79,7 +79,7 @@ export function DealsSection({ products }: DealsSectionProps) {
         <div className="mt-8 text-center">
           <Link
             href="/search"
-            className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-navy transition-all hover:gap-4"
+            className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-yellow-dark transition-all hover:gap-4"
           >
             Browse more discounted inventory <ArrowRight size={15} />
           </Link>
