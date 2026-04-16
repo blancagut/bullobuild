@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="79.64mm" height="59.45mm" version="1.1" viewBox="0 0 79.64 59.45" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<title>Kobalt Music Group logo</title>
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <g transform="translate(-67.7 -96.59)">
+  <g transform="translate(2.268 -3.78)">
+   <path d="m65.43 130.1v-29.73h24.87v29.81l24.96 0.018 29.81 29.62-29.72 4e-3 -25.05-24.92v24.92h-24.87zm49.91-14.98v-14.75h14.82c8.151 0 14.82 0.0218 14.82 0.0485 0 0.0266-6.669 6.664-14.82 14.75l-14.82 14.7z" style="fill:#fb381c;stroke-width:.1704"/>
+  </g>
+ </g>
+</svg>

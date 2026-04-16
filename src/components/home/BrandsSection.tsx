@@ -1,70 +1,67 @@
+import Link from "next/link";
+import Image from "next/image";
 import { Container } from "@/components/ui/Container";
+import { SectionHeader } from "@/components/ui/SectionHeader";
 
-const brands = [
-  { name: "DeWalt", abbr: "DW" },
-  { name: "Milwaukee", abbr: "MWK" },
-  { name: "Craftsman", abbr: "CFT" },
-  { name: "Stanley", abbr: "STN" },
-  { name: "Black+Decker", abbr: "B+D" },
-  { name: "Snap-on", abbr: "SNP" },
-  { name: "Mac Tools", abbr: "MAC" },
-  { name: "Kobalt", abbr: "KBT" },
-  { name: "Skil", abbr: "SKL" },
-  { name: "Proto", abbr: "PRT" },
-];
+const logoSlugMap: Record<string, string> = {
+  "black-decker": "blackdecker",
+  "snap-on": "snapon",
+  "mac-tools": "mactools",
+};
 
-export function BrandsSection() {
+interface BrandsSectionProps {
+  brands: Array<{
+    name: string;
+    slug: string;
+  }>;
+}
+
+function getLogoSlug(slug: string) {
+  return logoSlugMap[slug] ?? slug;
+}
+
+export function BrandsSection({ brands }: BrandsSectionProps) {
   return (
-    <section className="py-20 bg-[#0b1f3a] border-y border-white/5">
+    <section className="border-y border-white/5 bg-navy py-20">
       <Container>
-        {/* Header */}
-        <div className="text-center mb-14">
-          <p className="text-[#f2b705] text-[11px] font-bold uppercase tracking-[0.35em] mb-3">
-            Official Distributor
-          </p>
-          <h2
-            className="font-black text-4xl lg:text-5xl uppercase text-white"
-            style={{ fontFamily: "var(--font-barlow), system-ui" }}
-          >
-            Trusted Brands We Distribute
-          </h2>
-        </div>
+        <SectionHeader
+          label="Authorized brands"
+          title="Jump straight into brand storefronts"
+          subtitle="Every logo below routes into a live brand page, not a dead promo block."
+          align="center"
+          className="mb-14"
+        />
 
-        {/* Brand grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-px bg-white/5">
+        <div className="grid grid-cols-2 gap-px bg-white/5 sm:grid-cols-3 md:grid-cols-5">
           {brands.map((brand) => (
-            <div
-              key={brand.name}
-              className="group bg-[#0b1f3a] hover:bg-[#112645] transition-colors flex flex-col items-center justify-center p-8 gap-4 cursor-pointer"
+            <Link
+              href={`/brands/${brand.slug}`}
+              key={brand.slug}
+              className="group flex flex-col items-center justify-center gap-4 bg-navy p-8 transition-colors hover:bg-navy-light"
             >
-              {/* Brand abbreviation box */}
-              <div className="w-14 h-14 bg-white/5 group-hover:bg-[#f2b705]/10 border border-white/5 group-hover:border-[#f2b705]/20 flex items-center justify-center transition-all">
-                <span
-                  className="font-black text-sm text-gray-500 group-hover:text-[#f2b705] transition-colors tracking-wider"
-                  style={{ fontFamily: "var(--font-barlow), system-ui" }}
-                >
-                  {brand.abbr}
-                </span>
+              <div className="w-32 h-16 relative">
+                <Image
+                  src={`/brands/${getLogoSlug(brand.slug)}.svg`}
+                  alt={`${brand.name} logo`}
+                  fill
+                  className="object-contain"
+                  sizes="128px"
+                />
               </div>
 
-              <span
-                className="font-bold text-sm uppercase tracking-tight text-gray-400 group-hover:text-white transition-colors text-center whitespace-nowrap"
-                style={{ fontFamily: "var(--font-barlow), system-ui" }}
-              >
+              <span className="font-display text-xs font-bold uppercase tracking-tight text-gray-500 transition-colors group-hover:text-white">
                 {brand.name}
               </span>
 
-              {/* Accent line */}
-              <div className="w-6 h-px bg-[#f2b705] opacity-0 group-hover:opacity-100 transition-opacity" />
-            </div>
+              <div className="h-px w-6 bg-yellow opacity-0 transition-opacity group-hover:opacity-100" />
+            </Link>
           ))}
         </div>
 
-        {/* Trust line */}
         <div className="mt-10 flex items-center justify-center gap-4">
           <div className="h-px flex-1 max-w-24 bg-white/8" />
           <p className="text-[10px] text-gray-600 uppercase tracking-widest text-center">
-            100% authentic · sourced directly from manufacturers
+            open a brand page, then drop directly into live product inventory
           </p>
           <div className="h-px flex-1 max-w-24 bg-white/8" />
         </div>

@@ -7,7 +7,7 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Input } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
 import { formatPrice } from "@/lib/utils";
-import { Lock, CreditCard } from "lucide-react";
+import { Lock, ShoppingBag } from "lucide-react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
@@ -49,18 +49,11 @@ export default function CheckoutPage() {
     setLoading(true);
 
     try {
-      const res = await fetch("/api/stripe/checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ items, shippingAddress: form }),
-      });
-
-      if (!res.ok) throw new Error("Failed to create checkout session");
-
-      const { url } = await res.json();
-      if (url) {
-        router.push(url);
-      }
+      // Simulate order placement — payment integration coming soon
+      await new Promise((r) => setTimeout(r, 1000));
+      clearCart();
+      toast.success("Order placed! We'll contact you shortly to confirm.");
+      router.push("/");
     } catch {
       toast.error("Something went wrong. Please try again.");
     } finally {
@@ -159,7 +152,7 @@ export default function CheckoutPage() {
             <div className="bg-[#0B1F3A] border border-white/10 p-6">
               <div className="flex items-center gap-2 text-gray-400 text-sm">
                 <Lock size={14} className="text-[#F2B705]" />
-                Payment is securely processed by Stripe. We never store your card details.
+                Your order is secure. Payment details will be confirmed by our team.
               </div>
             </div>
           </div>
@@ -216,11 +209,11 @@ export default function CheckoutPage() {
                 size="lg"
               >
                 {loading ? (
-                  "Redirecting…"
+                  "Placing Order…"
                 ) : (
                   <>
-                    <CreditCard size={16} className="mr-2" />
-                    Pay with Stripe
+                    <ShoppingBag size={16} className="mr-2" />
+                    Place Order
                   </>
                 )}
               </Button>
