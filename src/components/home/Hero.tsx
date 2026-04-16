@@ -31,7 +31,7 @@ export function Hero({
   return (
     <section className="relative overflow-hidden border-b border-white/5 bg-navy-dark">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(242,183,5,0.16),transparent_28%),radial-gradient(circle_at_85%_20%,rgba(17,38,69,0.9),transparent_36%)]" aria-hidden="true" />
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px]" aria-hidden="true" />
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-size-[40px_40px]" aria-hidden="true" />
 
       <Container className="relative z-10 py-14 md:py-16 lg:py-20">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1.35fr)_minmax(320px,0.8fr)] lg:items-start">
@@ -69,7 +69,7 @@ export function Hero({
               </div>
               <button
                 type="submit"
-                className="inline-flex h-[54px] items-center justify-center gap-2 bg-yellow px-6 text-sm font-black uppercase tracking-[0.18em] text-navy transition-colors hover:bg-yellow-dark"
+                className="inline-flex h-14 items-center justify-center gap-2 bg-yellow px-6 text-sm font-black uppercase tracking-[0.18em] text-navy transition-colors hover:bg-yellow-dark"
               >
                 Search Catalog
                 <ArrowRight size={16} />

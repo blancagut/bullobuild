@@ -55,19 +55,64 @@ export default async function HomePage() {
       .limit(3),
   ]);
 
+  const normalizedCategories = (categories ?? []).map((category) => ({
+    name: category.name,
+    slug: category.slug,
+  }));
+
+  const normalizedBrands = (brands ?? []).map((brand) => ({
+    name: brand.name,
+    slug: brand.slug,
+  }));
+
+  const normalizedFeaturedProducts = (featuredProducts ?? []).map((product) => ({
+    id: product.id,
+    slug: product.slug,
+    name: product.name,
+    price: product.price,
+    original_price: product.original_price,
+    images: Array.isArray(product.images) ? product.images : [],
+    stock: product.stock,
+    is_featured: product.is_featured,
+    is_deal: product.is_deal,
+    brands: Array.isArray(product.brands) ? (product.brands[0] ?? null) : product.brands,
+  }));
+
+  const normalizedDealProducts = (dealProducts ?? []).map((product) => ({
+    id: product.id,
+    slug: product.slug,
+    name: product.name,
+    price: product.price,
+    original_price: product.original_price,
+    images: Array.isArray(product.images) ? product.images : [],
+    stock: product.stock,
+    brands: Array.isArray(product.brands) ? (product.brands[0] ?? null) : product.brands,
+  }));
+
+  const normalizedListings = (listings ?? []).map((listing) => ({
+    id: listing.id,
+    title: listing.title,
+    price: listing.price,
+    condition: listing.condition,
+    images: Array.isArray(listing.images) ? listing.images : [],
+    created_at: listing.created_at,
+    brands: Array.isArray(listing.brands) ? (listing.brands[0] ?? null) : listing.brands,
+    profiles: Array.isArray(listing.profiles) ? (listing.profiles[0] ?? null) : listing.profiles,
+  }));
+
   return (
     <>
       <Hero
         productCount={productCount ?? 0}
         brandCount={brandCount ?? 0}
         categoryCount={categoryCount ?? 0}
-        categories={categories ?? []}
+        categories={normalizedCategories}
       />
-      <ProductsSection products={featuredProducts ?? []} categories={categories ?? []} />
-      <DealsSection products={dealProducts ?? []} />
-      <BrandsSection brands={brands ?? []} />
+      <ProductsSection products={normalizedFeaturedProducts} categories={normalizedCategories} />
+      <DealsSection products={normalizedDealProducts} />
+      <BrandsSection brands={normalizedBrands} />
       <WhyUsSection />
-      <MarketplaceSection listings={listings ?? []} />
+      <MarketplaceSection listings={normalizedListings} />
     </>
   );
 }
