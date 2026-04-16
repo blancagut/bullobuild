@@ -61,10 +61,10 @@ export function Footer() {
           <div className="lg:col-span-2">
             <Link href="/" className="mb-5 inline-flex items-center">
               <Image
-                src="/logo.png"
+                src="/main-logo.png"
                 alt="BULLOBUILD"
-                width={756}
-                height={330}
+                width={1112}
+                height={489}
                 className="h-16 w-auto drop-shadow-[0_10px_24px_rgba(0,0,0,0.45)] brightness-110 contrast-125"
               />
             </Link>

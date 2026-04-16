@@ -24,10 +24,10 @@ export default function RegisterPage() {
         <div className="text-center mb-10">
           <Link href="/" className="inline-flex">
             <Image
-              src="/logo.png"
+              src="/main-logo.png"
               alt="BULLOBUILD"
-              width={756}
-              height={330}
+              width={1112}
+              height={489}
               className="h-14 w-auto drop-shadow-[0_10px_24px_rgba(0,0,0,0.45)] brightness-110 contrast-125"
             />
           </Link>

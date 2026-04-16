@@ -43,10 +43,10 @@ export default function OGImage() {
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="https://bullobuild.com/logo.png"
+            src="https://bullobuild.com/main-logo.png"
             alt="BULLOBUILD"
-            width={756}
-            height={330}
+            width={1112}
+            height={489}
             style={{
               height: "96px",
               width: "auto",
