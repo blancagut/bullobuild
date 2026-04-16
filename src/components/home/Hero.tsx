@@ -1,6 +1,18 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Shield } from "lucide-react";
 import { Container } from "@/components/ui/Container";
+
+const AUTO_ROTATE_MS = 6000;
+
+const heroSlides = [
+  { id: "concrete", image: "/hero/slide-1.jpg", label: "Concrete" },
+  { id: "grinders", image: "/hero/slide-2.jpg", label: "Grinding" },
+  { id: "outdoor", image: "/hero/slide-3.jpg", label: "Outdoor" },
+  { id: "race", image: "/hero/slide-4.jpg", label: "Performance" },
+];
 
 const stats = [
   { value: "10+", label: "Premium Brands" },
@@ -10,8 +22,33 @@ const stats = [
 ];
 
 export function Hero() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    }, AUTO_ROTATE_MS);
+
+    return () => window.clearTimeout(timer);
+  }, [currentSlide]);
+
   return (
     <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-[#070f1c]">
+      <div className="absolute inset-0">
+        {heroSlides.map((slide, index) => (
+          <div
+            key={slide.id}
+            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-700 ${
+              index === currentSlide ? "opacity-100" : "opacity-0"
+            }`}
+            style={{ backgroundImage: `url(${slide.image})` }}
+          />
+        ))}
+      </div>
+
+      <div className="absolute inset-0 bg-[#070f1c]/58" aria-hidden="true" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#070f1c]/88 via-[#070f1c]/68 to-[#070f1c]/35" aria-hidden="true" />
+
       {/* Industrial grid background */}
       <div
         className="absolute inset-0 opacity-[0.025]"
@@ -107,6 +144,29 @@ export function Hero() {
                   {stat.label}
                 </span>
               </div>
+            ))}
+          </div>
+
+          <div className="mt-10 flex items-center gap-3">
+            {heroSlides.map((slide, index) => (
+              <button
+                key={slide.id}
+                type="button"
+                onClick={() => setCurrentSlide(index)}
+                className={`group flex items-center gap-3 ${
+                  index === currentSlide ? "opacity-100" : "opacity-55 hover:opacity-80"
+                }`}
+                aria-label={`Show ${slide.label} slide`}
+              >
+                <span
+                  className={`block h-[2px] transition-all ${
+                    index === currentSlide ? "w-14 bg-[#f2b705]" : "w-8 bg-white/35"
+                  }`}
+                />
+                <span className="text-[10px] uppercase tracking-[0.28em] text-white/70">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+              </button>
             ))}
           </div>
         </div>

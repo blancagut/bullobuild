@@ -26,9 +26,9 @@ export const metadata: Metadata = {
   description:
     "Authorized distributor of DeWalt, Milwaukee, Craftsman, Stanley, Black+Decker, Snap-on, Mac Tools, Kobalt, Skil, and Proto. Shop new and pre-owned professional tools.",
   icons: {
-    icon: "/favicon.png",
-    shortcut: "/favicon.png",
-    apple: "/favicon.png",
+    icon: "/favicon.png?v=yellow",
+    shortcut: "/favicon.png?v=yellow",
+    apple: "/favicon.png?v=yellow",
   },
   keywords: [
     "professional tools",
