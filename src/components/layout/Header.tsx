@@ -25,18 +25,15 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 bg-[#070f1c]/95 backdrop-blur-md border-b border-white/5">
       <Container>
-        <div className="flex items-center justify-between h-20 lg:h-24">
+        <div className="flex items-center justify-between h-24 lg:h-28">
           {/* Logo */}
-          <Link
-            href="/"
-            className="flex items-center shrink-0 rounded-sm bg-white px-2 py-1 shadow-[0_10px_30px_rgba(0,0,0,0.35)]"
-          >
+          <Link href="/" className="flex items-center shrink-0">
             <Image
               src="/logo.png"
               alt="BULLOBUILD"
               width={756}
               height={330}
-              className="h-14 lg:h-16 w-auto"
+              className="h-16 lg:h-20 w-auto drop-shadow-[0_10px_24px_rgba(0,0,0,0.45)] brightness-110 contrast-125"
               priority
             />
           </Link>

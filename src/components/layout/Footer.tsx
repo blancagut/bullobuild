@@ -59,16 +59,13 @@ export function Footer() {
         <div className="py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10">
           {/* Brand column */}
           <div className="lg:col-span-2">
-            <Link
-              href="/"
-              className="mb-5 inline-flex items-center rounded-sm bg-white px-2 py-1 shadow-[0_10px_30px_rgba(0,0,0,0.35)]"
-            >
+            <Link href="/" className="mb-5 inline-flex items-center">
               <Image
                 src="/logo.png"
                 alt="BULLOBUILD"
                 width={756}
                 height={330}
-                className="h-14 w-auto"
+                className="h-16 w-auto drop-shadow-[0_10px_24px_rgba(0,0,0,0.45)] brightness-110 contrast-125"
               />
             </Link>
             <p className="text-gray-500 text-sm leading-relaxed mb-6 max-w-xs">
