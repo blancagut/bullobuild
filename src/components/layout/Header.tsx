@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ShoppingCart, Menu, X } from "lucide-react";
@@ -19,21 +19,43 @@ const nav = [
 
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const lastScrollY = useRef(0);
   const count = useCartStore((s) => s.count);
   const toggleCart = useCartStore((s) => s.toggleCart);
 
+  useEffect(() => {
+    function onScroll() {
+      const y = window.scrollY;
+      if (y < 80) {
+        setVisible(true);
+      } else if (y > lastScrollY.current) {
+        setVisible(false); // scrolling down → hide
+      } else {
+        setVisible(true); // scrolling up → show
+      }
+      lastScrollY.current = y;
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className="sticky top-0 z-50 border-b border-stroke bg-white shadow-sm">
+    <header
+      className={`sticky top-0 z-50 bg-navy shadow-lg transition-transform duration-300 ${
+        visible ? "translate-y-0" : "-translate-y-full"
+      }`}
+    >
       <Container>
-        <div className="flex items-center justify-between h-24 lg:h-28">
+        <div className="flex items-center justify-between h-16 lg:h-18">
           {/* Logo */}
           <Link href="/" className="flex items-center shrink-0">
             <Image
-              src="/main-logo.png"
+              src="/tranparentlogo.png"
               alt="BULLOBUILD"
               width={1112}
               height={489}
-              className="h-16 lg:h-20 w-auto drop-shadow-[0_10px_24px_rgba(26,35,51,0.12)]"
+              className="h-12 lg:h-14 w-auto"
               priority
             />
           </Link>
@@ -44,7 +66,7 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-xs font-bold text-ink-soft hover:text-ink transition-colors uppercase tracking-widest"
+                className="text-xs font-bold text-white/70 hover:text-white transition-colors uppercase tracking-widest"
               >
                 {item.label}
               </Link>
@@ -56,12 +78,12 @@ export function Header() {
             {/* Cart */}
             <button
               onClick={toggleCart}
-              className="relative p-2 text-ink-soft hover:text-ink transition-colors"
+              className="relative p-2 text-white/70 hover:text-white transition-colors"
               aria-label="Open cart"
             >
               <ShoppingCart size={20} />
               {count() > 0 && (
-                <span className="absolute -top-0.5 -right-0.5 bg-[#f2b705] text-[#0b1f3a] text-[10px] font-black w-4 h-4 rounded-full flex items-center justify-center leading-none">
+                <span className="absolute -top-0.5 -right-0.5 bg-yellow text-[#0b1f3a] text-[10px] font-black w-4 h-4 rounded-full flex items-center justify-center leading-none">
                   {count()}
                 </span>
               )}
@@ -70,14 +92,14 @@ export function Header() {
             {/* Sign In */}
             <Link
               href="/auth/login"
-              className="hidden lg:inline-flex items-center rounded-full bg-yellow px-5 py-2.5 text-xs font-black uppercase tracking-widest text-ink transition-colors hover:bg-yellow-dark"
+              className="hidden lg:inline-flex items-center rounded-full bg-yellow px-5 py-2.5 text-xs font-black uppercase tracking-widest text-[#0b1f3a] transition-colors hover:bg-yellow-dark"
             >
               Sign In
             </Link>
 
             {/* Mobile toggle */}
             <button
-              className="lg:hidden p-2 text-ink-soft hover:text-ink"
+              className="lg:hidden p-2 text-white/70 hover:text-white"
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label="Toggle menu"
             >
@@ -89,14 +111,14 @@ export function Header() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="lg:hidden border-t border-stroke bg-white shadow-md">
+        <div className="lg:hidden border-t border-white/10 bg-[#0b1f3a]">
           <Container>
             <nav className="py-4 flex flex-col">
               {nav.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="border-b border-stroke px-2 py-3 text-sm font-bold uppercase tracking-widest text-ink-soft transition-colors hover:bg-panel hover:text-ink"
+                  className="border-b border-white/10 px-2 py-3 text-sm font-bold uppercase tracking-widest text-white/70 transition-colors hover:bg-white/5 hover:text-white"
                   onClick={() => setMobileOpen(false)}
                 >
                   {item.label}
@@ -104,7 +126,7 @@ export function Header() {
               ))}
               <Link
                 href="/auth/login"
-                className="mt-4 rounded-full bg-yellow px-4 py-3.5 text-center text-xs font-black uppercase tracking-widest text-ink"
+                className="mt-4 rounded-full bg-yellow px-4 py-3.5 text-center text-xs font-black uppercase tracking-widest text-[#0b1f3a]"
                 onClick={() => setMobileOpen(false)}
               >
                 Sign In

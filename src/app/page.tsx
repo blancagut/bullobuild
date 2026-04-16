@@ -36,7 +36,6 @@ export default async function HomePage() {
     { count: productCount },
     { count: brandCount },
     { count: categoryCount },
-    { data: brands },
     { data: departmentCategories },
     { data: dealProducts },
     { data: listings },
@@ -47,12 +46,6 @@ export default async function HomePage() {
       .select("id", { count: "exact", head: true })
       .eq("is_authorized", true),
     supabase.from("categories").select("id", { count: "exact", head: true }),
-    supabase
-      .from("brands")
-      .select("name, slug")
-      .eq("is_authorized", true)
-      .order("name")
-      .limit(10),
     supabase
       .from("categories")
       .select("id, name, slug")
@@ -140,11 +133,6 @@ export default async function HomePage() {
       products: category.products,
     }));
 
-  const normalizedBrands = (brands ?? []).map((brand) => ({
-    name: brand.name,
-    slug: brand.slug,
-  }));
-
   const normalizedDealProducts = (dealProducts ?? []).map((product) => ({
     id: product.id,
     slug: product.slug,
@@ -177,7 +165,7 @@ export default async function HomePage() {
       />
       <ProductsSection departments={homepageDepartments} shelves={homepageShelves} />
       <DealsSection products={normalizedDealProducts} />
-      <BrandsSection brands={normalizedBrands} />
+      <BrandsSection />
       <WhyUsSection />
       <MarketplaceSection listings={normalizedListings} />
     </>

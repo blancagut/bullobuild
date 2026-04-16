@@ -24,7 +24,7 @@ export default function LoginPage() {
         <div className="text-center mb-10">
           <Link href="/" className="inline-flex">
             <Image
-              src="/main-logo.png"
+              src="/tranparentlogo.png"
               alt="BULLOBUILD"
               width={1112}
               height={489}

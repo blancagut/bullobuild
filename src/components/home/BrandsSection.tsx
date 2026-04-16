@@ -3,38 +3,34 @@ import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 
-const logoSlugMap: Record<string, string> = {
-  "black-decker": "blackdecker",
-  "snap-on": "snapon",
-  "mac-tools": "mactools",
-};
+const FEATURED_BRANDS = [
+  { name: "Milwaukee", slug: "milwaukee", logo: "milwaukee" },
+  { name: "DeWalt", slug: "dewalt", logo: "dewalt" },
+  { name: "Snap-on", slug: "snap-on", logo: "snapon" },
+  { name: "Mac Tools", slug: "mac-tools", logo: "mactools" },
+  { name: "Stanley", slug: "stanley", logo: "stanley" },
+  { name: "Craftsman", slug: "craftsman", logo: "craftsman" },
+  { name: "Black+Decker", slug: "black-decker", logo: "blackdecker" },
+  { name: "SKIL", slug: "skil", logo: "skil" },
+  { name: "Proto", slug: "proto", logo: "proto" },
+  { name: "Kobalt", slug: "kobalt", logo: "kobalt" },
+];
 
-interface BrandsSectionProps {
-  brands: Array<{
-    name: string;
-    slug: string;
-  }>;
-}
-
-function getLogoSlug(slug: string) {
-  return logoSlugMap[slug] ?? slug;
-}
-
-export function BrandsSection({ brands }: BrandsSectionProps) {
+export function BrandsSection() {
   return (
     <section className="border-y border-stroke bg-white py-20">
       <Container>
         <SectionHeader
           label="Authorized brands"
-          title="Jump straight into brand storefronts"
-          subtitle="Every logo below routes into a live brand page, not a dead promo block."
+          title="Shop by brand"
+          subtitle="Browse live inventory from the top names in professional tools."
           align="center"
           tone="light"
           className="mb-14"
         />
 
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5">
-          {brands.map((brand) => (
+          {FEATURED_BRANDS.map((brand) => (
             <Link
               href={`/brands/${brand.slug}`}
               key={brand.slug}
@@ -42,7 +38,7 @@ export function BrandsSection({ brands }: BrandsSectionProps) {
             >
               <div className="w-32 h-16 relative">
                 <Image
-                  src={`/brands/${getLogoSlug(brand.slug)}.svg`}
+                  src={`/brands/${brand.logo}.svg`}
                   alt={`${brand.name} logo`}
                   fill
                   className="object-contain"

@@ -8,11 +8,11 @@ const variants: Record<ButtonVariant, string> = {
   primary:
     "bg-yellow hover:bg-yellow-dark text-ink font-black uppercase tracking-widest",
   outline:
-    "border border-white/30 hover:border-white text-white font-bold uppercase tracking-wider",
+    "border border-stroke hover:border-ink text-ink font-bold uppercase tracking-wider",
   ghost:
-    "hover:bg-white/5 text-gray-300 hover:text-white font-medium uppercase tracking-wide",
+    "hover:bg-panel text-ink-soft hover:text-ink font-medium uppercase tracking-wide",
   secondary:
-    "bg-white/10 hover:bg-white/15 text-white font-bold uppercase tracking-wider",
+    "bg-navy hover:bg-navy-light text-white font-bold uppercase tracking-wider",
 };
 
 const sizes: Record<ButtonSize, string> = {

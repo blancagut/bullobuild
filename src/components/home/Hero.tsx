@@ -93,7 +93,7 @@ export function Hero({
                 Browse All Products
                 <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
               </Button>
-              <Button href="/brands" variant="outline" size="lg" className="rounded-full border-stroke bg-white text-ink hover:border-yellow hover:bg-panel">
+              <Button href="/brands" variant="secondary" size="lg" className="rounded-full">
                 Shop by Brand
               </Button>
             </div>
