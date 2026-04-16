@@ -57,11 +57,11 @@ export function ListingCard({
     <Link
       href={`/marketplace/${id}`}
       className={cn(
-        "group flex flex-col bg-[#0B1F3A] border border-white/8 hover:border-[#F2B705]/40 transition-all duration-200 overflow-hidden",
+        "group flex flex-col overflow-hidden rounded-[1.75rem] border border-stroke bg-card shadow-[0_18px_40px_rgba(26,35,51,0.06)] transition-all duration-200 hover:-translate-y-1 hover:border-navy/20 hover:shadow-[0_24px_48px_rgba(26,35,51,0.12)]",
         className
       )}
     >
-      <div className="relative aspect-[4/3] bg-white/5 overflow-hidden">
+      <div className="relative aspect-[4/3] overflow-hidden bg-wash">
         {image ? (
           <Image
             src={image}
@@ -71,7 +71,7 @@ export function ListingCard({
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
         ) : (
-          <div className="flex h-full items-center justify-center text-gray-600 text-sm">
+          <div className="flex h-full items-center justify-center text-sm text-ink-muted">
             No image
           </div>
         )}
@@ -83,21 +83,19 @@ export function ListingCard({
       </div>
 
       <div className="flex flex-col gap-2 p-4 flex-1">
-        <span className="text-xs font-semibold text-[#F2B705] uppercase tracking-wider">
+        <span className="text-xs font-semibold uppercase tracking-wider text-ink-soft">
           {brand}
         </span>
-        <h3 className="text-sm font-semibold text-white leading-snug line-clamp-2 group-hover:text-[#F2B705] transition-colors">
+        <h3 className="line-clamp-2 text-sm font-semibold leading-snug text-ink transition-colors group-hover:text-navy">
           {title}
         </h3>
 
-        <p className="text-xl font-black text-white mt-auto pt-2"
-          style={{ fontFamily: "var(--font-barlow), system-ui" }}
-        >
+        <p className="mt-auto pt-2 font-display text-xl font-black text-navy">
           {formatPrice(price)}
         </p>
 
-        <div className="flex items-center justify-between pt-2 border-t border-white/8 mt-1">
-          <div className="flex items-center gap-1 text-xs text-gray-400">
+        <div className="mt-1 flex items-center justify-between border-t border-stroke pt-2">
+          <div className="flex items-center gap-1 text-xs text-ink-soft">
             {sellerName && (
               <span className="font-medium">{sellerName}</span>
             )}
@@ -105,7 +103,7 @@ export function ListingCard({
               <StarRating value={sellerRating} size="sm" showCount={false} />
             )}
           </div>
-          <div className="flex items-center gap-3 text-xs text-gray-500">
+          <div className="flex items-center gap-3 text-xs text-ink-muted">
             {location && (
               <span className="flex items-center gap-0.5">
                 <MapPin size={10} />

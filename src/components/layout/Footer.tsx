@@ -32,21 +32,18 @@ const links: Record<string, { label: string; href: string }[]> = {
 
 export function Footer() {
   return (
-    <footer className="bg-[#070f1c] border-t border-white/5 mt-auto">
+    <footer className="mt-auto border-t border-stroke bg-paper">
       {/* CTA Banner */}
-      <div className="bg-[#f2b705]">
+      <div className="border-b border-stroke bg-panel">
         <Container>
           <div className="py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p
-              className="font-black text-xl uppercase tracking-wide text-[#0b1f3a]"
-              style={{ fontFamily: "var(--font-barlow), system-ui" }}
-            >
+            <p className="font-display text-xl font-black uppercase tracking-wide text-navy">
               Need a quote for your crew?{" "}
               <span className="font-light">We do bulk orders.</span>
             </p>
             <Link
               href="/contact"
-              className="shrink-0 text-xs font-black text-[#f2b705] bg-[#0b1f3a] hover:bg-black px-6 py-3 uppercase tracking-widest transition-colors"
+              className="shrink-0 rounded-full bg-navy px-6 py-3 text-xs font-black uppercase tracking-widest text-white transition-colors hover:bg-navy-light"
             >
               Contact Sales
             </Link>
@@ -65,10 +62,10 @@ export function Footer() {
                 alt="BULLOBUILD"
                 width={1112}
                 height={489}
-                className="h-16 w-auto drop-shadow-[0_10px_24px_rgba(0,0,0,0.45)] brightness-110 contrast-125"
+                className="h-16 w-auto drop-shadow-[0_10px_24px_rgba(26,35,51,0.1)]"
               />
             </Link>
-            <p className="text-gray-500 text-sm leading-relaxed mb-6 max-w-xs">
+            <p className="mb-6 max-w-xs text-sm leading-relaxed text-ink-soft">
               Authorized distributor of premium professional tool brands. Serving
               contractors, mechanics, and builders across the United States.
             </p>
@@ -78,8 +75,8 @@ export function Footer() {
                 { icon: Phone, text: "+1 (800) 776-8665" },
                 { icon: Mail, text: "support@bullobuild.com" },
               ].map(({ icon: Icon, text }) => (
-                <div key={text} className="flex items-center gap-3 text-sm text-gray-500">
-                  <Icon size={14} className="text-[#f2b705] shrink-0" />
+                <div key={text} className="flex items-center gap-3 text-sm text-ink-soft">
+                  <Icon size={14} className="shrink-0 text-yellow-dark" />
                   {text}
                 </div>
               ))}
@@ -89,10 +86,7 @@ export function Footer() {
           {/* Nav columns */}
           {Object.entries(links).map(([group, items]) => (
             <div key={group}>
-              <h4
-                className="font-bold text-xs uppercase tracking-[0.2em] text-gray-400 mb-5"
-                style={{ fontFamily: "var(--font-barlow), system-ui" }}
-              >
+              <h4 className="font-display mb-5 text-xs font-bold uppercase tracking-[0.2em] text-ink">
                 {group}
               </h4>
               <ul className="flex flex-col gap-3">
@@ -100,7 +94,7 @@ export function Footer() {
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      className="text-sm text-gray-600 hover:text-gray-300 transition-colors"
+                      className="text-sm text-ink-muted transition-colors hover:text-navy"
                     >
                       {item.label}
                     </Link>
@@ -112,8 +106,8 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="py-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-gray-600">
+        <div className="flex flex-col items-center justify-between gap-4 border-t border-stroke py-6 sm:flex-row">
+          <p className="text-xs text-ink-muted">
             © {new Date().getFullYear()} BULLOBUILD LLC. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
@@ -122,7 +116,7 @@ export function Footer() {
                 <Link
                   key={item}
                   href="#"
-                  className="text-xs text-gray-600 hover:text-gray-400 transition-colors"
+                  className="text-xs text-ink-muted transition-colors hover:text-navy"
                 >
                   {item}
                 </Link>

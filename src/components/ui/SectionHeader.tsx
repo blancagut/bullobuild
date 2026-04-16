@@ -5,6 +5,7 @@ interface SectionHeaderProps {
   title: string;
   subtitle?: string;
   align?: "left" | "center";
+  tone?: "dark" | "light";
   className?: string;
   action?: React.ReactNode;
 }
@@ -14,9 +15,12 @@ export function SectionHeader({
   title,
   subtitle,
   align = "left",
+  tone = "dark",
   className,
   action,
 }: SectionHeaderProps) {
+  const isLight = tone === "light";
+
   return (
     <div
       className={cn(
@@ -27,18 +31,25 @@ export function SectionHeader({
     >
       <div>
         {label && (
-          <span className="inline-block text-xs font-bold uppercase tracking-[0.15em] text-[#F2B705] mb-2">
+          <span
+            className={cn(
+              "mb-2 inline-block text-xs font-bold uppercase tracking-[0.15em]",
+              isLight ? "text-yellow-dark" : "text-[#F2B705]"
+            )}
+          >
             {label}
           </span>
         )}
         <h2
-          className="text-3xl md:text-4xl font-black uppercase text-white leading-none tracking-tight"
-          style={{ fontFamily: "var(--font-barlow), system-ui" }}
+          className={cn(
+            "font-display text-3xl font-black uppercase leading-none tracking-tight md:text-4xl",
+            isLight ? "text-ink" : "text-white"
+          )}
         >
           {title}
         </h2>
         {subtitle && (
-          <p className="text-gray-400 text-sm mt-2 max-w-xl">{subtitle}</p>
+          <p className={cn("mt-2 max-w-xl text-sm", isLight ? "text-ink-soft" : "text-gray-400")}>{subtitle}</p>
         )}
       </div>
       {action && align !== "center" && <div className="shrink-0">{action}</div>}

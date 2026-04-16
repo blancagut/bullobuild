@@ -4,11 +4,11 @@ type BadgeVariant = "yellow" | "dark" | "outline" | "success" | "warning" | "dan
 
 const variants: Record<BadgeVariant, string> = {
   yellow: "bg-yellow text-navy font-black",
-  dark: "bg-white/10 text-gray-300",
-  outline: "border border-white/20 text-gray-400",
-  success: "bg-emerald-900/50 text-emerald-400 border border-emerald-800",
-  warning: "bg-amber-900/50 text-amber-400 border border-amber-800",
-  danger: "bg-red-900/50 text-red-400 border border-red-800",
+  dark: "border border-stroke bg-panel text-ink-soft",
+  outline: "border border-stroke bg-paper text-ink-soft",
+  success: "border border-emerald-200 bg-emerald-50 text-emerald-700",
+  warning: "border border-amber-200 bg-amber-50 text-amber-700",
+  danger: "border border-red-200 bg-red-50 text-red-700",
 };
 
 interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {

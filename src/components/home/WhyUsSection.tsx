@@ -27,13 +27,14 @@ const reasons = [
 
 export function WhyUsSection() {
   return (
-    <section className="border-y border-white/5 bg-navy-dark py-14 lg:py-16">
+    <section className="border-y border-stroke bg-canvas py-14 lg:py-16">
       <Container>
         <SectionHeader
           label="Trust layer"
           title="Support the sale, don't interrupt it"
           subtitle="Keep the confidence signals visible while the catalog does the heavy lifting."
           align="center"
+          tone="light"
           className="mb-10"
         />
 
@@ -43,15 +44,15 @@ export function WhyUsSection() {
             return (
               <div
                 key={item.title}
-                className="group flex flex-col gap-4 border border-white/8 bg-white/5 p-6 transition-colors hover:border-yellow/30 hover:bg-navy"
+                className="group flex flex-col gap-4 rounded-[1.75rem] border border-stroke bg-card p-6 shadow-[0_12px_24px_rgba(26,35,51,0.04)] transition-all hover:-translate-y-1 hover:border-navy/20 hover:bg-paper"
               >
-                <div className="flex h-11 w-11 items-center justify-center bg-yellow/10 transition-colors group-hover:bg-yellow/15">
-                  <Icon size={20} className="text-yellow" />
+                <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-panel transition-colors group-hover:bg-yellow/15">
+                  <Icon size={20} className="text-navy" />
                 </div>
-                <h3 className="font-display text-sm font-black uppercase tracking-[0.12em] text-white">
+                <h3 className="font-display text-sm font-black uppercase tracking-[0.12em] text-ink">
                   {item.title}
                 </h3>
-                <p className="text-sm leading-relaxed text-gray-400">{item.description}</p>
+                <p className="text-sm leading-relaxed text-ink-soft">{item.description}</p>
               </div>
             );
           })}

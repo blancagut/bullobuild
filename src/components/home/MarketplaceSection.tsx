@@ -24,26 +24,27 @@ interface MarketplaceSectionProps {
 
 export function MarketplaceSection({ listings }: MarketplaceSectionProps) {
   return (
-    <section className="border-t border-white/5 bg-navy py-16 lg:py-20">
+    <section className="border-t border-stroke bg-paper py-16 lg:py-20">
       <Container>
         <div className="mb-10 grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
           <div>
-            <div className="mb-5 inline-flex items-center gap-2 border border-white/10 bg-white/5 px-4 py-2">
-              <TrendingUp size={13} className="text-gray-500" />
-              <span className="text-[11px] font-bold uppercase tracking-widest text-gray-500">
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-stroke bg-card px-4 py-2">
+              <TrendingUp size={13} className="text-ink-muted" />
+              <span className="text-[11px] font-bold uppercase tracking-widest text-ink-muted">
                 Secondary market
               </span>
             </div>
             <SectionHeader
               title="Verified used tools stay visible, but secondary"
               subtitle="The homepage still leads with new inventory. This block exists for shoppers who also want vetted pre-owned deals from the community."
+              tone="light"
             />
           </div>
           <div className="flex flex-wrap gap-3">
-            <Button href="/marketplace" variant="outline" size="sm">
+            <Button href="/marketplace" variant="outline" size="sm" className="rounded-full border-stroke bg-paper text-ink hover:border-navy hover:bg-panel">
               Browse Listings
             </Button>
-            <Button href="/marketplace/sell" variant="secondary" size="sm" className="gap-2">
+            <Button href="/marketplace/sell" variant="secondary" size="sm" className="gap-2 rounded-full bg-navy text-white hover:bg-navy-light">
               <PlusCircle size={14} />
               List a Tool
             </Button>
@@ -67,16 +68,16 @@ export function MarketplaceSection({ listings }: MarketplaceSectionProps) {
             ))}
           </div>
         ) : (
-          <div className="border border-dashed border-white/10 bg-white/5 px-6 py-14 text-center text-sm text-gray-500">
+          <div className="border border-dashed border-stroke bg-card px-6 py-14 text-center text-sm text-ink-muted">
             No approved marketplace listings are visible yet.
           </div>
         )}
 
-        <div className="mt-10 flex items-center justify-between gap-4 border-t border-white/5 pt-8 text-sm text-gray-500">
+        <div className="mt-10 flex items-center justify-between gap-4 border-t border-stroke pt-8 text-sm text-ink-muted">
           <p>
             New tools remain the primary storefront. Marketplace stays here as a supporting route for extra value.
           </p>
-          <Link href="/marketplace" className="inline-flex items-center gap-2 font-black uppercase tracking-[0.16em] text-yellow transition-colors hover:text-white">
+          <Link href="/marketplace" className="inline-flex items-center gap-2 font-black uppercase tracking-[0.16em] text-navy transition-colors hover:text-navy-light">
             Explore marketplace
             <ArrowRight size={14} />
           </Link>

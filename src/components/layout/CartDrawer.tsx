@@ -27,10 +27,10 @@ export function CartDrawer() {
     >
       {items.length === 0 ? (
         <div className="flex flex-col items-center justify-center h-full gap-4 p-8 text-center">
-          <ShoppingBag size={48} className="text-gray-600" />
+          <ShoppingBag size={48} className="text-ink-muted" />
           <div>
-            <p className="text-white font-semibold">Your cart is empty</p>
-            <p className="text-gray-400 text-sm mt-1">
+            <p className="font-semibold text-ink">Your cart is empty</p>
+            <p className="mt-1 text-sm text-ink-soft">
               Add some tools to get started.
             </p>
           </div>
@@ -48,9 +48,9 @@ export function CartDrawer() {
             {items.map((item) => (
               <div
                 key={item.id}
-                className="flex gap-3 bg-white/5 p-3 border border-white/8"
+                className="flex gap-3 border border-stroke bg-card p-3"
               >
-                <div className="relative h-16 w-16 shrink-0 bg-white/5 overflow-hidden">
+                <div className="relative h-16 w-16 shrink-0 overflow-hidden bg-wash">
                   {item.image ? (
                     <Image
                       src={item.image}
@@ -60,47 +60,47 @@ export function CartDrawer() {
                       sizes="64px"
                     />
                   ) : (
-                    <div className="h-full w-full flex items-center justify-center text-gray-600 text-xs">
+                    <div className="flex h-full w-full items-center justify-center text-xs text-ink-muted">
                       No img
                     </div>
                   )}
                 </div>
                 <div className="flex flex-col flex-1 min-w-0 gap-1">
-                  <p className="text-sm text-white font-medium leading-snug line-clamp-2">
+                  <p className="line-clamp-2 text-sm font-medium leading-snug text-ink">
                     {item.name}
                   </p>
-                  <p className="text-xs text-gray-400">{item.brand}</p>
+                  <p className="text-xs text-ink-soft">{item.brand}</p>
                   <div className="flex items-center justify-between mt-auto pt-1">
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() =>
                           updateQuantity(item.id, item.quantity - 1)
                         }
-                        className="h-6 w-6 flex items-center justify-center bg-white/10 hover:bg-white/20 text-white transition-colors text-sm"
+                        className="flex h-6 w-6 items-center justify-center bg-panel text-sm text-ink transition-colors hover:bg-panel-strong"
                         aria-label="Decrease quantity"
                       >
                         <Minus size={12} />
                       </button>
-                      <span className="text-sm text-white w-5 text-center">
+                      <span className="w-5 text-center text-sm text-ink">
                         {item.quantity}
                       </span>
                       <button
                         onClick={() =>
                           updateQuantity(item.id, item.quantity + 1)
                         }
-                        className="h-6 w-6 flex items-center justify-center bg-white/10 hover:bg-white/20 text-white transition-colors text-sm"
+                        className="flex h-6 w-6 items-center justify-center bg-panel text-sm text-ink transition-colors hover:bg-panel-strong"
                         aria-label="Increase quantity"
                       >
                         <Plus size={12} />
                       </button>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-sm font-bold text-white">
+                      <span className="text-sm font-bold text-navy">
                         {formatPrice(item.price * item.quantity)}
                       </span>
                       <button
                         onClick={() => removeItem(item.id)}
-                        className="text-gray-500 hover:text-red-400 transition-colors"
+                        className="text-ink-muted transition-colors hover:text-red-500"
                         aria-label="Remove item"
                       >
                         <Trash2 size={14} />
@@ -112,12 +112,12 @@ export function CartDrawer() {
             ))}
           </div>
 
-          <div className="shrink-0 border-t border-white/10 p-5 space-y-4">
-            <div className="flex justify-between text-white">
-              <span className="text-sm text-gray-400">Subtotal</span>
+          <div className="shrink-0 space-y-4 border-t border-stroke p-5">
+            <div className="flex justify-between text-ink">
+              <span className="text-sm text-ink-soft">Subtotal</span>
               <span className="font-bold">{formatPrice(total())}</span>
             </div>
-            <p className="text-xs text-gray-500">
+            <p className="text-xs text-ink-muted">
               Shipping &amp; taxes calculated at checkout
             </p>
             <Button
@@ -132,7 +132,7 @@ export function CartDrawer() {
               href="/cart"
               onClick={toggleCart}
               variant="outline"
-              className="w-full"
+              className="w-full border-stroke text-ink hover:border-navy hover:bg-panel"
             >
               View Full Cart
             </Button>

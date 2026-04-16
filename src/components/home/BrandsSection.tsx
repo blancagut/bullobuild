@@ -22,22 +22,23 @@ function getLogoSlug(slug: string) {
 
 export function BrandsSection({ brands }: BrandsSectionProps) {
   return (
-    <section className="border-y border-white/5 bg-navy py-20">
+    <section className="border-y border-stroke bg-paper py-20">
       <Container>
         <SectionHeader
           label="Authorized brands"
           title="Jump straight into brand storefronts"
           subtitle="Every logo below routes into a live brand page, not a dead promo block."
           align="center"
+          tone="light"
           className="mb-14"
         />
 
-        <div className="grid grid-cols-2 gap-px bg-white/5 sm:grid-cols-3 md:grid-cols-5">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5">
           {brands.map((brand) => (
             <Link
               href={`/brands/${brand.slug}`}
               key={brand.slug}
-              className="group flex flex-col items-center justify-center gap-4 bg-navy p-8 transition-colors hover:bg-navy-light"
+              className="group flex flex-col items-center justify-center gap-4 rounded-[1.75rem] border border-stroke bg-card p-8 shadow-[0_12px_24px_rgba(26,35,51,0.04)] transition-all hover:-translate-y-1 hover:border-navy/20 hover:shadow-[0_18px_32px_rgba(26,35,51,0.1)]"
             >
               <div className="w-32 h-16 relative">
                 <Image
@@ -49,21 +50,21 @@ export function BrandsSection({ brands }: BrandsSectionProps) {
                 />
               </div>
 
-              <span className="font-display text-xs font-bold uppercase tracking-tight text-gray-500 transition-colors group-hover:text-white">
+              <span className="font-display text-xs font-bold uppercase tracking-tight text-ink-soft transition-colors group-hover:text-navy">
                 {brand.name}
               </span>
 
-              <div className="h-px w-6 bg-yellow opacity-0 transition-opacity group-hover:opacity-100" />
+              <div className="h-px w-6 bg-yellow-dark opacity-0 transition-opacity group-hover:opacity-100" />
             </Link>
           ))}
         </div>
 
         <div className="mt-10 flex items-center justify-center gap-4">
-          <div className="h-px flex-1 max-w-24 bg-white/8" />
-          <p className="text-[10px] text-gray-600 uppercase tracking-widest text-center">
+          <div className="h-px flex-1 max-w-24 bg-stroke" />
+          <p className="text-center text-[10px] uppercase tracking-widest text-ink-muted">
             open a brand page, then drop directly into live product inventory
           </p>
-          <div className="h-px flex-1 max-w-24 bg-white/8" />
+          <div className="h-px flex-1 max-w-24 bg-stroke" />
         </div>
       </Container>
     </section>

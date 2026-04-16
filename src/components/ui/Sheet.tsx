@@ -31,7 +31,7 @@ export function Sheet({
         <Dialog.Overlay className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0" />
         <Dialog.Content
           className={cn(
-            "fixed top-0 bottom-0 z-50 flex flex-col bg-[#0b1f3a] border-white/10 shadow-2xl",
+            "fixed top-0 bottom-0 z-50 flex flex-col border-stroke bg-paper shadow-[0_24px_80px_rgba(26,35,51,0.18)]",
             side === "right"
               ? "right-0 border-l data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right"
               : "left-0 border-r data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left",
@@ -39,23 +39,20 @@ export function Sheet({
             className
           )}
         >
-          <div className="flex items-center justify-between p-5 border-b border-white/10 shrink-0">
+          <div className="flex items-center justify-between border-b border-stroke p-5 shrink-0">
             <div>
               {title && (
-                <Dialog.Title
-                  className="font-black text-lg uppercase text-white tracking-tight"
-                  style={{ fontFamily: "var(--font-barlow), system-ui" }}
-                >
+                <Dialog.Title className="font-display text-lg font-black uppercase tracking-tight text-ink">
                   {title}
                 </Dialog.Title>
               )}
               {description && (
-                <Dialog.Description className="text-xs text-gray-400 mt-0.5">
+                <Dialog.Description className="mt-0.5 text-xs text-ink-soft">
                   {description}
                 </Dialog.Description>
               )}
             </div>
-            <Dialog.Close className="text-gray-500 hover:text-white transition-colors">
+            <Dialog.Close className="text-ink-muted transition-colors hover:text-ink">
               <X size={18} />
             </Dialog.Close>
           </div>

@@ -56,7 +56,7 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${barlowCondensed.variable} h-full`}
     >
-      <body className="bg-[#070f1c] text-white min-h-full flex flex-col antialiased">
+      <body className="min-h-full flex flex-col bg-canvas text-ink antialiased">
         <Header />
         <CartDrawer />
         <main className="flex-1">{children}</main>
@@ -66,12 +66,12 @@ export default function RootLayout({
           position="bottom-left"
           toastOptions={{
             style: {
-              background: "#0B1F3A",
-              color: "#fff",
-              border: "1px solid rgba(255,255,255,0.08)",
+              background: "#FFF9F1",
+              color: "#1A2333",
+              border: "1px solid #DBCDB8",
               fontSize: "13px",
             },
-            success: { iconTheme: { primary: "#F2B705", secondary: "#0B1F3A" } },
+            success: { iconTheme: { primary: "#0B1F3A", secondary: "#FFF9F1" } },
           }}
         />
       </body>
