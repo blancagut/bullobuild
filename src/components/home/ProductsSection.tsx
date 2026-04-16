@@ -36,7 +36,7 @@ export function ProductsSection({ products, categories }: ProductsSectionProps) 
           subtitle="Real products from the catalog, selected from live inventory instead of static promo content."
           className="mb-8"
           action={
-            <Button href="/search" variant="outline" size="sm">
+            <Button href="/shop" variant="outline" size="sm">
               Browse Full Catalog
             </Button>
           }
@@ -53,7 +53,7 @@ export function ProductsSection({ products, categories }: ProductsSectionProps) 
             </Link>
           ))}
           <Link
-            href="/search"
+            href="/shop"
             className="inline-flex items-center gap-2 border border-yellow/30 bg-yellow/10 px-3 py-2 text-[11px] font-black uppercase tracking-[0.16em] text-yellow transition-colors hover:bg-yellow/15"
           >
             View all
