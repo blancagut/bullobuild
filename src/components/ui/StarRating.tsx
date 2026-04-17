@@ -31,16 +31,16 @@ export function StarRating({
             size={px}
             className={cn(
               i < full
-                ? "fill-[#f2b705] text-[#f2b705]"
+                ? "fill-yellow text-yellow"
                 : i === full && hasHalf
-                  ? "fill-[#f2b705]/50 text-[#f2b705]"
-                  : "fill-white/5 text-white/10"
+                  ? "fill-yellow/50 text-yellow"
+                  : "fill-stroke text-stroke"
             )}
           />
         ))}
       </div>
       {showCount && count !== undefined && (
-        <span className="text-[11px] text-gray-500">
+        <span className="text-[11px] text-ink-muted">
           {value.toFixed(1)} ({count.toLocaleString()})
         </span>
       )}

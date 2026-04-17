@@ -8,11 +8,11 @@ const variants: Record<ButtonVariant, string> = {
   primary:
     "bg-yellow hover:bg-yellow-dark text-ink font-black uppercase tracking-widest",
   outline:
-    "border border-stroke hover:border-ink text-ink font-bold uppercase tracking-wider",
+    "border border-stroke bg-white text-ink font-bold uppercase tracking-wider hover:border-yellow/40 hover:bg-panel",
   ghost:
     "hover:bg-panel text-ink-soft hover:text-ink font-medium uppercase tracking-wide",
   secondary:
-    "bg-navy hover:bg-navy-light text-white font-bold uppercase tracking-wider",
+    "border border-stroke bg-white text-ink font-bold uppercase tracking-wider hover:bg-panel",
 };
 
 const sizes: Record<ButtonSize, string> = {
@@ -38,7 +38,7 @@ export function Button({
   ...props
 }: ButtonProps) {
   const classes = cn(
-    "inline-flex items-center justify-center gap-2 transition-colors cursor-pointer select-none",
+    "inline-flex cursor-pointer select-none items-center justify-center gap-2 transition-colors",
     variants[variant],
     sizes[size],
     className

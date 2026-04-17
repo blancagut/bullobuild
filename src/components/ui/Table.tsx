@@ -11,7 +11,7 @@ export function Table({ children, className }: { children: React.ReactNode; clas
 
 export function TableHead({ children }: { children: React.ReactNode }) {
   return (
-    <thead className="border-b border-white/5">
+    <thead className="border-b border-stroke">
       <tr>{children}</tr>
     </thead>
   );
@@ -27,7 +27,7 @@ export function TableHeadCell({
   return (
     <th
       className={cn(
-        "px-4 py-3 text-left text-[10px] font-bold uppercase tracking-widest text-gray-500",
+        "px-4 py-3 text-left text-[10px] font-bold uppercase tracking-widest text-ink-soft",
         className
       )}
     >
@@ -37,7 +37,7 @@ export function TableHeadCell({
 }
 
 export function TableBody({ children }: { children: React.ReactNode }) {
-  return <tbody className="divide-y divide-white/5">{children}</tbody>;
+  return <tbody className="divide-y divide-stroke">{children}</tbody>;
 }
 
 export function TableRow({
@@ -52,7 +52,7 @@ export function TableRow({
   return (
     <tr
       className={cn(
-        "transition-colors hover:bg-white/[0.02]",
+        "transition-colors hover:bg-panel/60",
         onClick && "cursor-pointer",
         className
       )}
@@ -71,7 +71,7 @@ export function TableCell({
   className?: string;
 }) {
   return (
-    <td className={cn("px-4 py-3.5 text-gray-300", className)}>{children}</td>
+    <td className={cn("px-4 py-3.5 text-ink", className)}>{children}</td>
   );
 }
 
@@ -89,12 +89,12 @@ export function TableEmpty({
     <tr>
       <td colSpan={100}>
         <div className="py-20 flex flex-col items-center gap-3 text-center">
-          {icon && <div className="text-gray-700">{icon}</div>}
-          <p className="font-bold text-sm text-gray-400 uppercase tracking-wide">
+          {icon && <div className="text-ink-muted">{icon}</div>}
+          <p className="font-bold text-sm uppercase tracking-wide text-ink-soft">
             {title}
           </p>
           {description && (
-            <p className="text-xs text-gray-600 max-w-xs">{description}</p>
+            <p className="max-w-xs text-xs text-ink-muted">{description}</p>
           )}
         </div>
       </td>

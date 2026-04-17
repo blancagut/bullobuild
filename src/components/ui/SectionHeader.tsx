@@ -15,7 +15,7 @@ export function SectionHeader({
   title,
   subtitle,
   align = "left",
-  tone = "dark",
+  tone = "light",
   className,
   action,
 }: SectionHeaderProps) {

@@ -43,12 +43,12 @@ export function ProductCard({
     <Link
       href={`/shop/${slug}`}
       className={cn(
-        "group flex flex-col bg-[#0B1F3A] border border-white/8 hover:border-[#F2B705]/40 transition-all duration-200 overflow-hidden",
+        "group flex flex-col overflow-hidden rounded-2xl border border-stroke bg-white shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-yellow/40 hover:shadow-md",
         !inStock && "opacity-60 pointer-events-none",
         className
       )}
     >
-      <div className="relative aspect-square bg-white/5 overflow-hidden">
+      <div className="relative aspect-square overflow-hidden bg-wash">
         {image ? (
           <Image
             src={image}
@@ -73,8 +73,8 @@ export function ProductCard({
           </div>
         )}
         {!inStock && (
-          <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-            <span className="text-xs font-bold text-white uppercase tracking-widest">
+          <div className="absolute inset-0 flex items-center justify-center bg-white/80 backdrop-blur-[1px]">
+            <span className="text-xs font-bold uppercase tracking-widest text-ink">
               Out of Stock
             </span>
           </div>
@@ -82,17 +82,17 @@ export function ProductCard({
       </div>
 
       <div className="flex flex-col gap-2 p-4 flex-1">
-        <span className="text-xs font-semibold text-[#F2B705] uppercase tracking-wider">
+        <span className="text-xs font-semibold uppercase tracking-wider text-yellow-dark">
           {brand}
         </span>
-        <h3 className="text-sm font-semibold text-white leading-snug line-clamp-2 group-hover:text-[#F2B705] transition-colors">
+        <h3 className="line-clamp-2 text-sm font-semibold leading-snug text-ink transition-colors group-hover:text-yellow-dark">
           {name}
         </h3>
         {rating !== undefined && (
           <div className="flex items-center gap-1.5">
             <StarRating value={rating} size="sm" showCount={false} />
             {reviewCount !== undefined && (
-              <span className="text-xs text-gray-500">({reviewCount})</span>
+              <span className="text-xs text-ink-muted">({reviewCount})</span>
             )}
           </div>
         )}

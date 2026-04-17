@@ -43,7 +43,7 @@ export function Pagination({
   }
 
   const btnBase =
-    "w-9 h-9 flex items-center justify-center text-sm font-bold transition-colors";
+    "flex h-9 w-9 items-center justify-center text-sm font-bold transition-colors";
 
   return (
     <nav
@@ -53,20 +53,20 @@ export function Pagination({
       {currentPage > 1 ? (
         <Link
           href={buildUrl(basePath, currentPage - 1, searchParams)}
-          className={cn(btnBase, "text-gray-400 hover:text-white border border-white/10 hover:border-white/30")}
+          className={cn(btnBase, "border border-stroke text-ink-soft hover:border-yellow/30 hover:bg-panel hover:text-ink")}
           aria-label="Previous page"
         >
           <ChevronLeft size={15} />
         </Link>
       ) : (
-        <span className={cn(btnBase, "text-gray-700 border border-white/5 cursor-not-allowed")}>
+        <span className={cn(btnBase, "cursor-not-allowed border border-stroke text-ink-muted")}>
           <ChevronLeft size={15} />
         </span>
       )}
 
       {pages.map((page, i) =>
         page === "..." ? (
-          <span key={`ellipsis-${i}`} className={cn(btnBase, "text-gray-600 cursor-default")}>
+          <span key={`ellipsis-${i}`} className={cn(btnBase, "cursor-default text-ink-muted")}>
             …
           </span>
         ) : (
@@ -76,8 +76,8 @@ export function Pagination({
             className={cn(
               btnBase,
               page === currentPage
-                ? "bg-[#f2b705] text-[#0b1f3a]"
-                : "border border-white/10 text-gray-400 hover:border-white/30 hover:text-white"
+                ? "bg-yellow text-ink"
+                : "border border-stroke text-ink-soft hover:border-yellow/30 hover:bg-panel hover:text-ink"
             )}
             aria-current={page === currentPage ? "page" : undefined}
           >
@@ -89,13 +89,13 @@ export function Pagination({
       {currentPage < totalPages ? (
         <Link
           href={buildUrl(basePath, currentPage + 1, searchParams)}
-          className={cn(btnBase, "text-gray-400 hover:text-white border border-white/10 hover:border-white/30")}
+          className={cn(btnBase, "border border-stroke text-ink-soft hover:border-yellow/30 hover:bg-panel hover:text-ink")}
           aria-label="Next page"
         >
           <ChevronRight size={15} />
         </Link>
       ) : (
-        <span className={cn(btnBase, "text-gray-700 border border-white/5 cursor-not-allowed")}>
+        <span className={cn(btnBase, "cursor-not-allowed border border-stroke text-ink-muted")}>
           <ChevronRight size={15} />
         </span>
       )}

@@ -12,7 +12,7 @@ export function Spinner({ size = "md", className }: SpinnerProps) {
     <div
       role="status"
       className={cn(
-        "border-2 border-white/10 border-t-[#f2b705] rounded-full animate-spin",
+        "animate-spin rounded-full border-2 border-stroke border-t-yellow",
         spinnerSizes[size],
         className
       )}
@@ -28,7 +28,7 @@ interface SkeletonProps extends React.HTMLAttributes<HTMLDivElement> {
 export function Skeleton({ className, ...props }: SkeletonProps) {
   return (
     <div
-      className={cn("bg-white/5 animate-pulse", className)}
+      className={cn("animate-pulse bg-panel", className)}
       {...props}
     />
   );
@@ -37,7 +37,7 @@ export function Skeleton({ className, ...props }: SkeletonProps) {
 // ── ProductCardSkeleton ───────────────────────────────────────────────────
 export function ProductCardSkeleton() {
   return (
-    <div className="bg-[#0f1b2e] flex flex-col">
+    <div className="flex flex-col overflow-hidden rounded-2xl border border-stroke bg-white">
       <Skeleton className="h-52 w-full" />
       <div className="p-5 flex flex-col gap-3">
         <Skeleton className="h-3 w-16" />
@@ -55,7 +55,7 @@ export function ProductCardSkeleton() {
 // ── ListingCardSkeleton ───────────────────────────────────────────────────
 export function ListingCardSkeleton() {
   return (
-    <div className="bg-[#0f1b2e] p-5 flex gap-4">
+    <div className="flex gap-4 rounded-2xl border border-stroke bg-white p-5">
       <Skeleton className="w-24 h-24 shrink-0" />
       <div className="flex-1 flex flex-col gap-2">
         <Skeleton className="h-3 w-16" />

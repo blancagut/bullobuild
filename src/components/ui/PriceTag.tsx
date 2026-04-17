@@ -22,20 +22,17 @@ export function PriceTag({ price, originalPrice, size = "md", className }: Price
 
   return (
     <div className={cn("flex items-baseline gap-2 flex-wrap", className)}>
-      <span
-        className={cn("font-black text-white leading-none", s.price)}
-        style={{ fontFamily: "var(--font-barlow), system-ui" }}
-      >
+      <span className={cn("font-display font-black leading-none text-ink", s.price)}>
         ${price.toFixed(2)}
       </span>
       {originalPrice && (
         <>
-          <span className={cn("text-gray-600 line-through leading-none", s.original)}>
+          <span className={cn("leading-none line-through text-ink-muted", s.original)}>
             ${originalPrice.toFixed(2)}
           </span>
           <span
             className={cn(
-              "bg-red-600 text-white font-black px-1.5 py-0.5 leading-none",
+              "bg-red-100 px-1.5 py-0.5 font-black leading-none text-red-700",
               s.badge
             )}
           >

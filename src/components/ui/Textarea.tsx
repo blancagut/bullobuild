@@ -16,7 +16,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         {label && (
           <label
             htmlFor={inputId}
-            className="text-[10px] font-bold uppercase tracking-widest text-gray-400"
+            className="text-[10px] font-bold uppercase tracking-widest text-ink-soft"
           >
             {label}
           </label>
@@ -26,16 +26,16 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           ref={ref}
           rows={4}
           className={cn(
-            "w-full bg-[#070f1c] border text-white text-sm px-4 py-3 outline-none transition-colors placeholder:text-gray-600 resize-y",
+            "w-full resize-y border border-stroke bg-white px-4 py-3 text-sm text-ink outline-none transition-colors placeholder:text-ink-muted",
             error
               ? "border-red-500 focus:border-red-400"
-              : "border-white/10 focus:border-[#f2b705]",
+              : "focus:border-yellow/60",
             className
           )}
           {...props}
         />
         {error && <p className="text-xs text-red-400">{error}</p>}
-        {hint && !error && <p className="text-xs text-gray-600">{hint}</p>}
+        {hint && !error && <p className="text-xs text-ink-muted">{hint}</p>}
       </div>
     );
   }

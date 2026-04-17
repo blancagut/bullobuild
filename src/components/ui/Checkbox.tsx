@@ -32,26 +32,26 @@ export function Checkbox({
         onCheckedChange={onCheckedChange}
         disabled={disabled}
         className={cn(
-          "w-4 h-4 shrink-0 border border-white/20 bg-transparent mt-0.5",
-          "data-[state=checked]:bg-[#f2b705] data-[state=checked]:border-[#f2b705]",
-          "focus:outline-none focus:ring-1 focus:ring-[#f2b705]",
+          "mt-0.5 h-4 w-4 shrink-0 border border-stroke bg-white",
+          "data-[state=checked]:border-yellow data-[state=checked]:bg-yellow",
+          "focus:outline-none focus:ring-2 focus:ring-yellow/20",
           "disabled:opacity-40 disabled:cursor-not-allowed",
           "transition-colors cursor-pointer"
         )}
       >
         <CheckboxPrimitive.Indicator className="flex items-center justify-center">
-          <Check size={10} className="text-[#0b1f3a] stroke-[3]" />
+          <Check size={10} className="stroke-[3] text-ink" />
         </CheckboxPrimitive.Indicator>
       </CheckboxPrimitive.Root>
       {(label || description) && (
         <label htmlFor={checkId} className="cursor-pointer">
           {label && (
-            <p className="text-sm text-white font-medium leading-none mb-1">
+            <p className="mb-1 text-sm font-medium leading-none text-ink">
               {label}
             </p>
           )}
           {description && (
-            <p className="text-xs text-gray-500">{description}</p>
+            <p className="text-xs text-ink-muted">{description}</p>
           )}
         </label>
       )}

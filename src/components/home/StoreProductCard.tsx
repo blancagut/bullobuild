@@ -94,13 +94,6 @@ export function StoreProductCard({
             <span className="text-xs font-semibold uppercase tracking-[0.18em] text-ink-soft">
               {brand}
             </span>
-            <span
-              className={`text-[10px] font-bold uppercase tracking-[0.18em] ${
-                stock <= 5 ? "text-red-600" : "text-emerald-700"
-              }`}
-            >
-              {stock <= 5 ? `${stock} left` : "In stock"}
-            </span>
           </div>
 
           <h3 className="mb-3 line-clamp-2 text-sm font-semibold leading-snug text-ink transition-colors group-hover:text-yellow-dark">

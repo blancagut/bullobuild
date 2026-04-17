@@ -34,30 +34,30 @@ export function Select({
   return (
     <div className={cn("flex flex-col gap-1.5", className)}>
       {label && (
-        <label className="text-[10px] font-bold uppercase tracking-widest text-gray-400">
+        <label className="text-[10px] font-bold uppercase tracking-widest text-ink-soft">
           {label}
         </label>
       )}
       <SelectPrimitive.Root value={value} onValueChange={onValueChange} disabled={disabled}>
         <SelectPrimitive.Trigger
           className={cn(
-            "flex items-center justify-between w-full bg-[#070f1c] border text-sm px-4 py-3 outline-none text-left transition-colors",
+            "flex w-full items-center justify-between border border-stroke bg-white px-4 py-3 text-left text-sm text-ink outline-none transition-colors",
             error
-              ? "border-red-500 text-white"
-              : "border-white/10 focus:border-[#f2b705] text-white",
-            !value && "text-gray-600",
-            "data-[state=open]:border-[#f2b705]"
+              ? "border-red-500 text-ink"
+              : "focus:border-yellow/60",
+            !value && "text-ink-muted",
+            "data-[state=open]:border-yellow/50"
           )}
         >
           <SelectPrimitive.Value placeholder={placeholder} />
           <SelectPrimitive.Icon>
-            <ChevronDown size={14} className="text-gray-500" />
+            <ChevronDown size={14} className="text-ink-muted" />
           </SelectPrimitive.Icon>
         </SelectPrimitive.Trigger>
 
         <SelectPrimitive.Portal>
           <SelectPrimitive.Content
-            className="bg-[#0b1f3a] border border-white/10 shadow-xl z-50 overflow-hidden"
+            className="z-50 overflow-hidden rounded-2xl border border-stroke bg-white shadow-[0_20px_45px_rgba(43,36,24,0.14)]"
             position="popper"
             sideOffset={4}
           >
@@ -69,14 +69,14 @@ export function Select({
                   disabled={opt.disabled}
                   className={cn(
                     "flex items-center justify-between px-4 py-2.5 text-sm cursor-pointer outline-none transition-colors",
-                    "text-gray-300 hover:bg-white/5 hover:text-white",
-                    "data-[state=checked]:text-[#f2b705]",
+                    "text-ink-soft hover:bg-panel hover:text-ink",
+                    "data-[state=checked]:text-yellow-dark",
                     opt.disabled && "opacity-40 cursor-not-allowed"
                   )}
                 >
                   <SelectPrimitive.ItemText>{opt.label}</SelectPrimitive.ItemText>
                   <SelectPrimitive.ItemIndicator>
-                    <Check size={13} className="text-[#f2b705]" />
+                    <Check size={13} className="text-yellow-dark" />
                   </SelectPrimitive.ItemIndicator>
                 </SelectPrimitive.Item>
               ))}

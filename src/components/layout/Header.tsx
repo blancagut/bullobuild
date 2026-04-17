@@ -42,7 +42,7 @@ export function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-50 bg-navy shadow-lg transition-transform duration-300 ${
+      className={`sticky top-0 z-50 border-b border-slate-800/50 bg-[#1b2a4a] shadow-[0_12px_34px_rgba(0,10,30,0.3)] backdrop-blur transition-transform duration-300 ${
         visible ? "translate-y-0" : "-translate-y-full"
       }`}
     >
@@ -51,11 +51,11 @@ export function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center shrink-0">
             <Image
-              src="/tranparentlogo.png"
+              src="/logo-transparent.png"
               alt="BULLOBUILD"
               width={1112}
               height={489}
-              className="h-12 lg:h-14 w-auto"
+              className="h-11 w-auto lg:h-12"
               priority
             />
           </Link>
@@ -66,7 +66,7 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-xs font-bold text-white/70 hover:text-white transition-colors uppercase tracking-widest"
+                className="text-xs font-bold uppercase tracking-widest text-[#ffffffcc] transition-colors hover:text-[#ffffff]"
               >
                 {item.label}
               </Link>
@@ -78,12 +78,12 @@ export function Header() {
             {/* Cart */}
             <button
               onClick={toggleCart}
-              className="relative p-2 text-white/70 hover:text-white transition-colors"
+              className="relative p-2 text-[#ffffffcc] transition-colors hover:text-[#ffffff]"
               aria-label="Open cart"
             >
               <ShoppingCart size={20} />
               {count() > 0 && (
-                <span className="absolute -top-0.5 -right-0.5 bg-yellow text-[#0b1f3a] text-[10px] font-black w-4 h-4 rounded-full flex items-center justify-center leading-none">
+                <span className="absolute -top-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-yellow text-[10px] leading-none font-black text-ink">
                   {count()}
                 </span>
               )}
@@ -92,14 +92,14 @@ export function Header() {
             {/* Sign In */}
             <Link
               href="/auth/login"
-              className="hidden lg:inline-flex items-center rounded-full bg-yellow px-5 py-2.5 text-xs font-black uppercase tracking-widest text-[#0b1f3a] transition-colors hover:bg-yellow-dark"
+              className="hidden lg:inline-flex items-center rounded-full bg-yellow px-5 py-2.5 text-xs font-black uppercase tracking-widest text-ink transition-colors hover:bg-yellow-dark"
             >
               Sign In
             </Link>
 
             {/* Mobile toggle */}
             <button
-              className="lg:hidden p-2 text-white/70 hover:text-white"
+              className="p-2 text-[#ffffffcc] transition-colors hover:text-[#ffffff] lg:hidden"
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label="Toggle menu"
             >
@@ -111,14 +111,14 @@ export function Header() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="lg:hidden border-t border-white/10 bg-[#0b1f3a]">
+        <div className="border-t border-slate-700/40 bg-[#1b2a4a] lg:hidden">
           <Container>
             <nav className="py-4 flex flex-col">
               {nav.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="border-b border-white/10 px-2 py-3 text-sm font-bold uppercase tracking-widest text-white/70 transition-colors hover:bg-white/5 hover:text-white"
+                  className="border-b border-slate-700/30 px-2 py-3 text-sm font-bold uppercase tracking-widest text-[#ffffffcc] transition-colors hover:bg-[#ffffff1a] hover:text-[#ffffff]"
                   onClick={() => setMobileOpen(false)}
                 >
                   {item.label}
@@ -126,7 +126,7 @@ export function Header() {
               ))}
               <Link
                 href="/auth/login"
-                className="mt-4 rounded-full bg-yellow px-4 py-3.5 text-center text-xs font-black uppercase tracking-widest text-[#0b1f3a]"
+                className="mt-4 rounded-full bg-yellow px-4 py-3.5 text-center text-xs font-black uppercase tracking-widest text-ink"
                 onClick={() => setMobileOpen(false)}
               >
                 Sign In

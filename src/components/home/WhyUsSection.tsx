@@ -1,27 +1,27 @@
-import { ShieldCheck, Truck, RotateCcw, BadgeCheck } from "lucide-react";
+import { BadgeCheck, DollarSign, Users, Zap } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 
 const reasons = [
   {
-    icon: ShieldCheck,
-    title: "100% Authentic",
-    description: "Factory-sealed inventory from authorized distributors. Zero counterfeit risk.",
-  },
-  {
-    icon: Truck,
-    title: "Ships in 24 Hours",
-    description: "Stocked orders leave our warehouse the next business day.",
-  },
-  {
-    icon: RotateCcw,
-    title: "30-Day Returns",
-    description: "Unopened items come back for a full refund. No restocking fees.",
-  },
-  {
     icon: BadgeCheck,
-    title: "Verified Sellers",
-    description: "Every pre-owned listing is screened before it goes live.",
+    title: "Factory-sealed inventory",
+    description: "Authorized supply only. No gray market stock.",
+  },
+  {
+    icon: DollarSign,
+    title: "Direct checkout",
+    description: "Real add-to-cart and live product routes from the homepage.",
+  },
+  {
+    icon: Users,
+    title: "Verified marketplace",
+    description: "Pre-owned listings stay screened and secondary to retail.",
+  },
+  {
+    icon: Zap,
+    title: "Fast dispatch",
+    description: "Stocked orders can move quickly across the US.",
   },
 ];
 
@@ -30,9 +30,9 @@ export function WhyUsSection() {
     <section className="border-y border-stroke bg-canvas py-14 lg:py-16">
       <Container>
         <SectionHeader
-          label="Why trades buy here"
-          title="Built for working crews"
-          subtitle="Authentic tools, fast shipping, and a return policy that respects your time."
+          label="Trust layer"
+          title="Support the sale, don't interrupt it"
+          subtitle="Keep the confidence signals visible while the catalog does the heavy lifting."
           align="center"
           tone="light"
           className="mb-10"

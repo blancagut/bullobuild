@@ -17,14 +17,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {label && (
           <label
             htmlFor={inputId}
-            className="text-[10px] font-bold uppercase tracking-widest text-gray-400"
+            className="text-[10px] font-bold uppercase tracking-widest text-ink-soft"
           >
             {label}
           </label>
         )}
         <div className="relative">
           {leftIcon && (
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none">
+            <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-ink-muted">
               {leftIcon}
             </span>
           )}
@@ -32,24 +32,24 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             id={inputId}
             ref={ref}
             className={cn(
-              "w-full bg-[#070f1c] border text-white text-sm px-4 py-3 outline-none transition-colors placeholder:text-gray-600",
+              "w-full border border-stroke bg-white px-4 py-3 text-sm text-ink outline-none transition-colors placeholder:text-ink-muted",
               leftIcon && "pl-10",
               rightIcon && "pr-10",
               error
                 ? "border-red-500 focus:border-red-400"
-                : "border-white/10 focus:border-[#f2b705]",
+                : "focus:border-yellow/60",
               className
             )}
             {...props}
           />
           {rightIcon && (
-            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">
+            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-ink-muted">
               {rightIcon}
             </span>
           )}
         </div>
         {error && <p className="text-xs text-red-400">{error}</p>}
-        {hint && !error && <p className="text-xs text-gray-600">{hint}</p>}
+        {hint && !error && <p className="text-xs text-ink-muted">{hint}</p>}
       </div>
     );
   }
