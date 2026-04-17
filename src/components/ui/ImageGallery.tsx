@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
+import { ImagePlaceholder } from "./ImagePlaceholder";
 import { cn } from "@/lib/utils";
 
 interface ImageGalleryProps {
@@ -17,8 +18,8 @@ export function ImageGallery({ images, alt, className }: ImageGalleryProps) {
 
   if (!images.length) {
     return (
-      <div className={cn("aspect-square bg-white/5 flex items-center justify-center text-gray-600", className)}>
-        No images
+      <div className={cn("aspect-square overflow-hidden", className)}>
+        <ImagePlaceholder slug={alt} />
       </div>
     );
   }

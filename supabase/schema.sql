@@ -109,9 +109,13 @@ alter table public.orders    enable row level security;
 create policy "Public read brands"
   on public.brands for select using (true);
 
--- Products: anyone can read in-stock items
+-- Products: anyone can read in-stock items that have at least one image.
+-- The image requirement is the enforcement of our "no missing-photo products"
+-- policy: a product without imagery is never sellable and must never appear
+-- on the public storefront. Admin queries bypass RLS via the service role.
 create policy "Public read products"
-  on public.products for select using (stock > 0);
+  on public.products for select
+  using (stock > 0 and array_length(images, 1) >= 1);
 
 -- Listings: anyone can read approved, unsold listings
 create policy "Public read approved listings"

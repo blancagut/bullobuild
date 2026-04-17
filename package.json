@@ -6,7 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "images:audit": "node scripts/check-images.mjs",
+    "images:audit:strict": "node scripts/check-images.mjs --min 1",
+    "images:resync": "node scripts/resync-images-from-catalog.mjs",
+    "images:diff": "node scripts/diff-catalog-vs-db.mjs",
+    "images:links": "node scripts/check-image-links.mjs"
   },
   "dependencies": {
     "@ai-sdk/openai": "^3.0.53",

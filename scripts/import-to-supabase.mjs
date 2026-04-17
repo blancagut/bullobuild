@@ -56,6 +56,45 @@ function chunks(arr, size) {
   return out;
 }
 
+// Normalize whatever shape a catalog uses for images into an array of clean URL strings.
+// Supports:
+//   - array of URL strings                         (most brands)
+//   - array of objects with .url / .src / .image   (Mac Tools / Shopify)
+//   - object keyed by variant                      (older schemas)
+//   - string                                       (single hero)
+// Dedupes, trims, keeps only http(s) URLs.
+export function extractImageUrls(p) {
+  if (!p) return [];
+  const raw = [];
+  const push = (v) => {
+    if (!v) return;
+    if (typeof v === 'string') raw.push(v);
+    else if (typeof v === 'object') {
+      const u = v.url || v.src || v.image || v.href || v.original || v.large;
+      if (typeof u === 'string') raw.push(u);
+    }
+  };
+
+  if (Array.isArray(p.images)) p.images.forEach(push);
+  else if (p.images && typeof p.images === 'object') Object.values(p.images).forEach(push);
+  else if (typeof p.images === 'string') push(p.images);
+
+  // Shopify-style hero
+  if (p.heroImage) push(p.heroImage);
+  if (p.image) push(p.image);
+
+  const seen = new Set();
+  const out = [];
+  for (let u of raw) {
+    u = String(u).trim();
+    if (!/^https?:\/\//i.test(u)) continue;
+    if (seen.has(u)) continue;
+    seen.add(u);
+    out.push(u);
+  }
+  return out;
+}
+
 // ── Main ─────────────────────────────────────────────────────────────────────
 const supabase = createClient(SUPABASE_URL, SERVICE_ROLE_KEY, {
   auth: { persistSession: false },
@@ -103,9 +142,12 @@ async function importBrand({ brand, slug, file }) {
     while (slugsSeen.has(s)) s = `${base}-${n++}`;
     slugsSeen.add(s);
 
-    const images = Array.isArray(p.images)
-      ? p.images.filter(Boolean)
-      : Object.values(p.images || {}).filter(v => typeof v === 'string' && v.startsWith('http'));
+    const images = extractImageUrls(p);
+
+    // Enforce minimum image coverage — products without an image are not sellable.
+    // We still upsert them so admins can see/fix them, but we mark stock=0 so
+    // the RLS policy (stock > 0) hides them from the public storefront.
+    const hasImage = images.length > 0;
 
     rows.push({
       name:        title.slice(0, 500),
@@ -114,8 +156,8 @@ async function importBrand({ brand, slug, file }) {
       description: (p.description || '').slice(0, 5000),
       price:       0.00,       // placeholder — no pricing on manufacturer sites
       brand_id:    brandId,
-      images:      images.slice(0, 10),
-      stock:       1,
+      images:      images.slice(0, 50),
+      stock:       hasImage ? 1 : 0,
       is_featured: false,
       is_deal:     false,
     });
@@ -181,7 +223,11 @@ async function main() {
   console.log(`════════════════════════════════\n`);
 }
 
+// Only run main() when invoked directly, not when imported as a module.
+const invokedDirectly = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];
+if (invokedDirectly) {
 main().catch(err => {
   console.error('Error fatal:', err.message);
   process.exit(1);
 });
+}

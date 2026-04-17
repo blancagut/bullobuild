@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Badge } from "./Badge";
 import { PriceTag } from "./PriceTag";
 import { StarRating } from "./StarRating";
+import { ImagePlaceholder } from "./ImagePlaceholder";
 import { cn } from "@/lib/utils";
 
 interface ProductCardProps {
@@ -58,9 +59,7 @@ export function ProductCard({
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
           />
         ) : (
-          <div className="flex h-full items-center justify-center text-gray-600 text-sm">
-            No image
-          </div>
+          <ImagePlaceholder slug={slug} brand={brand} />
         )}
         {badge && (
           <div className="absolute top-2 left-2">
