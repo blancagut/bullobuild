@@ -142,10 +142,9 @@ export default async function ShopPage({ searchParams }: Props) {
   if (dealsOnly) currentParams.deal = "1";
 
   const supabase = await createClient();
-  const [{ data: brandRows }, { data: categoryRows }, { count: inventoryCount }] = await Promise.all([
+  const [{ data: brandRows }, { data: categoryRows }] = await Promise.all([
     supabase.from("brands").select("id, name, slug").order("name"),
     supabase.from("categories").select("id, name, slug").order("name"),
-    supabase.from("products").select("id", { count: "exact", head: true }).gt("stock", 0),
   ]);
 
   const brandGroups = groupBrands((brandRows ?? []) as BrandRow[]);
@@ -285,12 +284,6 @@ export default async function ShopPage({ searchParams }: Props) {
     selectedPrice
       ? { label: selectedPrice.label, href: buildShopUrl(currentParams, { price: null }) }
       : null,
-    availability === "all"
-      ? {
-          label: "Showing all inventory",
-          href: buildShopUrl(currentParams, { stock: null }),
-        }
-      : null,
     dealsOnly
       ? { label: "Deals only", href: buildShopUrl(currentParams, { deal: null }) }
       : null,
@@ -304,97 +297,50 @@ export default async function ShopPage({ searchParams }: Props) {
 
   const facetLinkClass = (active: boolean) =>
     active
-      ? "border-yellow/40 bg-yellow/10 text-yellow"
-      : "border-white/10 bg-white/5 text-gray-300 hover:border-white/20 hover:text-white";
+      ? "border-yellow bg-yellow/10 text-yellow-dark"
+      : "border-stroke bg-white text-ink-soft hover:border-ink-muted hover:text-ink";
+
+  const fieldLabelClass =
+    "mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-soft";
+  const fieldControlClass =
+    "h-11 w-full rounded-lg border border-stroke bg-white px-3 text-sm text-ink outline-none transition-colors focus:border-yellow focus:ring-2 focus:ring-yellow/20";
 
   return (
-    <div className="min-h-screen bg-navy-dark">
-      <div className="border-b border-white/5 bg-navy">
-        <Container className="py-10 lg:py-14">
-          <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
-            <div className="max-w-3xl">
-              <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.35em] text-yellow">
-                Shop
-              </p>
-              <h1 className="font-display text-4xl font-black uppercase tracking-tight text-white lg:text-6xl">
-                Live catalog built for real inventory
-              </h1>
-              <p className="mt-4 max-w-2xl text-sm leading-relaxed text-gray-400">
-                Browse {Number(inventoryCount ?? 0).toLocaleString()} in-stock products with
-                server-side search, brand and category filters, price ranges, and stable
-                pagination built for a 35k-item catalog.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:w-110">
-              <div className="border border-white/10 bg-white/5 p-4">
-                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500">
-                  Inventory
-                </p>
-                <p className="mt-2 text-2xl font-black text-white">
-                  {Number(inventoryCount ?? 0).toLocaleString()}
-                </p>
-              </div>
-              <div className="border border-white/10 bg-white/5 p-4">
-                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500">
-                  Brands
-                </p>
-                <p className="mt-2 text-2xl font-black text-white">{brandGroups.length}</p>
-              </div>
-              <div className="border border-white/10 bg-white/5 p-4">
-                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500">
-                  Categories
-                </p>
-                <p className="mt-2 text-2xl font-black text-white">{categories.length}</p>
-              </div>
-              <div className="border border-white/10 bg-white/5 p-4">
-                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500">
-                  Per page
-                </p>
-                <p className="mt-2 text-2xl font-black text-white">{PAGE_SIZE}</p>
-              </div>
-            </div>
-          </div>
-        </Container>
-      </div>
-
-      <Container className="py-8 lg:py-10">
-        <form action="/shop" className="border border-white/10 bg-navy p-5 lg:p-6">
-          <div className="grid gap-4 xl:grid-cols-[2fr_repeat(4,minmax(0,1fr))]">
+    <div className="min-h-screen bg-white">
+      <Container className="py-6 lg:py-8">
+        <form
+          action="/shop"
+          className="rounded-xl border border-stroke bg-white p-4 shadow-sm lg:p-5"
+        >
+          <div className="grid gap-3 lg:grid-cols-[2fr_repeat(4,minmax(0,1fr))] lg:items-end">
             <div>
-              <label
-                htmlFor="shop-q"
-                className="mb-2 block text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400"
-              >
-                Search catalog
+              <label htmlFor="shop-q" className={fieldLabelClass}>
+                Search
               </label>
               <div className="relative">
                 <Search
                   size={16}
-                  className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-gray-500"
+                  className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-ink-muted"
                 />
                 <input
                   id="shop-q"
                   name="q"
                   defaultValue={queryText}
-                  placeholder="Search tools, models, or descriptions"
-                  className="h-12 w-full border border-white/10 bg-navy-dark pl-10 pr-4 text-sm text-white outline-none transition-colors placeholder:text-gray-600 focus:border-yellow"
+                  placeholder="Search tools, models, brands…"
+                  className="h-11 w-full rounded-lg border border-stroke bg-white pl-10 pr-4 text-sm text-ink outline-none transition-colors placeholder:text-ink-muted focus:border-yellow focus:ring-2 focus:ring-yellow/20"
                 />
               </div>
             </div>
 
             <div>
-              <label
-                htmlFor="shop-brand"
-                className="mb-2 block text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400"
-              >
+              <label htmlFor="shop-brand" className={fieldLabelClass}>
                 Brand
               </label>
               <select
                 id="shop-brand"
                 name="brand"
                 defaultValue={selectedBrand?.slug ?? ""}
-                className="h-12 w-full border border-white/10 bg-navy-dark px-4 text-sm text-white outline-none transition-colors focus:border-yellow"
+                className={fieldControlClass}
               >
                 <option value="">All brands</option>
                 {brandGroups.map((brand) => (
@@ -406,17 +352,14 @@ export default async function ShopPage({ searchParams }: Props) {
             </div>
 
             <div>
-              <label
-                htmlFor="shop-category"
-                className="mb-2 block text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400"
-              >
+              <label htmlFor="shop-category" className={fieldLabelClass}>
                 Category
               </label>
               <select
                 id="shop-category"
                 name="category"
                 defaultValue={selectedCategory?.slug ?? ""}
-                className="h-12 w-full border border-white/10 bg-navy-dark px-4 text-sm text-white outline-none transition-colors focus:border-yellow"
+                className={fieldControlClass}
               >
                 <option value="">All categories</option>
                 {categories.map((category) => (
@@ -428,17 +371,14 @@ export default async function ShopPage({ searchParams }: Props) {
             </div>
 
             <div>
-              <label
-                htmlFor="shop-price"
-                className="mb-2 block text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400"
-              >
-                Price range
+              <label htmlFor="shop-price" className={fieldLabelClass}>
+                Price
               </label>
               <select
                 id="shop-price"
                 name="price"
                 defaultValue={price}
-                className="h-12 w-full border border-white/10 bg-navy-dark px-4 text-sm text-white outline-none transition-colors focus:border-yellow"
+                className={fieldControlClass}
               >
                 <option value="">Any price</option>
                 {PRICE_FILTERS.map((option) => (
@@ -449,50 +389,27 @@ export default async function ShopPage({ searchParams }: Props) {
               </select>
             </div>
 
-            <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-2">
-              <div>
-                <label
-                  htmlFor="shop-sort"
-                  className="mb-2 block text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400"
-                >
-                  Sort by
-                </label>
-                <select
-                  id="shop-sort"
-                  name="sort"
-                  defaultValue={sort}
-                  className="h-12 w-full border border-white/10 bg-navy-dark px-4 text-sm text-white outline-none transition-colors focus:border-yellow"
-                >
-                  {SORT_OPTIONS.map((option) => (
-                    <option key={option.value} value={option.value}>
-                      {option.label}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div>
-                <label
-                  htmlFor="shop-stock"
-                  className="mb-2 block text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400"
-                >
-                  Availability
-                </label>
-                <select
-                  id="shop-stock"
-                  name="stock"
-                  defaultValue={availability}
-                  className="h-12 w-full border border-white/10 bg-navy-dark px-4 text-sm text-white outline-none transition-colors focus:border-yellow"
-                >
-                  <option value="in-stock">In stock only</option>
-                  <option value="all">All inventory</option>
-                </select>
-              </div>
+            <div>
+              <label htmlFor="shop-sort" className={fieldLabelClass}>
+                Sort
+              </label>
+              <select
+                id="shop-sort"
+                name="sort"
+                defaultValue={sort}
+                className={fieldControlClass}
+              >
+                {SORT_OPTIONS.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
 
           <div className="mt-4 flex flex-wrap items-center gap-3">
-            <label className="inline-flex items-center gap-2 border border-white/10 bg-white/5 px-3 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-gray-300">
+            <label className="inline-flex items-center gap-2 rounded-lg border border-stroke bg-white px-3 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-ink-soft">
               <input
                 type="checkbox"
                 name="deal"
@@ -505,64 +422,58 @@ export default async function ShopPage({ searchParams }: Props) {
 
             <button
               type="submit"
-              className="inline-flex h-11 items-center justify-center bg-yellow px-5 text-sm font-black uppercase tracking-[0.18em] text-navy transition-colors hover:bg-yellow-dark"
+              className="inline-flex h-11 items-center justify-center rounded-full bg-yellow px-6 text-sm font-black uppercase tracking-[0.16em] text-ink transition-colors hover:bg-yellow-dark"
             >
               Apply filters
             </button>
 
             <Link
               href="/shop"
-              className="inline-flex h-11 items-center justify-center border border-white/20 px-5 text-sm font-bold uppercase tracking-[0.18em] text-white transition-colors hover:border-white hover:bg-white/5"
+              className="inline-flex h-11 items-center justify-center rounded-full border border-stroke bg-white px-5 text-sm font-bold uppercase tracking-[0.16em] text-ink-soft transition-colors hover:border-ink-muted hover:text-ink"
             >
               Clear all
             </Link>
           </div>
         </form>
 
-        <div className="mt-8 grid gap-8 lg:grid-cols-[280px_minmax(0,1fr)]">
+        <div className="mt-6 grid gap-6 lg:grid-cols-[260px_minmax(0,1fr)]">
           <aside className="hidden lg:block">
-            <div className="sticky top-28 space-y-6">
-              <section className="border border-white/10 bg-navy p-5">
-                <div className="mb-4 flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.22em] text-gray-400">
+            <div className="sticky top-28 space-y-5">
+              <section className="rounded-xl border border-stroke bg-white p-4 shadow-sm">
+                <div className="mb-3 flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.18em] text-ink-soft">
                   <SlidersHorizontal size={14} />
-                  Quick filters
+                  Brands
                 </div>
-
-                <div>
-                  <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500">
-                    Brands
-                  </p>
-                  <div className="max-h-72 space-y-2 overflow-y-auto pr-1">
-                    <Link
-                      href={buildShopUrl(currentParams, { brand: null })}
-                      className={`block border px-3 py-2 text-xs font-semibold uppercase tracking-[0.16em] transition-colors ${facetLinkClass(!selectedBrand)}`}
-                    >
-                      All brands
-                    </Link>
-                    {brandGroups.map((brand) => {
-                      const isActive = selectedBrand?.slug === brand.slug;
-                      return (
-                        <Link
-                          key={brand.slug}
-                          href={buildShopUrl(currentParams, { brand: isActive ? null : brand.slug })}
-                          className={`block border px-3 py-2 text-xs font-semibold uppercase tracking-[0.16em] transition-colors ${facetLinkClass(isActive)}`}
-                        >
-                          {brand.name}
-                        </Link>
-                      );
-                    })}
-                  </div>
+                <div className="max-h-72 space-y-1.5 overflow-y-auto pr-1">
+                  <Link
+                    href={buildShopUrl(currentParams, { brand: null })}
+                    className={`block rounded-md border px-3 py-2 text-xs font-semibold uppercase tracking-[0.14em] transition-colors ${facetLinkClass(!selectedBrand)}`}
+                  >
+                    All brands
+                  </Link>
+                  {brandGroups.map((brand) => {
+                    const isActive = selectedBrand?.slug === brand.slug;
+                    return (
+                      <Link
+                        key={brand.slug}
+                        href={buildShopUrl(currentParams, { brand: isActive ? null : brand.slug })}
+                        className={`block rounded-md border px-3 py-2 text-xs font-semibold uppercase tracking-[0.14em] transition-colors ${facetLinkClass(isActive)}`}
+                      >
+                        {brand.name}
+                      </Link>
+                    );
+                  })}
                 </div>
               </section>
 
-              <section className="border border-white/10 bg-navy p-5">
-                <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500">
+              <section className="rounded-xl border border-stroke bg-white p-4 shadow-sm">
+                <p className="mb-3 text-[11px] font-black uppercase tracking-[0.18em] text-ink-soft">
                   Categories
                 </p>
-                <div className="max-h-80 space-y-2 overflow-y-auto pr-1">
+                <div className="max-h-80 space-y-1.5 overflow-y-auto pr-1">
                   <Link
                     href={buildShopUrl(currentParams, { category: null })}
-                    className={`block border px-3 py-2 text-xs font-semibold uppercase tracking-[0.16em] transition-colors ${facetLinkClass(!selectedCategory)}`}
+                    className={`block rounded-md border px-3 py-2 text-xs font-semibold uppercase tracking-[0.14em] transition-colors ${facetLinkClass(!selectedCategory)}`}
                   >
                     All categories
                   </Link>
@@ -572,7 +483,7 @@ export default async function ShopPage({ searchParams }: Props) {
                       <Link
                         key={category.slug}
                         href={buildShopUrl(currentParams, { category: isActive ? null : category.slug })}
-                        className={`block border px-3 py-2 text-xs font-semibold uppercase tracking-[0.16em] transition-colors ${facetLinkClass(isActive)}`}
+                        className={`block rounded-md border px-3 py-2 text-xs font-semibold uppercase tracking-[0.14em] transition-colors ${facetLinkClass(isActive)}`}
                       >
                         {category.name}
                       </Link>
@@ -581,14 +492,14 @@ export default async function ShopPage({ searchParams }: Props) {
                 </div>
               </section>
 
-              <section className="border border-white/10 bg-navy p-5">
-                <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500">
-                  Price bands
+              <section className="rounded-xl border border-stroke bg-white p-4 shadow-sm">
+                <p className="mb-3 text-[11px] font-black uppercase tracking-[0.18em] text-ink-soft">
+                  Price
                 </p>
-                <div className="space-y-2">
+                <div className="space-y-1.5">
                   <Link
                     href={buildShopUrl(currentParams, { price: null })}
-                    className={`block border px-3 py-2 text-xs font-semibold uppercase tracking-[0.16em] transition-colors ${facetLinkClass(!selectedPrice)}`}
+                    className={`block rounded-md border px-3 py-2 text-xs font-semibold uppercase tracking-[0.14em] transition-colors ${facetLinkClass(!selectedPrice)}`}
                   >
                     Any price
                   </Link>
@@ -598,7 +509,7 @@ export default async function ShopPage({ searchParams }: Props) {
                       <Link
                         key={option.value}
                         href={buildShopUrl(currentParams, { price: isActive ? null : option.value })}
-                        className={`block border px-3 py-2 text-xs font-semibold uppercase tracking-[0.16em] transition-colors ${facetLinkClass(isActive)}`}
+                        className={`block rounded-md border px-3 py-2 text-xs font-semibold uppercase tracking-[0.14em] transition-colors ${facetLinkClass(isActive)}`}
                       >
                         {option.label}
                       </Link>
@@ -610,14 +521,20 @@ export default async function ShopPage({ searchParams }: Props) {
           </aside>
 
           <div className="min-w-0">
-            <div className="mb-6 flex flex-col gap-4 border border-white/10 bg-white/5 p-4 lg:flex-row lg:items-center lg:justify-between">
+            <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500">
-                  Results
-                </p>
-                <p className="mt-2 text-sm text-gray-300">
+                <h1 className="font-display text-xl font-black uppercase tracking-tight text-ink sm:text-2xl">
+                  {selectedCategory
+                    ? selectedCategory.name
+                    : selectedBrand
+                      ? selectedBrand.name
+                      : queryText
+                        ? `Results for "${queryText}"`
+                        : "All products"}
+                </h1>
+                <p className="mt-1 text-sm text-ink-soft">
                   {totalCount > 0
-                    ? `Showing ${startResult.toLocaleString()} to ${endResult.toLocaleString()} of ${totalCount.toLocaleString()} products`
+                    ? `${startResult.toLocaleString()}–${endResult.toLocaleString()} of ${totalCount.toLocaleString()} results`
                     : "No products matched the current filters."}
                 </p>
               </div>
@@ -628,10 +545,10 @@ export default async function ShopPage({ searchParams }: Props) {
                     <Link
                       key={filter.label}
                       href={filter.href}
-                      className="inline-flex items-center gap-2 border border-yellow/30 bg-yellow/10 px-3 py-2 text-[11px] font-bold uppercase tracking-[0.16em] text-yellow transition-colors hover:bg-yellow/15"
+                      className="inline-flex items-center gap-1.5 rounded-full border border-yellow/40 bg-yellow/10 px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.12em] text-yellow-dark transition-colors hover:bg-yellow/20"
                     >
                       {filter.label}
-                      <X size={13} />
+                      <X size={12} />
                     </Link>
                   ))}
                 </div>
@@ -639,7 +556,7 @@ export default async function ShopPage({ searchParams }: Props) {
             </div>
 
             {invalidBrandFilter || invalidCategoryFilter ? (
-              <div className="mb-6 border border-red-500/30 bg-red-500/10 p-4 text-sm text-red-200">
+              <div className="mb-6 rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-700">
                 One of the selected filters no longer exists. Clear filters and try again.
               </div>
             ) : null}
@@ -673,15 +590,15 @@ export default async function ShopPage({ searchParams }: Props) {
                 />
               </>
             ) : (
-              <div className="border border-dashed border-white/10 bg-white/5 px-6 py-16 text-center">
-                <p className="text-lg font-semibold text-white">No products found</p>
-                <p className="mt-2 text-sm text-gray-400">
+              <div className="rounded-xl border border-dashed border-stroke bg-white px-6 py-16 text-center shadow-sm">
+                <p className="text-lg font-semibold text-ink">No products found</p>
+                <p className="mt-2 text-sm text-ink-soft">
                   Try a different search, loosen the price range, or clear the current filters.
                 </p>
                 <div className="mt-6">
                   <Link
                     href="/shop"
-                    className="inline-flex items-center justify-center border border-yellow/30 bg-yellow/10 px-5 py-3 text-sm font-black uppercase tracking-[0.18em] text-yellow transition-colors hover:bg-yellow/15"
+                    className="inline-flex items-center justify-center rounded-full bg-yellow px-5 py-3 text-sm font-black uppercase tracking-[0.16em] text-ink transition-colors hover:bg-yellow-dark"
                   >
                     Reset catalog
                   </Link>

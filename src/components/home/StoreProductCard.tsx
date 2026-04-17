@@ -60,7 +60,7 @@ export function StoreProductCard({
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-stroke bg-white shadow-sm transition-all hover:-translate-y-1 hover:border-yellow/40 hover:shadow-md">
       <Link href={`/shop/${slug}`} className="flex flex-1 flex-col">
-        <div className="relative aspect-square overflow-hidden bg-wash">
+        <div className="relative aspect-square overflow-hidden bg-white">
           {image ? (
             <Image
               src={image}
