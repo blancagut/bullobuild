@@ -5,26 +5,42 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Pagination } from "@/components/ui/Pagination";
 import { Search } from "lucide-react";
 import type { Metadata } from "next";
+import { professionConfigBySlug } from "@/lib/professions";
 
 interface Props {
-  searchParams: Promise<{ q?: string; page?: string; brand?: string; category?: string }>;
+  searchParams: Promise<{ q?: string; page?: string; brand?: string; category?: string; profession?: string }>;
 }
 
 export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
-  const { q } = await searchParams;
+  const { q, profession } = await searchParams;
+  const professionConfig = profession ? professionConfigBySlug[profession] : undefined;
   return {
-    title: q ? `"${q}" — Search | BULLOBUILD` : "Search | BULLOBUILD",
+    title: professionConfig
+      ? `${professionConfig.title} — Shop by Profession | BULLOBUILD`
+      : q
+        ? `"${q}" — Search | BULLOBUILD`
+        : "Search | BULLOBUILD",
   };
 }
 
 const PAGE_SIZE = 24;
 
 export default async function SearchPage({ searchParams }: Props) {
-  const { q, page, brand, category } = await searchParams;
+  const { q, page, brand, category, profession } = await searchParams;
   const pageNum = Math.max(1, parseInt(page ?? "1"));
   const query = q?.trim() ?? "";
+  const professionConfig = profession ? professionConfigBySlug[profession] : undefined;
 
   const supabase = await createClient();
+
+  let professionCategoryIds: string[] = [];
+  if (professionConfig?.categorySlugs.length) {
+    const { data: professionCategories } = await supabase
+      .from("categories")
+      .select("id")
+      .in("slug", professionConfig.categorySlugs);
+    professionCategoryIds = (professionCategories ?? []).map((item) => item.id);
+  }
 
   let dbQuery = supabase
     .from("products")
@@ -36,6 +52,23 @@ export default async function SearchPage({ searchParams }: Props) {
     dbQuery = dbQuery.or(
       `name.ilike.%${query}%,model.ilike.%${query}%,description.ilike.%${query}%`
     );
+  }
+  if (professionConfig) {
+    const professionOr = professionConfig.searchTerms
+      .flatMap((term) => [
+        `name.ilike.%${term}%`,
+        `model.ilike.%${term}%`,
+        `description.ilike.%${term}%`,
+      ])
+      .join(",");
+
+    if (professionOr) {
+      dbQuery = dbQuery.or(professionOr);
+    }
+
+    if (professionCategoryIds.length > 0) {
+      dbQuery = dbQuery.in("category_id", professionCategoryIds);
+    }
   }
   if (brand) {
     const { data: b } = await supabase
@@ -61,12 +94,19 @@ export default async function SearchPage({ searchParams }: Props) {
   if (query) paginationParams.q = query;
   if (brand) paginationParams.brand = brand;
   if (category) paginationParams.category = category;
+  if (profession) paginationParams.profession = profession;
 
   return (
     <div className="min-h-screen bg-[#070F1C] py-10">
       <Container>
         <div className="mb-8">
-          {query ? (
+          {professionConfig ? (
+            <SectionHeader
+              label="Shop by profession"
+              title={professionConfig.title}
+              subtitle={professionConfig.description}
+            />
+          ) : query ? (
             <SectionHeader
               label={`${count ?? 0} results`}
               title={`Search: "${query}"`}

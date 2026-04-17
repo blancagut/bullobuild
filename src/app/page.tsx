@@ -1,5 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
 import { Hero } from "@/components/home/Hero";
+import { ProfessionsSection } from "@/components/home/ProfessionsSection";
 import { BrandsSection } from "@/components/home/BrandsSection";
 import { ProductsSection } from "@/components/home/ProductsSection";
 import { DealsSection } from "@/components/home/DealsSection";
@@ -163,6 +164,7 @@ export default async function HomePage() {
         categoryCount={categoryCount ?? 0}
         categories={normalizedCategories}
       />
+      <ProfessionsSection />
       <ProductsSection departments={homepageDepartments} shelves={homepageShelves} />
       <DealsSection products={normalizedDealProducts} />
       <BrandsSection />
