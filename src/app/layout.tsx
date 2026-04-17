@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     title: "BULLOBUILD",
     description: "Authorized distributor of top professional tool brands.",
     type: "website",
-    images: ["/tranparentlogo.png"],
+    images: ["/logo-transparent.png"],
   },
 };
 
