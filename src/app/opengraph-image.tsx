@@ -13,80 +13,70 @@ export default function OGImage() {
           width: "100%",
           height: "100%",
           display: "flex",
-          flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: "#0a1628",
-          backgroundImage:
-            "radial-gradient(circle at 50% 45%, #1a2a4a 0%, #0a1628 70%)",
+          backgroundColor: "#F2B705",
           fontFamily: "system-ui, sans-serif",
           position: "relative",
         }}
       >
-        {/* Yellow top bar */}
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            height: "8px",
-            backgroundColor: "#F2B705",
-          }}
-        />
-
-        {/* Logo */}
+        {/* Bull mascot */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="https://bullobuild.com/logo.png"
+          src="https://bullobuild.com/favicon.png"
           alt="BULLOBUILD"
-          width={1112}
-          height={489}
+          width={630}
+          height={630}
           style={{
-            width: "780px",
-            height: "auto",
+            width: "560px",
+            height: "560px",
             objectFit: "contain",
-            marginBottom: "36px",
           }}
         />
 
-        {/* Tagline */}
+        {/* Right-side wordmark + tagline */}
         <div
           style={{
-            fontSize: "28px",
-            color: "#F2B705",
-            fontWeight: 800,
-            textTransform: "uppercase",
-            letterSpacing: "0.2em",
-            marginBottom: "18px",
+            display: "flex",
+            flexDirection: "column",
+            marginLeft: "32px",
+            maxWidth: "540px",
           }}
         >
-          Authorized Distributor
+          <div
+            style={{
+              fontSize: "92px",
+              fontWeight: 900,
+              color: "#1a1a1a",
+              letterSpacing: "-0.02em",
+              lineHeight: 1,
+              marginBottom: "18px",
+            }}
+          >
+            BULLOBUILD
+          </div>
+          <div
+            style={{
+              fontSize: "26px",
+              color: "#1a1a1a",
+              fontWeight: 800,
+              textTransform: "uppercase",
+              letterSpacing: "0.18em",
+              marginBottom: "20px",
+            }}
+          >
+            Authorized Distributor
+          </div>
+          <div
+            style={{
+              fontSize: "22px",
+              color: "rgba(26,26,26,0.78)",
+              lineHeight: 1.4,
+            }}
+          >
+            Professional tools from DeWalt, Milwaukee, Snap-on, Mac Tools, Craftsman & more
+          </div>
         </div>
-
-        <div
-          style={{
-            fontSize: "22px",
-            color: "rgba(255,255,255,0.78)",
-            textAlign: "center",
-            maxWidth: "820px",
-            lineHeight: 1.4,
-          }}
-        >
-          Professional tools from DeWalt, Milwaukee, Snap-on, Mac Tools, Craftsman & more
-        </div>
-
-        {/* Yellow bottom bar */}
-        <div
-          style={{
-            position: "absolute",
-            bottom: 0,
-            left: 0,
-            right: 0,
-            height: "8px",
-            backgroundColor: "#F2B705",
-          }}
-        />
       </div>
     ),
     { ...size }
