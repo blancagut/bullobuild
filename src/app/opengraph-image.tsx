@@ -16,11 +16,8 @@ export default function OGImage() {
           alignItems: "center",
           justifyContent: "center",
           backgroundColor: "#F2B705",
-          fontFamily: "system-ui, sans-serif",
-          position: "relative",
         }}
       >
-        {/* Bull mascot */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="https://bullobuild.com/favicon.png"
@@ -33,50 +30,6 @@ export default function OGImage() {
             objectFit: "contain",
           }}
         />
-
-        {/* Right-side wordmark + tagline */}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            marginLeft: "32px",
-            maxWidth: "540px",
-          }}
-        >
-          <div
-            style={{
-              fontSize: "92px",
-              fontWeight: 900,
-              color: "#1a1a1a",
-              letterSpacing: "-0.02em",
-              lineHeight: 1,
-              marginBottom: "18px",
-            }}
-          >
-            BULLOBUILD
-          </div>
-          <div
-            style={{
-              fontSize: "26px",
-              color: "#1a1a1a",
-              fontWeight: 800,
-              textTransform: "uppercase",
-              letterSpacing: "0.18em",
-              marginBottom: "20px",
-            }}
-          >
-            Authorized Distributor
-          </div>
-          <div
-            style={{
-              fontSize: "22px",
-              color: "rgba(26,26,26,0.78)",
-              lineHeight: 1.4,
-            }}
-          >
-            Professional tools from DeWalt, Milwaukee, Snap-on, Mac Tools, Craftsman & more
-          </div>
-        </div>
       </div>
     ),
     { ...size }
