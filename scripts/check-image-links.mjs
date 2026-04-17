@@ -50,11 +50,32 @@ async function fetchRows() {
 }
 
 async function head(url) {
+  // Try HEAD first (cheap). If HEAD is blocked (405/403) or times out, fall
+  // back to a ranged GET (bytes=0-0) so we don't flag live images as dead.
   try {
-    const res = await fetch(url, { method: 'HEAD', redirect: 'follow', signal: AbortSignal.timeout(10000) });
+    const res = await fetch(url, {
+      method: 'HEAD',
+      redirect: 'follow',
+      headers: { 'User-Agent': 'Mozilla/5.0 (link-checker)' },
+      signal: AbortSignal.timeout(10000),
+    });
+    if (res.status >= 200 && res.status < 400) return res.status;
+    if (res.status !== 405 && res.status !== 403) return res.status;
+  } catch {
+    // fall through to GET
+  }
+  try {
+    const res = await fetch(url, {
+      method: 'GET',
+      redirect: 'follow',
+      headers: { 'User-Agent': 'Mozilla/5.0 (link-checker)', Range: 'bytes=0-0' },
+      signal: AbortSignal.timeout(15000),
+    });
+    // Drain body so the socket releases
+    try { await res.arrayBuffer(); } catch {}
     return res.status;
-  } catch (e) {
-    return 0; // network failure / timeout / dns
+  } catch {
+    return 0;
   }
 }
 
