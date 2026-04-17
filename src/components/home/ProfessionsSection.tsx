@@ -8,12 +8,12 @@ import { professionConfigs } from "@/lib/professions";
 
 export function ProfessionsSection() {
   return (
-    <section className="border-b border-stroke bg-[linear-gradient(180deg,#f8f5ee_0%,#f2efe6_100%)] py-16 lg:py-20">
+    <section className="border-y border-stroke bg-canvas py-16 lg:py-20">
       <Container>
         <SectionHeader
           label="Shop by profession"
-          title="Open the catalog by the work people actually do"
-          subtitle="Give mechanics, carpenters, electricians, and plumbers a faster first click. Each route is curated around the job instead of forcing everyone through the same shelf."
+          title="Shop by your trade"
+          subtitle="Jump straight into tools curated for the job you actually do."
           className="mb-8"
           action={
             <Button
@@ -22,95 +22,57 @@ export function ProfessionsSection() {
               size="sm"
               className="rounded-full border-stroke bg-white text-ink hover:border-yellow hover:bg-panel"
             >
-              Browse All Roles
+              Browse all
             </Button>
           }
         />
 
-        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+        <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
           {professionConfigs.map((profession) => (
             <Link
               key={profession.slug}
               href={profession.href}
-              className="group relative flex min-h-[480px] flex-col overflow-hidden rounded-[2rem] border border-stroke bg-[#111827] shadow-[0_20px_50px_rgba(15,23,42,0.16)] transition-all hover:-translate-y-1 hover:border-yellow/40 hover:shadow-[0_24px_60px_rgba(15,23,42,0.22)]"
+              className="group flex flex-col overflow-hidden rounded-2xl border border-stroke bg-white shadow-sm transition-all hover:-translate-y-1 hover:border-yellow/50 hover:shadow-md"
             >
-              <div className="absolute inset-0">
+              <div className="relative aspect-[4/3] overflow-hidden bg-panel">
                 <Image
                   src={profession.heroImage}
                   alt={profession.title}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 25vw"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 25vw"
                 />
-                <div className={`absolute inset-0 bg-gradient-to-b ${profession.accent}`} />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,15,28,0.12)_0%,rgba(7,15,28,0.68)_58%,rgba(7,15,28,0.92)_100%)]" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                <span className="absolute left-4 top-4 rounded-full bg-yellow px-3 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-ink">
+                  {profession.label}
+                </span>
+                <h3 className="absolute bottom-3 left-4 right-4 font-display text-2xl font-black uppercase leading-tight text-white">
+                  {profession.title}
+                </h3>
               </div>
 
-              <div className="relative z-10 flex h-full flex-col p-6">
-                <div className="flex items-start justify-between gap-3">
-                  <div className="rounded-full border border-white/20 bg-black/25 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.22em] text-[#f6d671] backdrop-blur-sm">
-                    Crew route
-                  </div>
-                  <div className="rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-white/85 backdrop-blur-sm">
-                    {profession.brand}
-                  </div>
-                </div>
+              <div className="flex flex-1 flex-col gap-4 p-5">
+                <p className="text-sm leading-relaxed text-ink-soft">
+                  {profession.description}
+                </p>
 
-                <div className="mt-8">
-                  <h3 className="font-display text-4xl font-black uppercase leading-[0.9] text-white">
-                    {profession.title}
-                  </h3>
-                  <p className="mt-3 text-sm font-semibold uppercase tracking-[0.12em] text-[#f6d671]">
-                    {profession.subtitle}
-                  </p>
-                  <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/82">
-                    {profession.description}
-                  </p>
-                </div>
-
-                <div className="mt-6 flex flex-wrap gap-2">
+                <ul className="flex flex-wrap gap-1.5">
                   {profession.specialties.map((specialty) => (
-                    <span
+                    <li
                       key={specialty}
-                      className="rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-white/80 backdrop-blur-sm"
+                      className="rounded-full border border-stroke bg-panel px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-ink-soft"
                     >
                       {specialty}
-                    </span>
+                    </li>
                   ))}
-                </div>
+                </ul>
 
-                <div className="mt-auto rounded-[1.5rem] border border-white/10 bg-white/92 p-4 text-ink shadow-[0_18px_40px_rgba(15,23,42,0.18)] backdrop-blur-sm">
-                  <div className="flex items-center gap-3">
-                    <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl bg-panel">
-                      <Image
-                        src={profession.productImage}
-                        alt={profession.productName}
-                        fill
-                        className="object-contain p-2"
-                        sizes="80px"
-                      />
-                    </div>
-
-                    <div className="min-w-0">
-                      <p className="text-[10px] font-black uppercase tracking-[0.18em] text-yellow-dark">
-                        Featured gear
-                      </p>
-                      <p className="mt-1 text-xs font-semibold uppercase tracking-[0.14em] text-ink-soft">
-                        {profession.brand}
-                      </p>
-                      <p className="mt-2 line-clamp-2 text-sm font-semibold leading-snug text-ink">
-                        {profession.productName}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="mt-4 flex items-center justify-between border-t border-stroke pt-4 text-xs font-black uppercase tracking-[0.16em] text-ink">
-                    <span>Shop this role</span>
-                    <span className="inline-flex items-center gap-2 text-yellow-dark transition-all group-hover:gap-3">
-                      Enter
-                      <ArrowRight size={14} />
-                    </span>
-                  </div>
+                <div className="mt-auto flex items-center justify-between border-t border-stroke pt-4 text-xs font-black uppercase tracking-[0.16em] text-ink">
+                  <span>Shop this trade</span>
+                  <span className="inline-flex items-center gap-1.5 text-yellow-dark transition-all group-hover:gap-2.5">
+                    Enter
+                    <ArrowRight size={14} />
+                  </span>
                 </div>
               </div>
             </Link>
