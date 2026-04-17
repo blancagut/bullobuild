@@ -16,55 +16,49 @@ export default function OGImage() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: "#f8f4ea",
+          backgroundColor: "#0a1628",
+          backgroundImage:
+            "radial-gradient(circle at 50% 45%, #1a2a4a 0%, #0a1628 70%)",
           fontFamily: "system-ui, sans-serif",
+          position: "relative",
         }}
       >
-        {/* Background accent */}
+        {/* Yellow top bar */}
         <div
           style={{
             position: "absolute",
             top: 0,
             left: 0,
             right: 0,
-            height: "6px",
+            height: "8px",
             backgroundColor: "#F2B705",
           }}
         />
 
         {/* Logo */}
-        <div
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="https://bullobuild.com/logo.png"
+          alt="BULLOBUILD"
+          width={1112}
+          height={489}
           style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "16px",
-            marginBottom: "32px",
+            width: "780px",
+            height: "auto",
+            objectFit: "contain",
+            marginBottom: "36px",
           }}
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="https://bullobuild.com/tranparentlogo.png"
-            alt="BULLOBUILD"
-            width={1112}
-            height={489}
-            style={{
-              height: "96px",
-              width: "auto",
-              objectFit: "contain",
-              filter: "drop-shadow(0 10px 20px rgba(0,0,0,0.45))",
-            }}
-          />
-        </div>
+        />
 
         {/* Tagline */}
         <div
           style={{
-            fontSize: "24px",
-            color: "#cf9500",
-            fontWeight: 700,
+            fontSize: "28px",
+            color: "#F2B705",
+            fontWeight: 800,
             textTransform: "uppercase",
-            letterSpacing: "0.15em",
-            marginBottom: "16px",
+            letterSpacing: "0.2em",
+            marginBottom: "18px",
           }}
         >
           Authorized Distributor
@@ -72,31 +66,27 @@ export default function OGImage() {
 
         <div
           style={{
-            fontSize: "18px",
-            color: "rgba(43,36,24,0.68)",
+            fontSize: "22px",
+            color: "rgba(255,255,255,0.78)",
             textAlign: "center",
-            maxWidth: "700px",
+            maxWidth: "820px",
+            lineHeight: 1.4,
           }}
         >
-          Buy and sell professional tools from trusted brands — DeWalt, Milwaukee, Snap-on & more
+          Professional tools from DeWalt, Milwaukee, Snap-on, Mac Tools, Craftsman & more
         </div>
 
-        {/* Brands strip */}
+        {/* Yellow bottom bar */}
         <div
           style={{
-            display: "flex",
-            gap: "24px",
-            marginTop: "40px",
-            color: "rgba(43,36,24,0.35)",
-            fontSize: "13px",
-            textTransform: "uppercase",
-            letterSpacing: "0.1em",
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            height: "8px",
+            backgroundColor: "#F2B705",
           }}
-        >
-          {["DeWalt", "Milwaukee", "Snap-on", "Craftsman", "Stanley", "Mac Tools"].map((brand) => (
-            <span key={brand}>{brand}</span>
-          ))}
-        </div>
+        />
       </div>
     ),
     { ...size }
