@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Clock, Zap } from "lucide-react";
+import { ArrowRight, Flame, Zap } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { StoreProductCard } from "@/components/home/StoreProductCard";
@@ -36,52 +36,71 @@ export function DealsSection({ products }: DealsSectionProps) {
               <Zap size={20} />
             </div>
             <SectionHeader
-              label="Live deals"
-              title="Price drops worth buying now"
-              subtitle="Discounted products pulled from the catalog with current stock and direct add-to-cart."
+              label="Deals"
+              title="Pro tools on sale right now"
+              subtitle="Price drops on authentic, in-stock inventory. Add to cart in one tap."
               tone="light"
             />
           </div>
-          <div className="hidden items-center gap-2 text-ink-muted md:flex">
-            <Clock size={13} />
-            <span className="text-xs uppercase tracking-widest">
-              Deal shelf pulled from live inventory
-            </span>
-          </div>
+          <Link
+            href="/deals"
+            className="hidden items-center gap-2 rounded-full border border-stroke bg-white px-4 py-2 text-[11px] font-black uppercase tracking-[0.18em] text-ink transition-colors hover:border-yellow hover:bg-panel md:inline-flex"
+          >
+            View all deals
+            <ArrowRight size={13} />
+          </Link>
         </div>
 
         <div className="grid gap-4 md:grid-cols-3">
-          {products.map((product, index) => (
-            <div key={product.id} className="space-y-3">
-              <div className="flex items-center justify-between rounded-[1.25rem] border border-yellow/30 bg-yellow/10 px-4 py-3">
-                <span className="text-[11px] font-black uppercase tracking-[0.18em] text-yellow-dark">
-                  {index === 0 ? "Hot deal" : "Price drop"}
-                </span>
-                <span className={`text-[11px] font-bold uppercase tracking-[0.18em] ${product.stock <= 5 ? "text-red-400" : "text-emerald-400"}`}>
-                  {product.stock <= 5 ? `${product.stock} left` : `${product.stock} in stock`}
-                </span>
+          {products.map((product) => {
+            const savings =
+              product.original_price && product.original_price > product.price
+                ? product.original_price - product.price
+                : null;
+            const percent =
+              product.original_price && product.original_price > product.price
+                ? Math.round(((product.original_price - product.price) / product.original_price) * 100)
+                : null;
+            return (
+              <div key={product.id} className="space-y-3">
+                <div className="flex items-center justify-between rounded-[1.25rem] border border-yellow/30 bg-yellow/10 px-4 py-3">
+                  <span className="inline-flex items-center gap-1.5 text-[11px] font-black uppercase tracking-[0.18em] text-yellow-dark">
+                    <Flame size={13} />
+                    {savings ? `Save $${savings.toFixed(0)}` : "Deal"}
+                    {percent ? ` · −${percent}%` : ""}
+                  </span>
+                  <span
+                    className={`rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.18em] ${
+                      product.stock <= 5
+                        ? "bg-white text-red-600 ring-1 ring-red-200"
+                        : "bg-white text-emerald-700 ring-1 ring-emerald-200"
+                    }`}
+                  >
+                    {product.stock <= 5 ? `Only ${product.stock} left` : "In stock"}
+                  </span>
+                </div>
+                <StoreProductCard
+                  id={product.id}
+                  slug={product.slug}
+                  name={product.name}
+                  brand={product.brands?.name ?? "Unknown brand"}
+                  price={product.price}
+                  originalPrice={product.original_price}
+                  image={product.images?.[0]}
+                  stock={product.stock}
+                  badge="Deal"
+                />
               </div>
-              <StoreProductCard
-                id={product.id}
-                slug={product.slug}
-                name={product.name}
-                brand={product.brands?.name ?? "Unknown brand"}
-                price={product.price}
-                originalPrice={product.original_price}
-                image={product.images?.[0]}
-                stock={product.stock}
-                badge="Deal"
-              />
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         <div className="mt-8 text-center">
           <Link
-            href="/search"
+            href="/deals"
             className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-yellow-dark transition-all hover:gap-4"
           >
-            Browse more discounted inventory <ArrowRight size={15} />
+            See every active deal <ArrowRight size={15} />
           </Link>
         </div>
       </Container>

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 
@@ -21,22 +22,22 @@ export function BrandsSection() {
     <section className="border-y border-stroke bg-white py-20">
       <Container>
         <SectionHeader
-          label="Authorized brands"
-          title="Shop by brand"
-          subtitle="Browse live inventory from the top names in professional tools."
+          label="Authorized distributor"
+          title="The brands tradespeople trust"
+          subtitle="Authentic inventory straight from the source — no gray market, no guesswork."
           align="center"
           tone="light"
           className="mb-14"
         />
 
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
           {FEATURED_BRANDS.map((brand) => (
             <Link
               href={`/brands/${brand.slug}`}
               key={brand.slug}
-              className="group flex flex-col items-center justify-center gap-4 rounded-2xl border border-stroke bg-white p-8 shadow-sm transition-all hover:-translate-y-1 hover:border-yellow/40 hover:shadow-md"
+              className="group flex flex-col items-center justify-center gap-4 rounded-2xl border border-stroke bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-yellow/40 hover:shadow-md sm:p-8"
             >
-              <div className="w-32 h-16 relative">
+              <div className="w-28 h-14 relative sm:w-32 sm:h-16">
                 <Image
                   src={`/brands/${brand.logo}.svg`}
                   alt={`${brand.name} logo`}
@@ -55,12 +56,14 @@ export function BrandsSection() {
           ))}
         </div>
 
-        <div className="mt-10 flex items-center justify-center gap-4">
-          <div className="h-px flex-1 max-w-24 bg-stroke" />
-          <p className="text-center text-[10px] uppercase tracking-widest text-ink-muted">
-            open a brand page, then drop directly into live product inventory
-          </p>
-          <div className="h-px flex-1 max-w-24 bg-stroke" />
+        <div className="mt-10 flex items-center justify-center">
+          <Link
+            href="/brands"
+            className="inline-flex items-center gap-2 rounded-full border border-stroke bg-white px-5 py-3 text-xs font-black uppercase tracking-[0.18em] text-ink transition-colors hover:border-yellow hover:bg-panel"
+          >
+            View all brands
+            <ArrowRight size={14} />
+          </Link>
         </div>
       </Container>
     </section>

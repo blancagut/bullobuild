@@ -5,6 +5,9 @@ import { ProductsSection } from "@/components/home/ProductsSection";
 import { DealsSection } from "@/components/home/DealsSection";
 import { WhyUsSection } from "@/components/home/WhyUsSection";
 import { MarketplaceSection } from "@/components/home/MarketplaceSection";
+import { SocialProofStrip } from "@/components/home/SocialProofStrip";
+import { NewsletterSection } from "@/components/home/NewsletterSection";
+import { MobileStickyCta } from "@/components/home/MobileStickyCta";
 
 const HOME_DEPARTMENT_SLUGS = [
   "drills-drivers",
@@ -163,11 +166,14 @@ export default async function HomePage() {
         categoryCount={categoryCount ?? 0}
         categories={normalizedCategories}
       />
-      <ProductsSection departments={homepageDepartments} shelves={homepageShelves} />
-      <DealsSection products={normalizedDealProducts} />
-      <BrandsSection />
+      <SocialProofStrip />
       <WhyUsSection />
+      <DealsSection products={normalizedDealProducts} />
+      <ProductsSection departments={homepageDepartments} shelves={homepageShelves} />
+      <BrandsSection />
       <MarketplaceSection listings={normalizedListings} />
+      <NewsletterSection />
+      <MobileStickyCta />
     </>
   );
 }

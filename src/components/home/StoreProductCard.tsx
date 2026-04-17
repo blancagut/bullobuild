@@ -96,7 +96,7 @@ export function StoreProductCard({
             </span>
             <span
               className={`text-[10px] font-bold uppercase tracking-[0.18em] ${
-                stock <= 5 ? "text-red-400" : "text-emerald-400"
+                stock <= 5 ? "text-red-600" : "text-emerald-700"
               }`}
             >
               {stock <= 5 ? `${stock} left` : "In stock"}
