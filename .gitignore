@@ -28,6 +28,10 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# large media source files
+*.mp4
+!public/hero/hero-loop.mp4
 .pnpm-debug.log*
 
 # generated scraper output
