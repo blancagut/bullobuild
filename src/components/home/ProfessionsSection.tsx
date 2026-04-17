@@ -1,19 +1,10 @@
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Wrench, Hammer, Zap, Droplet, Trees, Truck } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Button } from "@/components/ui/Button";
 import { professionConfigs } from "@/lib/professions";
-
-const ICONS: Record<string, LucideIcon> = {
-  wrench: Wrench,
-  hammer: Hammer,
-  zap: Zap,
-  droplet: Droplet,
-  trees: Trees,
-  truck: Truck,
-};
 
 export function ProfessionsSection() {
   return (
@@ -38,28 +29,25 @@ export function ProfessionsSection() {
 
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {professionConfigs.map((profession) => {
-            const Icon = ICONS[profession.icon] ?? Wrench;
             return (
               <Link
                 key={profession.slug}
                 href={profession.href}
                 className="group flex flex-col overflow-hidden rounded-2xl border border-stroke bg-white shadow-sm transition-all hover:-translate-y-1 hover:border-yellow/50 hover:shadow-md"
               >
-                <div
-                  className={`relative aspect-video overflow-hidden bg-linear-to-br ${profession.gradient}`}
-                >
-                  <div className="absolute inset-0 opacity-[0.08] bg-[repeating-linear-gradient(45deg,transparent,transparent_10px,rgba(255,255,255,0.3)_10px,rgba(255,255,255,0.3)_11px)]" />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <Icon
-                      className={`${profession.accent} drop-shadow-[0_4px_16px_rgba(0,0,0,0.4)] transition-transform duration-500 group-hover:scale-110`}
-                      size={80}
-                      strokeWidth={1.5}
-                    />
-                  </div>
+                <div className="relative aspect-video overflow-hidden bg-ink">
+                  <Image
+                    src={profession.image}
+                    alt={`${profession.title} at work`}
+                    fill
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/85 via-black/35 to-black/10" />
                   <span className="absolute left-4 top-4 rounded-full bg-yellow px-3 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-ink">
                     {profession.label}
                   </span>
-                  <h3 className="absolute bottom-3 left-4 right-4 font-display text-2xl font-black uppercase leading-tight text-white">
+                  <h3 className="absolute bottom-3 left-4 right-4 font-display text-2xl font-black uppercase leading-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">
                     {profession.title}
                   </h3>
                 </div>

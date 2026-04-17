@@ -6,6 +6,8 @@ export interface ProfessionConfig {
   href: string;
   /** lucide-react icon name rendered by ProfessionsSection */
   icon: "wrench" | "hammer" | "zap" | "droplet" | "trees" | "truck";
+  /** hero photo rendered at the top of each profession card */
+  image: string;
   /** tailwind gradient classes for the card background */
   gradient: string;
   /** tailwind color class for icon + accent */
@@ -24,6 +26,7 @@ export const professionConfigs: ProfessionConfig[] = [
       "Ratchets, sockets, impact wrenches and hand tools for the automotive bay.",
     href: "/search?profession=mechanic",
     icon: "wrench",
+    image: "/professions/mechanic.jpg",
     gradient: "from-[#1a1a1a] via-[#262626] to-[#404040]",
     accent: "text-[#f2b705]",
     specialties: ["Ratchets", "Sockets", "Impact Wrenches"],
@@ -44,6 +47,7 @@ export const professionConfigs: ProfessionConfig[] = [
       "Circular saws, miter saws, nailers and blades for framing and finish work.",
     href: "/search?profession=carpenter",
     icon: "hammer",
+    image: "/professions/carpenter.jpg",
     gradient: "from-[#3a2414] via-[#4a2f1a] to-[#6b4423]",
     accent: "text-[#e8a76b]",
     specialties: ["Saws", "Nailers", "Blades"],
@@ -64,6 +68,7 @@ export const professionConfigs: ProfessionConfig[] = [
       "Drills, impact drivers, screwdrivers and pliers for service and install work.",
     href: "/search?profession=electrician",
     icon: "zap",
+    image: "/professions/electrician.jpg",
     gradient: "from-[#1a1f2e] via-[#1f2940] to-[#2d3958]",
     accent: "text-[#f2b705]",
     specialties: ["Drills", "Drivers", "Pliers"],
@@ -84,6 +89,7 @@ export const professionConfigs: ProfessionConfig[] = [
       "PEX tools, pliers, reciprocating saws and compact drivers for rough-in and repair.",
     href: "/search?profession=plumber",
     icon: "droplet",
+    image: "/professions/plumber.jpg",
     gradient: "from-[#0d2b3e] via-[#0f3d5a] to-[#1a5478]",
     accent: "text-[#4cc9f0]",
     specialties: ["PEX & Pipe", "Recip Saws", "Pliers"],
@@ -102,6 +108,7 @@ export const professionConfigs: ProfessionConfig[] = [
       "Mowers, trimmers, hedge trimmers and outdoor accessories for lawn and garden crews.",
     href: "/search?profession=landscaper",
     icon: "trees",
+    image: "/professions/landscaper.jpg",
     gradient: "from-[#14291a] via-[#1a3d24] to-[#255c36]",
     accent: "text-[#86efac]",
     specialties: ["Mowers", "Trimmers", "Hedge Tools"],
@@ -121,6 +128,7 @@ export const professionConfigs: ProfessionConfig[] = [
       "Skid steers, excavators, compact loaders and tractors for jobsite earthwork.",
     href: "/search?profession=heavy-operator",
     icon: "truck",
+    image: "/professions/heavy-operator.jpg",
     gradient: "from-[#2a1a0a] via-[#3d2814] to-[#5c3a1f]",
     accent: "text-[#f2b705]",
     specialties: ["Skid Steers", "Excavators", "Loaders"],
