@@ -33,13 +33,28 @@ export default async function SearchPage({ searchParams }: Props) {
 
   const supabase = await createClient();
 
+  // Resolve profession category slugs into ids, including any direct children.
+  // This ensures clicking "Mechanic" only returns products from mechanic-
+  // related categories (and their subcategories), not unrelated items that
+  // happened to match a loose keyword.
   let professionCategoryIds: string[] = [];
   if (professionConfig?.categorySlugs.length) {
-    const { data: professionCategories } = await supabase
+    const { data: directCategories } = await supabase
       .from("categories")
       .select("id")
       .in("slug", professionConfig.categorySlugs);
-    professionCategoryIds = (professionCategories ?? []).map((item) => item.id);
+    const directIds = (directCategories ?? []).map((item) => item.id);
+
+    let childIds: string[] = [];
+    if (directIds.length > 0) {
+      const { data: childCategories } = await supabase
+        .from("categories")
+        .select("id")
+        .in("parent_id", directIds);
+      childIds = (childCategories ?? []).map((item) => item.id);
+    }
+
+    professionCategoryIds = Array.from(new Set([...directIds, ...childIds]));
   }
 
   let dbQuery = supabase
@@ -53,22 +68,8 @@ export default async function SearchPage({ searchParams }: Props) {
       `name.ilike.%${query}%,model.ilike.%${query}%,description.ilike.%${query}%`
     );
   }
-  if (professionConfig) {
-    const professionOr = professionConfig.searchTerms
-      .flatMap((term) => [
-        `name.ilike.%${term}%`,
-        `model.ilike.%${term}%`,
-        `description.ilike.%${term}%`,
-      ])
-      .join(",");
-
-    if (professionOr) {
-      dbQuery = dbQuery.or(professionOr);
-    }
-
-    if (professionCategoryIds.length > 0) {
-      dbQuery = dbQuery.in("category_id", professionCategoryIds);
-    }
+  if (professionConfig && professionCategoryIds.length > 0) {
+    dbQuery = dbQuery.in("category_id", professionCategoryIds);
   }
   if (brand) {
     const { data: b } = await supabase
