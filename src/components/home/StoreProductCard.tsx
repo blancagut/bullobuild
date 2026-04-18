@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ShoppingCart } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 import { PriceTag } from "@/components/ui/PriceTag";
+import { buildContactHref, getProductPricingMode } from "@/lib/pricing";
 import { useCartStore } from "@/store/cart";
 
 interface StoreProductCardProps {
@@ -35,7 +36,14 @@ export function StoreProductCard({
   const addItem = useCartStore((state) => state.addItem);
   const isOpen = useCartStore((state) => state.isOpen);
   const toggleCart = useCartStore((state) => state.toggleCart);
-  const isCatalogOnly = price <= 0 && !originalPrice;
+  const pricingMode = getProductPricingMode({
+    brand,
+    price,
+    originalPrice: originalPrice ?? null,
+  });
+  const isCatalogOnly = pricingMode === "catalog";
+  const isContactOnly = pricingMode === "contact";
+  const contactHref = buildContactHref({ brand, productName: name, productSlug: slug });
 
   const discount =
     originalPrice && originalPrice > price
@@ -110,6 +118,15 @@ export function StoreProductCard({
                   Pricing coming soon
                 </span>
               </div>
+            ) : isContactOnly ? (
+              <div className="flex flex-col gap-1">
+                <span className="text-sm font-black uppercase tracking-[0.14em] text-yellow-dark">
+                  Contact us
+                </span>
+                <span className="text-xs uppercase tracking-[0.16em] text-ink-muted">
+                  Request a quote for this machine
+                </span>
+              </div>
             ) : (
               <PriceTag price={price} originalPrice={originalPrice ?? undefined} size="sm" />
             )}
@@ -124,6 +141,13 @@ export function StoreProductCard({
             className="flex h-11 w-full items-center justify-center gap-2 rounded-full border border-stroke bg-white text-sm font-black uppercase tracking-[0.18em] text-ink transition-colors hover:border-yellow hover:bg-yellow/10"
           >
             View Product
+          </Link>
+        ) : isContactOnly ? (
+          <Link
+            href={contactHref}
+            className="flex h-11 w-full items-center justify-center gap-2 rounded-full border border-yellow bg-yellow/10 text-sm font-black uppercase tracking-[0.18em] text-ink transition-colors hover:bg-yellow/20"
+          >
+            Contact Us
           </Link>
         ) : (
           <button

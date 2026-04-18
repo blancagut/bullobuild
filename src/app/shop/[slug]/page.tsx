@@ -13,6 +13,7 @@ import { Pagination } from "@/components/ui/Pagination";
 import { PriceTag } from "@/components/ui/PriceTag";
 import { ProductCard } from "@/components/ui/ProductCard";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { buildContactHref, getProductPricingMode } from "@/lib/pricing";
 
 interface RouteParams {
   slug: string;
@@ -283,6 +284,18 @@ export default async function ShopSlugPage({ params, searchParams }: Props) {
           ((product.original_price - product.price) / product.original_price) * 100
         )
       : null;
+  const pricingMode = getProductPricingMode({
+    brand: productBrand?.name,
+    price: Number(product.price ?? 0),
+    originalPrice: product.original_price ?? null,
+  });
+  const isContactOnly = pricingMode === "contact";
+  const isCatalogOnly = pricingMode === "catalog";
+  const contactHref = buildContactHref({
+    brand: productBrand?.name,
+    productName: product.name,
+    productSlug: product.slug,
+  });
 
   return (
     <div className="min-h-screen bg-[#070F1C] py-8">
@@ -318,11 +331,32 @@ export default async function ShopSlugPage({ params, searchParams }: Props) {
               </Badge>
             </div>
 
-            <PriceTag
-              price={product.price}
-              originalPrice={product.original_price ?? undefined}
-              size="xl"
-            />
+            {isContactOnly ? (
+              <div className="rounded-2xl border border-yellow/30 bg-yellow/10 px-5 py-4">
+                <p className="text-xs font-black uppercase tracking-[0.18em] text-yellow">
+                  Contact us for pricing
+                </p>
+                <p className="mt-2 text-sm text-gray-300">
+                  This brand is sold by quote. Contact our sales team for current availability,
+                  freight, and fleet pricing.
+                </p>
+              </div>
+            ) : isCatalogOnly ? (
+              <div className="rounded-2xl border border-white/10 bg-white/5 px-5 py-4">
+                <p className="text-xs font-black uppercase tracking-[0.18em] text-yellow">
+                  Pricing coming soon
+                </p>
+                <p className="mt-2 text-sm text-gray-300">
+                  Product details are live, but pricing has not been published yet.
+                </p>
+              </div>
+            ) : (
+              <PriceTag
+                price={product.price}
+                originalPrice={product.original_price ?? undefined}
+                size="xl"
+              />
+            )}
 
             {product.description ? (
               <p className="border-t border-white/10 pt-5 text-sm leading-relaxed text-gray-400">
@@ -331,10 +365,32 @@ export default async function ShopSlugPage({ params, searchParams }: Props) {
             ) : null}
 
             <div className="flex flex-col gap-3 pt-2">
-              <AddToCartButton product={product} disabled={product.stock === 0} />
-              <Button href="/checkout" variant="outline" size="lg">
-                Buy Now
-              </Button>
+              {isContactOnly ? (
+                <>
+                  <Button href={contactHref} size="lg">
+                    Contact Us
+                  </Button>
+                  <Button href="/contact" variant="outline" size="lg">
+                    Request Fleet Quote
+                  </Button>
+                </>
+              ) : isCatalogOnly ? (
+                <>
+                  <Button href={contactHref} size="lg">
+                    Contact Us
+                  </Button>
+                  <Button href="/shop" variant="outline" size="lg">
+                    Browse More Products
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <AddToCartButton product={product} disabled={product.stock === 0} />
+                  <Button href="/checkout" variant="outline" size="lg">
+                    Buy Now
+                  </Button>
+                </>
+              )}
             </div>
 
             <div className="grid grid-cols-2 gap-3 border-t border-white/10 pt-4">

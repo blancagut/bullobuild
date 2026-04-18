@@ -5,6 +5,7 @@ import { PriceTag } from "./PriceTag";
 import { StarRating } from "./StarRating";
 import { ImagePlaceholder } from "./ImagePlaceholder";
 import { cn } from "@/lib/utils";
+import { getProductPricingMode } from "@/lib/pricing";
 
 interface ProductCardProps {
   id: string;
@@ -35,6 +36,9 @@ export function ProductCard({
   inStock = true,
   className,
 }: ProductCardProps) {
+  const pricingMode = getProductPricingMode({ brand, price, originalPrice: originalPrice ?? null });
+  const isCatalogOnly = pricingMode === "catalog";
+  const isContactOnly = pricingMode === "contact";
   const discount =
     originalPrice && originalPrice > price
       ? Math.round(((originalPrice - price) / originalPrice) * 100)
@@ -96,7 +100,27 @@ export function ProductCard({
           </div>
         )}
         <div className="mt-auto pt-2">
-          <PriceTag price={price} originalPrice={originalPrice} size="sm" />
+          {isCatalogOnly ? (
+            <div className="flex flex-col gap-1">
+              <span className="text-sm font-black uppercase tracking-[0.14em] text-yellow-dark">
+                Catalog item
+              </span>
+              <span className="text-xs uppercase tracking-[0.16em] text-ink-muted">
+                Pricing coming soon
+              </span>
+            </div>
+          ) : isContactOnly ? (
+            <div className="flex flex-col gap-1">
+              <span className="text-sm font-black uppercase tracking-[0.14em] text-yellow-dark">
+                Contact us
+              </span>
+              <span className="text-xs uppercase tracking-[0.16em] text-ink-muted">
+                Request a quote
+              </span>
+            </div>
+          ) : (
+            <PriceTag price={price} originalPrice={originalPrice} size="sm" />
+          )}
         </div>
       </div>
     </Link>
