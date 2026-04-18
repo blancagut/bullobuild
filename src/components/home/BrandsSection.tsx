@@ -32,7 +32,7 @@ export function BrandsSection() {
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5">
           {FEATURED_BRANDS.map((brand) => (
             <Link
-              href={`/brands/${brand.slug}`}
+              href={`/shop/${brand.slug}`}
               key={brand.slug}
               className="group flex flex-col items-center justify-center gap-4 rounded-2xl border border-stroke bg-white p-8 shadow-sm transition-all hover:-translate-y-1 hover:border-yellow/40 hover:shadow-md"
             >

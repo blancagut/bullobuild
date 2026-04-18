@@ -22,6 +22,9 @@ export type Product = {
   description: string | null;
   price: number;
   original_price: number | null;
+  msrp: number | null;
+  msrp_source: string | null;
+  price_updated_at: string | null;
   brand_id: string;
   brand?: Brand;
   category_id: string | null;
