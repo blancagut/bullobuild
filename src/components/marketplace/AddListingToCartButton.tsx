@@ -33,9 +33,9 @@ export function AddListingToCartButton({ listing }: AddListingToCartButtonProps)
   return (
     <button
       onClick={handleAdd}
-      className="flex items-center justify-center gap-2 w-full h-12 bg-[#F2B705] hover:bg-[#D9A204] text-[#070F1C] font-bold uppercase tracking-wider text-sm transition-colors"
+      className="flex h-12 w-full items-center justify-center gap-1.5 rounded-full bg-yellow text-[13px] font-black uppercase tracking-[0.16em] text-ink transition-colors hover:bg-yellow-dark"
     >
-      <ShoppingCart size={18} />
+      <ShoppingCart size={15} />
       Buy Now
     </button>
   );

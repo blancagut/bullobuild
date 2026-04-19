@@ -12,7 +12,7 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
 export default function CheckoutPage() {
-  const { items, total, count, clearCart } = useCartStore();
+  const { items, total, clearCart } = useCartStore();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -62,18 +62,15 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#070F1C] py-10">
-      <Container>
-        <SectionHeader label="Secure Checkout" title="Complete Your Order" className="mb-8" />
+    <div className="min-h-screen bg-white">
+      <Container className="py-6 lg:py-8">
+        <SectionHeader label="Secure Checkout" title="Complete Your Order" className="mb-7 md:mb-8" />
 
-        <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-6 lg:grid-cols-3 lg:gap-8">
           {/* Shipping */}
           <div className="lg:col-span-2 space-y-6">
-            <div className="bg-[#0B1F3A] border border-white/10 p-6 space-y-4">
-              <h2
-                className="text-lg font-black uppercase text-white"
-                style={{ fontFamily: "var(--font-barlow), system-ui" }}
-              >
+            <div className="space-y-4 rounded-2xl border border-stroke bg-white p-5 shadow-sm sm:p-6">
+              <h2 className="font-display text-lg font-black uppercase text-ink">
                 Shipping Information
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -149,9 +146,9 @@ export default function CheckoutPage() {
               </div>
             </div>
 
-            <div className="bg-[#0B1F3A] border border-white/10 p-6">
-              <div className="flex items-center gap-2 text-gray-400 text-sm">
-                <Lock size={14} className="text-[#F2B705]" />
+            <div className="rounded-2xl border border-stroke bg-panel p-5 text-sm text-ink-soft shadow-sm sm:p-6">
+              <div className="flex items-center gap-2">
+                <Lock size={14} className="text-yellow-dark" />
                 Your order is secure. Payment details will be confirmed by our team.
               </div>
             </div>
@@ -159,40 +156,37 @@ export default function CheckoutPage() {
 
           {/* Summary */}
           <div className="lg:col-span-1">
-            <div className="bg-[#0B1F3A] border border-white/10 p-6 sticky top-24 space-y-4">
-              <h2
-                className="text-xl font-black uppercase text-white"
-                style={{ fontFamily: "var(--font-barlow), system-ui" }}
-              >
+            <div className="sticky top-24 space-y-4 rounded-2xl border border-stroke bg-white p-5 shadow-sm sm:p-6">
+              <h2 className="font-display text-xl font-black uppercase text-ink">
                 Order Summary
               </h2>
 
               <div className="space-y-2 max-h-52 overflow-y-auto pr-1">
                 {items.map((item) => (
                   <div key={item.id} className="flex justify-between text-sm">
-                    <span className="text-gray-300 line-clamp-1 flex-1 mr-2">
+                    <span className="mr-2 flex-1 line-clamp-1 text-ink-soft">
                       {item.name}{" "}
-                      <span className="text-gray-500">×{item.quantity}</span>
+                      <span className="text-ink-muted">×{item.quantity}</span>
                     </span>
-                    <span className="text-white shrink-0 font-medium">
+                    <span className="shrink-0 font-medium text-ink">
                       {formatPrice(item.price * item.quantity)}
                     </span>
                   </div>
                 ))}
               </div>
 
-              <div className="space-y-2 pt-4 border-t border-white/10">
-                <div className="flex justify-between text-sm text-gray-400">
+              <div className="space-y-2 border-t border-stroke pt-4">
+                <div className="flex justify-between text-sm text-ink-soft">
                   <span>Subtotal</span>
                   <span>{formatPrice(total())}</span>
                 </div>
-                <div className="flex justify-between text-sm text-gray-400">
+                <div className="flex justify-between text-sm text-ink-soft">
                   <span>Shipping</span>
-                  <span className="text-[#F2B705]">
+                  <span className="text-yellow-dark">
                     {total() >= 99 ? "FREE" : formatPrice(9.99)}
                   </span>
                 </div>
-                <div className="flex justify-between font-bold text-white pt-2 border-t border-white/10">
+                <div className="flex justify-between border-t border-stroke pt-2 font-bold text-ink">
                   <span>Total</span>
                   <span>
                     {formatPrice(

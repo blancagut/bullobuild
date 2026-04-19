@@ -25,13 +25,13 @@ export function DealsSection({ products }: DealsSectionProps) {
   }
 
   return (
-    <section id="deals" className="relative overflow-hidden border-y border-stroke bg-white py-20 lg:py-24">
+    <section id="deals" className="relative overflow-hidden border-y border-stroke bg-white py-14 lg:py-20">
       <div className="absolute inset-y-0 right-0 w-1/3 bg-yellow/10" aria-hidden="true" />
       <div className="absolute right-0 top-0 h-full w-1 bg-yellow-dark" aria-hidden="true" />
 
       <Container className="relative z-10">
-        <div className="mb-8 flex items-start justify-between gap-6">
-          <div className="flex items-center gap-4">
+        <div className="mb-7 flex flex-col gap-4 md:mb-8 lg:flex-row lg:items-start lg:justify-between lg:gap-6">
+          <div className="flex items-start gap-3 sm:gap-4">
             <div className="rounded-2xl bg-yellow p-3 text-ink">
               <Zap size={20} />
             </div>
@@ -42,7 +42,7 @@ export function DealsSection({ products }: DealsSectionProps) {
               tone="light"
             />
           </div>
-          <div className="hidden items-center gap-2 text-ink-muted md:flex">
+          <div className="hidden items-center gap-2 text-ink-muted md:flex lg:pt-3">
             <Clock size={13} />
             <span className="text-xs uppercase tracking-widest">
               Deal shelf pulled from live inventory
@@ -50,7 +50,7 @@ export function DealsSection({ products }: DealsSectionProps) {
           </div>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="grid gap-3 sm:gap-4 md:grid-cols-3">
           {products.map((product, index) => (
             <div key={product.id} className="space-y-3">
               <div className="flex items-center justify-between rounded-[1.25rem] border border-yellow/30 bg-yellow/10 px-4 py-3">
@@ -73,7 +73,7 @@ export function DealsSection({ products }: DealsSectionProps) {
           ))}
         </div>
 
-        <div className="mt-8 text-center">
+        <div className="mt-7 text-center sm:mt-8">
           <Link
             href="/search"
             className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-yellow-dark transition-all hover:gap-4"

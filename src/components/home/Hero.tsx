@@ -44,17 +44,17 @@ export function Hero({
       {/* Dark overlay for readability */}
       <div className="absolute inset-0 bg-black/60" aria-hidden="true" />
 
-      <Container className="relative z-10 py-14 md:py-16 lg:py-20">
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,1.35fr)_minmax(320px,0.8fr)] lg:items-start">
+      <Container className="relative z-10 py-12 md:py-16 lg:py-20">
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(320px,0.8fr)] lg:items-start lg:gap-10">
           <div>
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#f2b70533] bg-[#f2b70522] px-4 py-2 backdrop-blur-sm">
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#f2b70533] bg-[#f2b70522] px-3.5 py-2 backdrop-blur-sm">
               <ShieldCheck size={14} className="text-[#f2b705]" />
               <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-[#ffffff]">
                 Authorized inventory only
               </span>
             </div>
 
-            <h1 className="font-display max-w-5xl text-5xl font-black uppercase leading-[0.9] tracking-tight text-[#ffffff] sm:text-6xl lg:text-7xl xl:text-[5.5rem]">
+            <h1 className="font-display max-w-[11ch] text-[3.15rem] font-black uppercase leading-[0.88] tracking-tight text-[#ffffff] sm:max-w-5xl sm:text-6xl lg:text-7xl xl:text-[5.5rem]">
               Shop the catalog
               <br />
               like a real
@@ -62,12 +62,12 @@ export function Hero({
               <span className="text-[#f2b705]">merchandise machine.</span>
             </h1>
 
-            <p className="mt-6 max-w-2xl text-base leading-relaxed text-[#ffffffcc] sm:text-lg">
+            <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-[#ffffffcc] sm:text-lg">
               Browse {productCount.toLocaleString()} catalog items across {categoryCount.toLocaleString()} categories and {brandCount.toLocaleString()} active brand storefronts. The homepage now leads with departments, category shelves, and real catalog breadth instead of a single narrow product strip.
             </p>
 
-            <form action="/search" className="mt-8 flex flex-col gap-3 rounded-2xl border border-[#ffffff33] bg-[#00000040] p-3 shadow-sm backdrop-blur-sm sm:flex-row sm:items-center">
-              <div className="flex min-w-0 flex-1 items-center gap-3 rounded-[1.25rem] border border-[#ffffff33] bg-[#ffffffe6] px-4 py-4">
+            <form action="/search" className="mt-7 flex flex-col gap-2.5 rounded-2xl border border-[#ffffff33] bg-[#00000040] p-3 shadow-sm backdrop-blur-sm sm:flex-row sm:items-center">
+              <div className="flex min-w-0 flex-1 items-center gap-3 rounded-[1.25rem] border border-[#ffffff33] bg-[#ffffffe6] px-4 py-3.5">
                 <Search size={18} className="shrink-0 text-[#666666]" />
                 <input
                   type="search"
@@ -79,14 +79,14 @@ export function Hero({
               </div>
               <button
                 type="submit"
-                className="inline-flex h-14 items-center justify-center gap-2 rounded-full bg-[#f2b705] px-6 text-sm font-black uppercase tracking-[0.18em] text-[#1a1a1a] transition-colors hover:bg-[#cf9500]"
+                className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#f2b705] px-6 text-sm font-black uppercase tracking-[0.16em] text-[#1a1a1a] transition-colors hover:bg-[#cf9500] sm:h-14"
               >
                 Search Catalog
                 <ArrowRight size={16} />
               </button>
             </form>
 
-            <div className="mt-5 flex flex-wrap gap-2">
+            <div className="mt-4 flex flex-wrap gap-2">
               {highlightedCategories.map((category) => (
                 <Link
                   key={category.slug}
@@ -99,20 +99,20 @@ export function Hero({
               ))}
             </div>
 
-            <div className="mt-8 flex flex-wrap gap-4">
-              <Button href="/shop" size="lg" className="group rounded-full bg-[#f2b705] text-[#1a1a1a] hover:bg-[#cf9500]">
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
+              <Button href="/shop" size="lg" className="group w-full rounded-full bg-[#f2b705] text-[#1a1a1a] hover:bg-[#cf9500] sm:w-auto">
                 Browse All Products
                 <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
               </Button>
-              <Button href="/brands" variant="secondary" size="lg" className="rounded-full !border-[#ffffff4d] !bg-transparent !text-[#ffffff] hover:!bg-[#ffffff1a]">
+              <Button href="/brands" variant="secondary" size="lg" className="w-full rounded-full !border-[#ffffff4d] !bg-transparent !text-[#ffffff] hover:!bg-[#ffffff1a] sm:w-auto">
                 Shop by Brand
               </Button>
             </div>
 
-            <div className="mt-10 grid grid-cols-2 gap-4 border-t border-[#ffffff33] pt-8 md:grid-cols-4">
+            <div className="mt-8 grid grid-cols-2 gap-3 border-t border-[#ffffff33] pt-6 sm:gap-4 sm:pt-8 md:grid-cols-4">
               {stats.map((stat) => (
                 <div key={stat.label} className="rounded-2xl border border-[#ffffff33] bg-[#00000033] p-4 shadow-sm backdrop-blur-sm">
-                  <span className="font-display block text-3xl font-black leading-none text-[#ffffff]">
+                  <span className="font-display block text-[1.9rem] font-black leading-none text-[#ffffff] sm:text-3xl">
                     {stat.value}
                   </span>
                   <span className="mt-2 block text-[10px] uppercase tracking-[0.22em] text-[#ffffff99]">
@@ -123,8 +123,8 @@ export function Hero({
             </div>
           </div>
 
-          <div className="grid gap-4">
-            <div className="rounded-2xl border border-[#ffffff33] bg-[#00000033] p-6 shadow-sm backdrop-blur-sm">
+          <div className="grid gap-3 sm:gap-4">
+            <div className="rounded-2xl border border-[#ffffff33] bg-[#00000033] p-5 shadow-sm backdrop-blur-sm sm:p-6">
               <div className="mb-4 flex items-center gap-3">
                 <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#f2b705] text-[#1a1a1a]">
                   <Wrench size={20} />
@@ -143,7 +143,7 @@ export function Hero({
               </p>
             </div>
 
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 xl:gap-4">
               <div className="rounded-2xl border border-[#ffffff33] bg-[#00000033] p-5 shadow-sm backdrop-blur-sm">
                 <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#ffffff99]">
                   Catalog depth

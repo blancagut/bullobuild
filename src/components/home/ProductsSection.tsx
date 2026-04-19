@@ -43,40 +43,40 @@ const departmentCopy: Record<string, string> = {
 
 export function ProductsSection({ departments, shelves }: ProductsSectionProps) {
   return (
-    <section id="catalog-departments" className="bg-canvas py-20 lg:py-24">
+    <section id="catalog-departments" className="bg-canvas py-14 lg:py-20">
       <Container>
         <SectionHeader
           label="Catalog departments"
           title="Show shoppers what you actually stock"
           subtitle="Lead with category depth first, then let each shelf open into a real browse path. This makes the landing page feel like a merchandise front door instead of a promo block."
           tone="light"
-          className="mb-8"
+          className="mb-7 md:mb-8"
           action={
-            <Button href="/shop" variant="outline" size="sm" className="rounded-full border-stroke bg-white text-ink hover:border-yellow hover:bg-panel">
+            <Button href="/shop" variant="outline" size="sm" className="w-full rounded-full border-stroke bg-white text-ink hover:border-yellow hover:bg-panel sm:w-auto">
               Browse Full Catalog
             </Button>
           }
         />
 
         {departments.length > 0 ? (
-          <div className="mb-12 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          <div className="mb-10 grid gap-3 sm:gap-4 md:grid-cols-2 xl:grid-cols-3">
             {departments.map((department) => (
               <Link
                 key={department.slug}
                 href={`/categories/${department.slug}`}
-                className="group relative overflow-hidden rounded-2xl border border-stroke bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-yellow/40 hover:shadow-md"
+                className="group relative overflow-hidden rounded-2xl border border-stroke bg-white p-5 shadow-sm transition-all hover:-translate-y-1 hover:border-yellow/40 hover:shadow-md sm:p-6"
               >
-                <div className="relative z-10 max-w-[64%]">
+                <div className="relative z-10 max-w-[58%] sm:max-w-[62%]">
                   <p className="text-[11px] font-black uppercase tracking-[0.18em] text-yellow-dark">
                     Department
                   </p>
-                  <h3 className="mt-3 font-display text-3xl font-black uppercase leading-none text-ink">
+                  <h3 className="mt-3 font-display text-[2.2rem] font-black uppercase leading-[0.92] text-ink sm:text-3xl">
                     {department.name}
                   </h3>
                   <p className="mt-3 text-sm leading-relaxed text-ink-soft">
                     {departmentCopy[department.slug] ?? "Browse this department directly from the homepage and continue into live catalog inventory."}
                   </p>
-                  <div className="mt-6 flex items-center justify-between gap-3">
+                  <div className="mt-5 flex items-end justify-between gap-4">
                     <div>
                       <p className="font-display text-2xl font-black text-ink">
                         {department.count.toLocaleString()}
@@ -93,14 +93,14 @@ export function ProductsSection({ departments, shelves }: ProductsSectionProps) 
                 </div>
 
                 {department.image ? (
-                  <div className="absolute inset-y-0 right-0 w-[42%] overflow-hidden">
+                  <div className="absolute inset-y-0 right-0 w-[40%] overflow-hidden sm:w-[42%]">
                     <div className="absolute inset-0 bg-[linear-gradient(90deg,#ffffff_10%,rgba(255,255,255,0.1)_100%)]" />
                     <Image
                       src={department.image}
                       alt={department.name}
                       fill
                       className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
-                      sizes="(max-width: 768px) 40vw, 18vw"
+                      sizes="(max-width: 639px) 42vw, (max-width: 1279px) 28vw, 18vw"
                     />
                   </div>
                 ) : null}
@@ -110,15 +110,15 @@ export function ProductsSection({ departments, shelves }: ProductsSectionProps) 
         ) : null}
 
         {shelves.length > 0 ? (
-          <div className="space-y-8">
+          <div className="space-y-6 sm:space-y-8">
             {shelves.map((shelf) => (
-              <div key={shelf.slug} className="rounded-2xl border border-stroke bg-white p-5 shadow-sm lg:p-6">
-                <div className="grid gap-6 xl:grid-cols-[280px_minmax(0,1fr)] xl:items-start">
-                  <div className="rounded-[1.75rem] bg-panel p-6">
+              <div key={shelf.slug} className="rounded-2xl border border-stroke bg-white p-4 shadow-sm sm:p-5 lg:p-6">
+                <div className="grid gap-5 lg:gap-6 xl:grid-cols-[250px_minmax(0,1fr)] xl:items-start">
+                  <div className="rounded-[1.75rem] bg-panel p-5 sm:p-6">
                     <p className="text-[11px] font-black uppercase tracking-[0.18em] text-yellow-dark">
                       Department shelf
                     </p>
-                    <h3 className="mt-3 font-display text-4xl font-black uppercase leading-none text-ink">
+                    <h3 className="mt-3 font-display text-[2.35rem] font-black uppercase leading-[0.92] text-ink sm:text-4xl">
                       {shelf.name}
                     </h3>
                     <p className="mt-4 text-sm leading-relaxed text-ink-soft">
@@ -141,7 +141,7 @@ export function ProductsSection({ departments, shelves }: ProductsSectionProps) 
                     </Link>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+                  <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
                     {shelf.products.map((product, index) => (
                       <StoreProductCard
                         key={product.id}
@@ -167,7 +167,7 @@ export function ProductsSection({ departments, shelves }: ProductsSectionProps) 
           </div>
         )}
 
-        <div className="mt-10 flex flex-wrap gap-2">
+        <div className="mt-8 flex flex-wrap gap-2">
           {departments.map((department) => (
             <Link
               key={department.slug}

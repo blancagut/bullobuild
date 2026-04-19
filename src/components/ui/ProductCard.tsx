@@ -23,7 +23,6 @@ interface ProductCardProps {
 }
 
 export function ProductCard({
-  id,
   slug,
   name,
   brand,
@@ -60,7 +59,7 @@ export function ProductCard({
             alt={name}
             fill
             className="object-contain p-4 group-hover:scale-105 transition-transform duration-300"
-            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            sizes="(max-width: 639px) 50vw, (max-width: 1023px) 33vw, 25vw"
           />
         ) : (
           <ImagePlaceholder slug={slug} brand={brand} />
@@ -84,11 +83,11 @@ export function ProductCard({
         )}
       </div>
 
-      <div className="flex flex-col gap-2 p-4 flex-1">
-        <span className="text-xs font-semibold uppercase tracking-wider text-yellow-dark">
+      <div className="flex flex-1 flex-col gap-2.5 p-4 sm:p-5">
+        <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-yellow-dark sm:text-xs">
           {brand}
         </span>
-        <h3 className="line-clamp-2 text-sm font-semibold leading-snug text-ink transition-colors group-hover:text-yellow-dark">
+        <h3 className="min-h-[2.9rem] line-clamp-2 text-sm font-semibold leading-snug text-ink transition-colors group-hover:text-yellow-dark sm:min-h-12">
           {name}
         </h3>
         {rating !== undefined && (
@@ -99,22 +98,22 @@ export function ProductCard({
             )}
           </div>
         )}
-        <div className="mt-auto pt-2">
+        <div className="mt-auto pt-2.5">
           {isCatalogOnly ? (
-            <div className="flex flex-col gap-1">
+            <div className="flex min-h-14 flex-col gap-1">
               <span className="text-sm font-black uppercase tracking-[0.14em] text-yellow-dark">
                 Catalog item
               </span>
-              <span className="text-xs uppercase tracking-[0.16em] text-ink-muted">
+              <span className="text-[11px] uppercase tracking-[0.16em] text-ink-muted sm:text-xs">
                 Pricing coming soon
               </span>
             </div>
           ) : isContactOnly ? (
-            <div className="flex flex-col gap-1">
+            <div className="flex min-h-14 flex-col gap-1">
               <span className="text-sm font-black uppercase tracking-[0.14em] text-yellow-dark">
                 Contact us
               </span>
-              <span className="text-xs uppercase tracking-[0.16em] text-ink-muted">
+              <span className="text-[11px] uppercase tracking-[0.16em] text-ink-muted sm:text-xs">
                 Request a quote
               </span>
             </div>

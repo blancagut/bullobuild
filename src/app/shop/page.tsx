@@ -303,7 +303,7 @@ export default async function ShopPage({ searchParams }: Props) {
   const fieldLabelClass =
     "mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-soft";
   const fieldControlClass =
-    "h-11 w-full rounded-lg border border-stroke bg-white px-3 text-sm text-ink outline-none transition-colors focus:border-yellow focus:ring-2 focus:ring-yellow/20";
+    "h-12 w-full rounded-xl border border-stroke bg-white px-4 text-sm text-ink outline-none transition-colors focus:border-yellow focus:ring-2 focus:ring-yellow/20";
 
   return (
     <div className="min-h-screen bg-white">
@@ -327,7 +327,7 @@ export default async function ShopPage({ searchParams }: Props) {
                   name="q"
                   defaultValue={queryText}
                   placeholder="Search tools, models, brands…"
-                  className="h-11 w-full rounded-lg border border-stroke bg-white pl-10 pr-4 text-sm text-ink outline-none transition-colors placeholder:text-ink-muted focus:border-yellow focus:ring-2 focus:ring-yellow/20"
+                  className="h-12 w-full rounded-xl border border-stroke bg-white pl-10 pr-4 text-sm text-ink outline-none transition-colors placeholder:text-ink-muted focus:border-yellow focus:ring-2 focus:ring-yellow/20"
                 />
               </div>
             </div>
@@ -408,7 +408,7 @@ export default async function ShopPage({ searchParams }: Props) {
             </div>
           </div>
 
-          <div className="mt-4 flex flex-wrap items-center gap-3">
+          <div className="mt-4 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap sm:items-center sm:gap-3">
             <label className="inline-flex items-center gap-2 rounded-lg border border-stroke bg-white px-3 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-ink-soft">
               <input
                 type="checkbox"
@@ -422,14 +422,14 @@ export default async function ShopPage({ searchParams }: Props) {
 
             <button
               type="submit"
-              className="inline-flex h-11 items-center justify-center rounded-full bg-yellow px-6 text-sm font-black uppercase tracking-[0.16em] text-ink transition-colors hover:bg-yellow-dark"
+              className="inline-flex h-12 items-center justify-center rounded-full bg-yellow px-6 text-sm font-black uppercase tracking-[0.16em] text-ink transition-colors hover:bg-yellow-dark sm:h-11"
             >
               Apply filters
             </button>
 
             <Link
               href="/shop"
-              className="inline-flex h-11 items-center justify-center rounded-full border border-stroke bg-white px-5 text-sm font-bold uppercase tracking-[0.16em] text-ink-soft transition-colors hover:border-ink-muted hover:text-ink"
+              className="inline-flex h-12 items-center justify-center rounded-full border border-stroke bg-white px-5 text-sm font-bold uppercase tracking-[0.16em] text-ink-soft transition-colors hover:border-ink-muted hover:text-ink sm:h-11"
             >
               Clear all
             </Link>
@@ -521,9 +521,9 @@ export default async function ShopPage({ searchParams }: Props) {
           </aside>
 
           <div className="min-w-0">
-            <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div>
-                <h1 className="font-display text-xl font-black uppercase tracking-tight text-ink sm:text-2xl">
+                <h1 className="font-display text-[1.7rem] font-black uppercase leading-[0.92] tracking-tight text-ink sm:text-2xl">
                   {selectedCategory
                     ? selectedCategory.name
                     : selectedBrand
@@ -563,7 +563,7 @@ export default async function ShopPage({ searchParams }: Props) {
 
             {products.length > 0 ? (
               <>
-                <div className="grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-4">
+                <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 xl:grid-cols-4">
                   {products.map((product, index) => (
                     <StoreProductCard
                       key={product.id}
@@ -598,7 +598,7 @@ export default async function ShopPage({ searchParams }: Props) {
                 <div className="mt-6">
                   <Link
                     href="/shop"
-                    className="inline-flex items-center justify-center rounded-full bg-yellow px-5 py-3 text-sm font-black uppercase tracking-[0.16em] text-ink transition-colors hover:bg-yellow-dark"
+                    className="inline-flex h-12 items-center justify-center rounded-full bg-yellow px-5 text-sm font-black uppercase tracking-[0.16em] text-ink transition-colors hover:bg-yellow-dark"
                   >
                     Reset catalog
                   </Link>

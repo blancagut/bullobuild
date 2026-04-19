@@ -24,9 +24,9 @@ interface MarketplaceSectionProps {
 
 export function MarketplaceSection({ listings }: MarketplaceSectionProps) {
   return (
-    <section className="border-t border-stroke bg-white py-16 lg:py-20">
+    <section className="border-t border-stroke bg-white py-14 lg:py-20">
       <Container>
-        <div className="mb-10 grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
+        <div className="mb-8 grid gap-5 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end lg:gap-8 lg:mb-10">
           <div>
             <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-stroke bg-card px-4 py-2">
               <TrendingUp size={13} className="text-ink-muted" />
@@ -40,11 +40,11 @@ export function MarketplaceSection({ listings }: MarketplaceSectionProps) {
               tone="light"
             />
           </div>
-          <div className="flex flex-wrap gap-3">
-            <Button href="/marketplace" variant="outline" size="sm" className="rounded-full border-stroke bg-white text-ink hover:border-yellow hover:bg-panel">
+          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <Button href="/marketplace" variant="outline" size="sm" className="w-full rounded-full border-stroke bg-white text-ink hover:border-yellow hover:bg-panel sm:w-auto">
               Browse Listings
             </Button>
-            <Button href="/marketplace/sell" variant="secondary" size="sm" className="gap-2 rounded-full bg-yellow text-ink hover:bg-yellow-dark">
+            <Button href="/marketplace/sell" variant="secondary" size="sm" className="w-full gap-2 rounded-full bg-yellow text-ink hover:bg-yellow-dark sm:w-auto">
               <PlusCircle size={14} />
               List a Tool
             </Button>
@@ -52,7 +52,7 @@ export function MarketplaceSection({ listings }: MarketplaceSectionProps) {
         </div>
 
         {listings.length > 0 ? (
-          <div className="grid gap-4 md:grid-cols-3">
+          <div className="grid gap-3 sm:gap-4 md:grid-cols-3">
             {listings.map((listing) => (
               <ListingCard
                 key={listing.id}
@@ -73,7 +73,7 @@ export function MarketplaceSection({ listings }: MarketplaceSectionProps) {
           </div>
         )}
 
-        <div className="mt-10 flex items-center justify-between gap-4 border-t border-stroke pt-8 text-sm text-ink-muted">
+        <div className="mt-8 flex flex-col gap-3 border-t border-stroke pt-6 text-sm text-ink-muted sm:mt-10 sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:pt-8">
           <p>
             New tools remain the primary storefront. Marketplace stays here as a supporting route for extra value.
           </p>

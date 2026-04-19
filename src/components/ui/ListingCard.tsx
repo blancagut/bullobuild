@@ -68,7 +68,7 @@ export function ListingCard({
             alt={title}
             fill
             className="object-cover group-hover:scale-105 transition-transform duration-300"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            sizes="(max-width: 767px) 100vw, (max-width: 1279px) 50vw, 33vw"
           />
         ) : (
           <div className="flex h-full items-center justify-center text-sm text-ink-muted">
@@ -82,20 +82,20 @@ export function ListingCard({
         </div>
       </div>
 
-      <div className="flex flex-col gap-2 p-4 flex-1">
-        <span className="text-xs font-semibold uppercase tracking-wider text-ink-soft">
+      <div className="flex flex-1 flex-col gap-2.5 p-4 sm:p-5">
+        <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-soft sm:text-xs">
           {brand}
         </span>
-        <h3 className="line-clamp-2 text-sm font-semibold leading-snug text-ink transition-colors group-hover:text-yellow-dark">
+        <h3 className="min-h-[2.9rem] line-clamp-2 text-sm font-semibold leading-snug text-ink transition-colors group-hover:text-yellow-dark sm:min-h-12">
           {title}
         </h3>
 
-        <p className="mt-auto pt-2 font-display text-xl font-black text-ink">
+        <p className="mt-auto pt-2.5 font-display text-[1.4rem] font-black leading-none text-ink sm:text-[1.5rem]">
           {formatPrice(price)}
         </p>
 
-        <div className="mt-1 flex items-center justify-between border-t border-stroke pt-2">
-          <div className="flex items-center gap-1 text-xs text-ink-soft">
+        <div className="mt-1 flex flex-col gap-2 border-t border-stroke pt-2.5 text-xs sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-wrap items-center gap-1 text-xs text-ink-soft">
             {sellerName && (
               <span className="font-medium">{sellerName}</span>
             )}
@@ -103,7 +103,7 @@ export function ListingCard({
               <StarRating value={sellerRating} size="sm" showCount={false} />
             )}
           </div>
-          <div className="flex items-center gap-3 text-xs text-ink-muted">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-ink-muted">
             {location && (
               <span className="flex items-center gap-0.5">
                 <MapPin size={10} />

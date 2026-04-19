@@ -18,7 +18,7 @@ const FEATURED_BRANDS = [
 
 export function BrandsSection() {
   return (
-    <section className="border-y border-stroke bg-white py-20">
+    <section className="border-y border-stroke bg-white py-14 lg:py-18">
       <Container>
         <SectionHeader
           label="Authorized brands"
@@ -26,17 +26,17 @@ export function BrandsSection() {
           subtitle="Browse live inventory from the top names in professional tools."
           align="center"
           tone="light"
-          className="mb-14"
+          className="mb-8 md:mb-10"
         />
 
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5">
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 md:grid-cols-5">
           {FEATURED_BRANDS.map((brand) => (
             <Link
-              href={`/shop/${brand.slug}`}
+              href={`/brands/${brand.slug}`}
               key={brand.slug}
-              className="group flex flex-col items-center justify-center gap-4 rounded-2xl border border-stroke bg-white p-8 shadow-sm transition-all hover:-translate-y-1 hover:border-yellow/40 hover:shadow-md"
+              className="group flex flex-col items-center justify-center gap-4 rounded-2xl border border-stroke bg-white p-5 shadow-sm transition-all hover:-translate-y-1 hover:border-yellow/40 hover:shadow-md sm:p-6"
             >
-              <div className="w-32 h-16 relative">
+              <div className="relative h-14 w-28 sm:h-16 sm:w-32">
                 <Image
                   src={`/brands/${brand.logo}.svg`}
                   alt={`${brand.name} logo`}
@@ -55,7 +55,7 @@ export function BrandsSection() {
           ))}
         </div>
 
-        <div className="mt-10 flex items-center justify-center gap-4">
+        <div className="mt-8 flex items-center justify-center gap-4 sm:mt-10">
           <div className="h-px flex-1 max-w-24 bg-stroke" />
           <p className="text-center text-[10px] uppercase tracking-widest text-ink-muted">
             open a brand page, then drop directly into live product inventory

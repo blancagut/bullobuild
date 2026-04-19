@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
+import { groupBrandRecords, type BrandRecord } from "@/lib/brands";
 import type { MetadataRoute } from "next";
 
 const BASE_URL = "https://bullobuild.com";
@@ -8,8 +9,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const [{ data: products }, { data: brands }] = await Promise.all([
     supabase.from("products").select("slug, updated_at").eq("is_active", true),
-    supabase.from("brands").select("slug, updated_at").eq("is_authorized", true),
+    supabase
+      .from("brands")
+      .select("id, name, slug, updated_at, is_authorized")
+      .eq("is_authorized", true),
   ]);
+
+  const brandGroups = groupBrandRecords((brands ?? []) as BrandRecord[]);
 
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: BASE_URL, lastModified: new Date(), changeFrequency: "daily", priority: 1 },
@@ -28,9 +34,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
-  const brandRoutes: MetadataRoute.Sitemap = (brands ?? []).map((b) => ({
-    url: `${BASE_URL}/shop/${b.slug}`,
-    lastModified: new Date(b.updated_at ?? Date.now()),
+  const brandRoutes: MetadataRoute.Sitemap = brandGroups.map((brand) => ({
+    url: `${BASE_URL}/brands/${brand.slug}`,
+    lastModified: new Date(brand.updatedAt ?? Date.now()),
     changeFrequency: "weekly" as const,
     priority: 0.7,
   }));

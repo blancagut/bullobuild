@@ -16,9 +16,9 @@ const variants: Record<ButtonVariant, string> = {
 };
 
 const sizes: Record<ButtonSize, string> = {
-  sm: "text-xs px-4 py-2",
-  md: "text-sm px-6 py-3",
-  lg: "text-sm px-8 py-4",
+  sm: "h-10 px-4 text-[11px] tracking-[0.16em] sm:px-5",
+  md: "h-11 px-5 text-xs tracking-[0.16em] sm:px-6 sm:text-sm",
+  lg: "h-12 px-6 text-sm tracking-[0.16em] sm:px-8",
 };
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -38,7 +38,7 @@ export function Button({
   ...props
 }: ButtonProps) {
   const classes = cn(
-    "inline-flex cursor-pointer select-none items-center justify-center gap-2 transition-colors",
+    "inline-flex cursor-pointer select-none items-center justify-center gap-2 whitespace-nowrap transition-colors disabled:cursor-not-allowed disabled:opacity-50",
     variants[variant],
     sizes[size],
     className

@@ -3,7 +3,6 @@
 import { useCartStore } from "@/store/cart";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { PriceTag } from "@/components/ui/PriceTag";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Trash2, Plus, Minus, ShoppingCart, ArrowRight } from "lucide-react";
 import Image from "next/image";
@@ -15,17 +14,14 @@ export default function CartPage() {
 
   if (items.length === 0) {
     return (
-      <div className="min-h-screen bg-[#070F1C] flex items-center justify-center">
-        <div className="text-center space-y-4">
-          <ShoppingCart size={64} className="text-gray-700 mx-auto" />
-          <h1
-            className="text-3xl font-black uppercase text-white"
-            style={{ fontFamily: "var(--font-barlow), system-ui" }}
-          >
+      <div className="flex min-h-screen items-center justify-center bg-white px-3">
+        <div className="rounded-2xl border border-stroke bg-white px-6 py-12 text-center shadow-sm">
+          <ShoppingCart size={56} className="mx-auto text-ink-muted" />
+          <h1 className="mt-4 font-display text-3xl font-black uppercase text-ink">
             Your Cart is Empty
           </h1>
-          <p className="text-gray-400">Add some tools to get started.</p>
-          <Button href="/shop" className="mt-4">
+          <p className="mt-2 text-sm text-ink-soft">Add some tools to get started.</p>
+          <Button href="/shop" className="mt-5">
             Browse Shop
           </Button>
         </div>
@@ -34,23 +30,23 @@ export default function CartPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#070F1C] py-10">
-      <Container>
+    <div className="min-h-screen bg-white">
+      <Container className="py-6 lg:py-8">
         <SectionHeader
           label={`${count()} items`}
           title="Your Cart"
-          className="mb-8"
+          className="mb-7 md:mb-8"
         />
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3 lg:gap-8">
           {/* Items */}
           <div className="lg:col-span-2 space-y-4">
             {items.map((item) => (
               <div
                 key={item.id}
-                className="flex gap-4 bg-[#0B1F3A] border border-white/10 p-4"
+                className="flex flex-col gap-4 rounded-2xl border border-stroke bg-white p-4 shadow-sm sm:flex-row"
               >
-                <div className="relative h-24 w-24 shrink-0 bg-white/5">
+                <div className="relative h-24 w-24 shrink-0 rounded-xl border border-stroke bg-panel">
                   {item.image ? (
                     <Image
                       src={item.image}
@@ -60,51 +56,51 @@ export default function CartPage() {
                       sizes="96px"
                     />
                   ) : (
-                    <div className="h-full w-full flex items-center justify-center text-gray-600 text-xs">
+                    <div className="flex h-full w-full items-center justify-center text-xs text-ink-muted">
                       No image
                     </div>
                   )}
                 </div>
 
-                <div className="flex flex-col flex-1 min-w-0 gap-1">
+                <div className="flex min-w-0 flex-1 flex-col gap-1.5">
                   {item.brand && (
-                    <span className="text-xs font-bold text-[#F2B705] uppercase tracking-wider">
+                    <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-yellow-dark sm:text-xs">
                       {item.brand}
                     </span>
                   )}
-                  <h3 className="text-sm font-semibold text-white leading-snug">
+                  <h3 className="text-sm font-semibold leading-snug text-ink">
                     {item.name}
                   </h3>
                   <Badge item={item} />
 
-                  <div className="flex items-center justify-between mt-auto pt-2">
-                    <div className="flex items-center border border-white/10">
+                  <div className="mt-auto flex flex-col gap-3 pt-2 sm:flex-row sm:items-end sm:justify-between">
+                    <div className="flex w-fit items-center rounded-full border border-stroke bg-panel">
                       <button
                         onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                        className="h-8 w-8 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-colors"
+                        className="flex h-9 w-9 items-center justify-center text-ink-soft transition-colors hover:bg-white hover:text-ink"
                         aria-label="Decrease"
                       >
                         <Minus size={14} />
                       </button>
-                      <span className="text-sm text-white w-10 text-center">
+                      <span className="w-10 text-center text-sm text-ink">
                         {item.quantity}
                       </span>
                       <button
                         onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                        className="h-8 w-8 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-colors"
+                        className="flex h-9 w-9 items-center justify-center text-ink-soft transition-colors hover:bg-white hover:text-ink"
                         aria-label="Increase"
                       >
                         <Plus size={14} />
                       </button>
                     </div>
 
-                    <div className="flex items-center gap-4">
-                      <span className="font-bold text-white text-sm">
+                    <div className="flex items-center justify-between gap-4 sm:justify-end">
+                      <span className="text-sm font-bold text-ink">
                         {formatPrice(item.price * item.quantity)}
                       </span>
                       <button
                         onClick={() => removeItem(item.id)}
-                        className="text-gray-500 hover:text-red-400 transition-colors"
+                        className="text-ink-muted transition-colors hover:text-red-500"
                         aria-label="Remove"
                       >
                         <Trash2 size={16} />
@@ -118,32 +114,29 @@ export default function CartPage() {
 
           {/* Summary */}
           <div className="lg:col-span-1">
-            <div className="bg-[#0B1F3A] border border-white/10 p-6 sticky top-24 space-y-4">
-              <h2
-                className="text-xl font-black uppercase text-white"
-                style={{ fontFamily: "var(--font-barlow), system-ui" }}
-              >
+            <div className="sticky top-24 space-y-4 rounded-2xl border border-stroke bg-white p-5 shadow-sm sm:p-6">
+              <h2 className="font-display text-xl font-black uppercase text-ink">
                 Order Summary
               </h2>
 
-              <div className="space-y-3 py-4 border-y border-white/10">
-                <div className="flex justify-between text-sm text-gray-400">
+              <div className="space-y-3 border-y border-stroke py-4">
+                <div className="flex justify-between text-sm text-ink-soft">
                   <span>Subtotal ({count()} items)</span>
                   <span>{formatPrice(total())}</span>
                 </div>
-                <div className="flex justify-between text-sm text-gray-400">
+                <div className="flex justify-between text-sm text-ink-soft">
                   <span>Shipping</span>
-                  <span className="text-[#F2B705]">
+                  <span className="text-yellow-dark">
                     {total() >= 99 ? "FREE" : formatPrice(9.99)}
                   </span>
                 </div>
-                <div className="flex justify-between text-sm text-gray-400">
+                <div className="flex justify-between text-sm text-ink-soft">
                   <span>Tax (est.)</span>
                   <span>{formatPrice(total() * 0.08)}</span>
                 </div>
               </div>
 
-              <div className="flex justify-between font-bold text-white">
+              <div className="flex justify-between font-bold text-ink">
                 <span>Total</span>
                 <span>
                   {formatPrice(
@@ -159,7 +152,7 @@ export default function CartPage() {
 
               <Link
                 href="/shop"
-                className="block text-center text-xs text-gray-500 hover:text-gray-300 transition-colors mt-2"
+                className="mt-2 block text-center text-xs text-ink-muted transition-colors hover:text-ink-soft"
               >
                 Continue Shopping
               </Link>
@@ -175,7 +168,7 @@ export default function CartPage() {
 function Badge({ item }: { item: { type: string } }) {
   if (item.type === "listing") {
     return (
-      <span className="inline-block text-xs px-2 py-0.5 bg-[#F2B705]/10 text-[#F2B705] border border-[#F2B705]/30 w-fit">
+      <span className="inline-block w-fit border border-yellow/30 bg-yellow/10 px-2 py-0.5 text-xs text-yellow-dark">
         Pre-owned
       </span>
     );

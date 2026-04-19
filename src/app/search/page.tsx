@@ -98,9 +98,9 @@ export default async function SearchPage({ searchParams }: Props) {
   if (profession) paginationParams.profession = profession;
 
   return (
-    <div className="min-h-screen bg-[#070F1C] py-10">
-      <Container>
-        <div className="mb-8">
+    <div className="min-h-screen bg-white">
+      <Container className="py-6 lg:py-8">
+        <div className="mb-7 md:mb-8">
           {professionConfig ? (
             <SectionHeader
               label="Shop by profession"
@@ -119,7 +119,7 @@ export default async function SearchPage({ searchParams }: Props) {
 
         {products && products.length > 0 ? (
           <>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-10">
+            <div className="mb-10 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
               {products.map((p) => (
                 <ProductCard
                   key={p.id}
@@ -145,10 +145,10 @@ export default async function SearchPage({ searchParams }: Props) {
             )}
           </>
         ) : (
-          <div className="flex flex-col items-center justify-center py-24 gap-4 text-center">
-            <Search size={48} className="text-gray-600" />
-            <p className="text-white font-semibold text-lg">No products found</p>
-            <p className="text-gray-400 text-sm">
+          <div className="rounded-xl border border-dashed border-stroke bg-white px-6 py-16 text-center shadow-sm">
+            <Search size={44} className="mx-auto text-ink-muted" />
+            <p className="mt-4 text-lg font-semibold text-ink">No products found</p>
+            <p className="mt-2 text-sm text-ink-soft">
               {query
                 ? `No results for "${query}". Try different keywords.`
                 : "No products available right now."}

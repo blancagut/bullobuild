@@ -24,16 +24,17 @@ export function SectionHeader({
   return (
     <div
       className={cn(
-        "flex items-end justify-between gap-4",
-        align === "center" && "flex-col items-center text-center",
+        "flex flex-col gap-4 sm:gap-5",
+        align === "left" && "sm:flex-row sm:items-end sm:justify-between",
+        align === "center" && "items-center text-center",
         className
       )}
     >
-      <div>
+      <div className={cn("min-w-0", align === "center" && "flex flex-col items-center")}>
         {label && (
           <span
             className={cn(
-              "mb-2 inline-block text-xs font-bold uppercase tracking-[0.15em]",
+              "mb-2 inline-block text-[11px] font-bold uppercase tracking-[0.18em] sm:text-xs",
               isLight ? "text-yellow-dark" : "text-[#F2B705]"
             )}
           >
@@ -42,17 +43,30 @@ export function SectionHeader({
         )}
         <h2
           className={cn(
-            "font-display text-3xl font-black uppercase leading-none tracking-tight md:text-4xl",
+            "font-display text-[2.15rem] font-black uppercase leading-[0.92] tracking-tight sm:text-3xl md:text-4xl",
             isLight ? "text-ink" : "text-white"
           )}
         >
           {title}
         </h2>
         {subtitle && (
-          <p className={cn("mt-2 max-w-xl text-sm", isLight ? "text-ink-soft" : "text-gray-400")}>{subtitle}</p>
+          <p
+            className={cn(
+              "mt-3 max-w-xl text-sm leading-relaxed sm:text-[15px]",
+              isLight ? "text-ink-soft" : "text-gray-400"
+            )}
+          >
+            {subtitle}
+          </p>
         )}
       </div>
-      {action && align !== "center" && <div className="shrink-0">{action}</div>}
+      {action && align !== "center" && (
+        <div className="w-full shrink-0 sm:w-auto">
+          <div className="flex sm:block">
+            {action}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

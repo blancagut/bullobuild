@@ -49,6 +49,8 @@ export function StoreProductCard({
     originalPrice && originalPrice > price
       ? Math.round(((originalPrice - price) / originalPrice) * 100)
       : null;
+  const footerActionClass =
+    "flex h-12 w-full items-center justify-center gap-1.5 rounded-full text-[13px] font-black uppercase tracking-[0.16em] transition-colors";
 
   function handleAddToCart() {
     addItem({
@@ -76,7 +78,7 @@ export function StoreProductCard({
               fill
               priority={priority}
               className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
-              sizes="(max-width: 768px) 50vw, (max-width: 1280px) 33vw, 25vw"
+              sizes="(max-width: 639px) 50vw, (max-width: 1023px) 33vw, 25vw"
             />
           ) : (
             <div className="flex h-full items-center justify-center bg-panel">
@@ -97,33 +99,33 @@ export function StoreProductCard({
           ) : null}
         </div>
 
-        <div className="flex flex-1 flex-col p-4">
-          <div className="mb-3 flex items-start justify-between gap-3">
-            <span className="text-xs font-semibold uppercase tracking-[0.18em] text-ink-soft">
+        <div className="flex flex-1 flex-col p-4 sm:p-5">
+          <div className="mb-2.5 flex items-start justify-between gap-3">
+            <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-soft sm:text-xs">
               {brand}
             </span>
           </div>
 
-          <h3 className="mb-3 line-clamp-2 text-sm font-semibold leading-snug text-ink transition-colors group-hover:text-yellow-dark">
+          <h3 className="mb-3 min-h-[2.9rem] line-clamp-2 text-sm font-semibold leading-snug text-ink transition-colors group-hover:text-yellow-dark sm:min-h-12">
             {name}
           </h3>
 
-          <div className="mt-auto pt-2">
+          <div className="mt-auto pt-2.5">
             {isCatalogOnly ? (
-              <div className="flex flex-col gap-1">
+              <div className="flex min-h-14 flex-col gap-1">
                 <span className="text-sm font-black uppercase tracking-[0.14em] text-yellow-dark">
                   Catalog item
                 </span>
-                <span className="text-xs uppercase tracking-[0.16em] text-ink-muted">
+                <span className="text-[11px] uppercase tracking-[0.16em] text-ink-muted sm:text-xs">
                   Pricing coming soon
                 </span>
               </div>
             ) : isContactOnly ? (
-              <div className="flex flex-col gap-1">
+              <div className="flex min-h-14 flex-col gap-1">
                 <span className="text-sm font-black uppercase tracking-[0.14em] text-yellow-dark">
                   Contact us
                 </span>
-                <span className="text-xs uppercase tracking-[0.16em] text-ink-muted">
+                <span className="text-[11px] uppercase tracking-[0.16em] text-ink-muted sm:text-xs">
                   Request a quote for this machine
                 </span>
               </div>
@@ -138,14 +140,14 @@ export function StoreProductCard({
         {isCatalogOnly ? (
           <Link
             href={`/shop/${slug}`}
-            className="flex h-11 w-full items-center justify-center gap-2 rounded-full border border-stroke bg-white text-sm font-black uppercase tracking-[0.18em] text-ink transition-colors hover:border-yellow hover:bg-yellow/10"
+            className={`${footerActionClass} border border-stroke bg-white text-ink hover:border-yellow hover:bg-yellow/10`}
           >
             View Product
           </Link>
         ) : isContactOnly ? (
           <Link
             href={contactHref}
-            className="flex h-11 w-full items-center justify-center gap-2 rounded-full border border-yellow bg-yellow/10 text-sm font-black uppercase tracking-[0.18em] text-ink transition-colors hover:bg-yellow/20"
+            className={`${footerActionClass} border border-yellow bg-yellow/10 text-ink hover:bg-yellow/20`}
           >
             Contact Us
           </Link>
@@ -154,9 +156,9 @@ export function StoreProductCard({
             type="button"
             onClick={handleAddToCart}
             disabled={stock <= 0}
-            className="flex h-11 w-full items-center justify-center gap-2 rounded-full bg-yellow text-sm font-black uppercase tracking-[0.18em] text-ink transition-colors hover:bg-yellow-dark disabled:cursor-not-allowed disabled:opacity-50"
+            className={`${footerActionClass} bg-yellow text-ink hover:bg-yellow-dark disabled:cursor-not-allowed disabled:opacity-50`}
           >
-            <ShoppingCart size={16} />
+            <ShoppingCart size={15} />
             Add to Cart
           </button>
         )}

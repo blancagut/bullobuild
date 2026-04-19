@@ -27,7 +27,7 @@ const reasons = [
 
 export function WhyUsSection() {
   return (
-    <section className="border-y border-stroke bg-canvas py-14 lg:py-16">
+    <section className="border-y border-stroke bg-canvas py-14 lg:py-18">
       <Container>
         <SectionHeader
           label="Trust layer"
@@ -35,18 +35,18 @@ export function WhyUsSection() {
           subtitle="Keep the confidence signals visible while the catalog does the heavy lifting."
           align="center"
           tone="light"
-          className="mb-10"
+          className="mb-8 md:mb-10"
         />
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
           {reasons.map((item) => {
             const Icon = item.icon;
             return (
               <div
                 key={item.title}
-                className="group flex flex-col gap-4 rounded-2xl border border-stroke bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-yellow/40 hover:bg-white"
+                className="group flex flex-col gap-4 rounded-2xl border border-stroke bg-white p-5 shadow-sm transition-all hover:-translate-y-1 hover:border-yellow/40 hover:bg-white sm:p-6"
               >
-                <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-panel transition-colors group-hover:bg-yellow/15">
+                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-panel transition-colors group-hover:bg-yellow/15 sm:h-11 sm:w-11">
                   <Icon size={20} className="text-yellow-dark" />
                 </div>
                 <h3 className="font-display text-sm font-black uppercase tracking-[0.12em] text-ink">

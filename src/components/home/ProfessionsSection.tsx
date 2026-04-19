@@ -8,26 +8,26 @@ import { professionConfigs } from "@/lib/professions";
 
 export function ProfessionsSection() {
   return (
-    <section className="border-y border-stroke bg-canvas py-16 lg:py-20">
+    <section className="border-y border-stroke bg-canvas py-14 lg:py-20">
       <Container>
         <SectionHeader
           label="Shop by profession"
           title="Shop by your trade"
           subtitle="Jump straight into tools curated for the job you actually do."
-          className="mb-8"
+          className="mb-7 md:mb-8"
           action={
             <Button
               href="/search"
               variant="outline"
               size="sm"
-              className="rounded-full border-stroke bg-white text-ink hover:border-yellow hover:bg-panel"
+              className="w-full rounded-full border-stroke bg-white text-ink hover:border-yellow hover:bg-panel sm:w-auto"
             >
               Browse all
             </Button>
           }
         />
 
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
           {professionConfigs.map((profession) => {
             return (
               <Link
@@ -52,7 +52,7 @@ export function ProfessionsSection() {
                   </h3>
                 </div>
 
-                <div className="flex flex-1 flex-col gap-4 p-5">
+                <div className="flex flex-1 flex-col gap-4 p-5 sm:p-6">
                   <p className="text-sm leading-relaxed text-ink-soft">
                     {profession.description}
                   </p>
@@ -68,7 +68,7 @@ export function ProfessionsSection() {
                     ))}
                   </ul>
 
-                  <div className="mt-auto flex items-center justify-between border-t border-stroke pt-4 text-xs font-black uppercase tracking-[0.16em] text-ink">
+                  <div className="mt-auto flex items-center justify-between border-t border-stroke pt-4 text-[11px] font-black uppercase tracking-[0.16em] text-ink sm:text-xs">
                     <span>Shop this trade</span>
                     <span className="inline-flex items-center gap-1.5 text-yellow-dark transition-all group-hover:gap-2.5">
                       Enter

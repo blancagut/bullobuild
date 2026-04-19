@@ -42,25 +42,25 @@ export default async function CategoryPage({ params }: Props) {
     .order("is_featured", { ascending: false });
 
   return (
-    <div className="min-h-screen bg-[#070F1C] py-10">
-      <Container>
+    <div className="min-h-screen bg-white">
+      <Container className="py-6 lg:py-8">
         <Breadcrumb
           items={[
             { label: "Shop", href: "/shop" },
             { label: category.name },
           ]}
-          className="mb-8"
+          className="mb-6"
         />
 
         <SectionHeader
           label="Category"
           title={category.name}
           subtitle={`${products?.length ?? 0} products`}
-          className="mb-8"
+          className="mb-7 md:mb-8"
         />
 
         {products && products.length > 0 ? (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
             {products.map((p) => (
               <ProductCard
                 key={p.id}
@@ -77,7 +77,7 @@ export default async function CategoryPage({ params }: Props) {
             ))}
           </div>
         ) : (
-          <div className="text-center py-20 text-gray-500">
+          <div className="rounded-xl border border-dashed border-stroke bg-white px-6 py-16 text-center text-sm text-ink-soft shadow-sm">
             No products in this category yet.
           </div>
         )}

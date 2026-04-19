@@ -2,27 +2,19 @@ import Link from "next/link";
 import { ArrowRight, CheckCircle } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import { Container } from "@/components/ui/Container";
+import { groupBrandRecords, type BrandRecord } from "@/lib/brands";
 
-type BrandRow = {
-  id: string;
-  name: string;
-  slug: string;
-  is_authorized: boolean;
-};
-
-type ProductBrandRow = {
-  brand_id: string | null;
-};
+type ProductBrandRow = { brand_id: string | null };
 
 export default async function BrandsPage() {
   const supabase = await createClient();
   const { data: brands } = await supabase
     .from("brands")
-    .select("id, name, slug, is_authorized")
+    .select("id, name, slug, is_authorized, logo_url")
     .order("name");
 
-  const brandRows = (brands ?? []) as BrandRow[];
-  const brandIds = brandRows.map((brand) => brand.id);
+  const brandGroups = groupBrandRecords((brands ?? []) as BrandRecord[]);
+  const brandIds = brandGroups.flatMap((brand) => brand.ids);
 
   const { data: productBrandRows } = brandIds.length
     ? await supabase.from("products").select("brand_id").in("brand_id", brandIds)
@@ -34,7 +26,7 @@ export default async function BrandsPage() {
     productCounts.set(row.brand_id, (productCounts.get(row.brand_id) ?? 0) + 1);
   }
 
-  const authorizedCount = brandRows.filter((brand) => brand.is_authorized).length;
+  const authorizedCount = brandGroups.filter((brand) => brand.isAuthorized).length;
 
   return (
     <div className="min-h-screen bg-[#070f1c]">
@@ -47,27 +39,31 @@ export default async function BrandsPage() {
             Shop by Brand
           </h1>
           <p className="mx-auto max-w-2xl text-sm leading-relaxed text-gray-400">
-            Every brand below now has a dedicated storefront under the shop route, including
-            direct URLs like /shop/dewalt. The directory currently exposes {brandRows.length.toLocaleString()} live brand pages and {authorizedCount.toLocaleString()} authorized brands.
+            Each brand below opens its own dedicated brand page, separate from the main shop
+            catalog. The directory currently exposes {brandGroups.length.toLocaleString()} brand
+            pages and {authorizedCount.toLocaleString()} authorized brands.
           </p>
         </Container>
       </div>
 
       <Container className="py-16">
         <div className="mb-6 flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.16em] text-gray-500">
-          <span>{brandRows.length.toLocaleString()} storefront URLs</span>
+          <span>{brandGroups.length.toLocaleString()} brand pages</span>
           <span className="h-1 w-1 rounded-full bg-gray-700" />
           <span>{authorizedCount.toLocaleString()} authorized brands</span>
         </div>
 
         <div className="grid grid-cols-1 gap-px bg-white/5 md:grid-cols-2">
-          {brandRows.map((brand) => {
-            const productCount = productCounts.get(brand.id) ?? 0;
+          {brandGroups.map((brand) => {
+            const productCount = brand.ids.reduce(
+              (total, brandId) => total + (productCounts.get(brandId) ?? 0),
+              0
+            );
 
             return (
               <Link
-                key={brand.id}
-                href={`/shop/${brand.slug}`}
+                key={brand.slug}
+                href={`/brands/${brand.slug}`}
                 className="group flex items-center gap-6 border-l-2 border-transparent bg-[#0f1b2e] p-8 transition-all hover:border-yellow hover:bg-[#0b1f3a]"
               >
                 <div className="flex h-20 w-20 shrink-0 items-center justify-center bg-[#0b1f3a] transition-colors group-hover:bg-[#112645]">
@@ -81,7 +77,7 @@ export default async function BrandsPage() {
                     <h2 className="font-display text-xl font-black uppercase tracking-tight text-white">
                       {brand.name}
                     </h2>
-                    {brand.is_authorized ? (
+                    {brand.isAuthorized ? (
                       <span className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-[0.18em] text-yellow">
                         <CheckCircle size={11} />
                         Authorized
@@ -89,12 +85,12 @@ export default async function BrandsPage() {
                     ) : null}
                   </div>
 
-                  <p className="mb-3 text-xs text-gray-500">bullobuild.com/shop/{brand.slug}</p>
+                  <p className="mb-3 text-xs text-gray-500">bullobuild.com/brands/{brand.slug}</p>
 
                   <div className="flex items-center gap-4 text-xs text-gray-600">
                     <span>{productCount.toLocaleString()} catalog products</span>
                     <span className="h-1 w-1 rounded-full bg-gray-700" />
-                    <span className="uppercase tracking-[0.16em]">Slug: {brand.slug}</span>
+                    <span className="uppercase tracking-[0.16em]">Dedicated brand page</span>
                   </div>
                 </div>
 
